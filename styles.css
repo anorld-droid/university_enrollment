@@ -1,0 +1,38 @@
+body {
+  max-width: 500px;
+  margin: auto;
+  background-color: darkgray;
+}
+
+#form {
+  text-align: start;
+}
+
+#fName,
+#lName,
+#adm_number,
+#pass,
+#con_pass {
+  border-radius: 10px;
+  min-height: 35px;
+  min-width: 300px;
+  max-height: 40px;
+}
+
+h1 {
+  text-align: start;
+}
+#sign_up_button,
+#login {
+  background-color: darkgreen;
+  border-radius: 10px;
+  margin-left: 120px;
+  padding: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+#signindiv,
+#signupdiv {
+  margin: 10px;
+  margin-left: 50px;
+}

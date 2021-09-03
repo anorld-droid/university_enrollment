@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header><h1>Login</h1></header>
 
-    <div>
-      <form action="">
-        ADM NO:<input id="adm_number" type="text" name="adm_number" />
-        PASSWORD:<input id="password" type="password" name="password" />
-
-        <button id="Login" type="button" name="Login">Login</button>
+    <div id="form">
+      <form action="" method="POST">
+        Admission Number:<br><input id="adm_number" type="text" name="adm_number" placeholder="Format : CCS-00008-021" /><br><br>
+        Password:<br><input id="pass" type="password" name="password" placeholder="Password"/><br><br>
+        <button id="login" type="button" name="Login">Login</button>
       </form>
     </div>
-    <div>
+    <div id="signindiv">
       <span>Don't have an account?<a href="SIGNUP.html">Sign Up</a></span>
     </div>
 
