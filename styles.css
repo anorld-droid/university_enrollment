@@ -25,14 +25,22 @@ h1 {
 #sign_up_button,
 #login {
   background-color: darkgreen;
+  cursor: pointer;
   border-radius: 10px;
   margin-left: 120px;
   padding: 7px;
   padding-left: 7px;
   padding-right: 7px;
 }
+#sign_up_button:hover,
+#login:hover {
+  background-color: aqua;
+}
 #signindiv,
 #signupdiv {
   margin: 10px;
   margin-left: 50px;
+}
+a:hover {
+  color: aqua;
 }
