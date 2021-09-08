@@ -16,7 +16,11 @@ function search($input, $input2)
                 $entry_array = explode("#", fgets($handle));
                 for ($i = 0; $i < count($entry_array); $i++) {
                     if ($entry_array[$i] === $input && $entry_array[$i + 1] === $input2) {
-                        echo "Welcome " . $entry_array[$i - 2] . " " . $entry_array[$i - 1];
+                        echo "Welcome " . $entry_array[$i - 2] . " " . $entry_array[$i - 1] . "<br>";
+
+                        $obj =
+                            array("first name" => $entry_array[$i - 2], "last name" => $entry_array[$i - 1],  "adm Number" => $entry_array[$i], "password" => $entry_array[$i + 1]);
+                        echo json_encode($obj);
                         $check += 1;
                     }
                 }

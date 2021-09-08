@@ -24,4 +24,7 @@ if (file_exists($my_file)) {
 } else {
     echo "file does not exist";
 }
-echo "SUCCEFULLY REGISTERED";
+echo "SUCCEFULLY REGISTERED" . '<br>';
+
+$obj = array("first name" => $_POST["fName"], "last name" => $_POST["lName"], "adm number" => $_POST["admNumber"], "password" => $_POST["pass"]);
+echo json_encode($obj);
