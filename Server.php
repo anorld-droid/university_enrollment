@@ -24,7 +24,11 @@ if (!empty($_POST['fName'])) {
         file_put_contents($my_file, $jsondata);
         $newFileSize = fstat($file);
         if ($newFileSize['size'] > $fileInitialSize) {
-            echo "SUCCEFULLY REGISTERED" . '<br>';
+            echo "
+            <script>
+            alert('SUCCEFULLY REGISTERED');
+            window.location.href='SIGNIN.html';
+            </script>";
         }
         fclose($file);
     } else {
@@ -53,10 +57,14 @@ if (!empty($_POST['fName'])) {
                 if ($val['adm number'] === $input) {
                     $check++;
                     if ($val['password'] === $input2) {
-                        echo "Logged In as " . $val['first name'] . " " . $val["last name"];
+                        echo "<h3>Logged In as " . $val['first name'] . " " . $val["last name"] . "</h3>";
                         break;
                     } else {
-                        echo "Check password and try again";
+                        echo "
+                            <script>
+                            alert('Check password and try again');
+                            window.location.href='SIGNIN.html';
+                            </script>";
                         break;
                     }
                 }

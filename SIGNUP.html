@@ -5,89 +5,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Portal</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <div id="form">
-      <header><h1>Sign Up</h1></header>
+    <div class="container" >
+      <div class="row">
+        <div class="col-sm"></div>
+          <div class="col-sm-8">
+            <div class="card text-white bg-dark mb-3">
+              <div class="card-header text-center">
+                <h5>Sign Up</h5>
+              </div>
+              <div class="card-body">
+                <form  class="needs-validation" action="Server.php" method="POST" novalidate>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="firstName">First Name</label>
+                      <input type="text" id="fName"class="form-control" name="fName" placeholder="First name" required>
+                      <div class="invalid-feedback">
+                        Please enter your First Name
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" id="lName" class="form-control" name="lName" placeholder="Last name" required>
+                      <div class="invalid-feedback">
+                        Please enter your Last Name
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="basicPay">Admission Number</label>
+                    <input type="text" class="form-control " id="adm_number" name="admNumber" placeholder="Admission Number" required>
+                    <div class="invalid-feedback">
+                      Please enter your admission number
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="basicPay">Password</label>
+                    <input type="password" class="form-control " id="pass" name="pass" placeholder="Password" required>
+                    <div class="invalid-feedback">
+                      Please enter your password
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="basicPay">Confirm Password</label>
+                    <input type="password" class="form-control " id="con_pass" name="con_pass" placeholder="Confirm Password" required>
+                    <div class="invalid-feedback">
+                      Please enter your password
+                    </div>
+                  </div>
+        
+                  <div class="row">
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                       <button id="sign_up_button" name="sign_up_button" class="btn btn-primary btn-lg btn-block" type="submit">Sign up</button>
+                      </div>
+                    <div class="col-sm"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-6">
+                       Already have an account?<a href="SIGNIN.html">Log In</a>
+                    </div>
+                    <div class="col-sm-3"></div>
+                  </div>
 
-      <form  action="Server.php" method="POST">
-        First Name:<br /><input
-          id="fName"
-          type="text"
-          name="fName"
-          placeholder="Enter Your First Name"
-        /><br /><br />
-        LastName:<br /><input
-          id="lName"
-          type="text"
-          name="lName"
-          placeholder="Enter Your Last Name"
-        /><br /><br />
-        Admission Number:<br /><input
-          id="adm_number"
-          type="text"
-          name="admNumber"
-          placeholder="Enter Your Admission Number(Format CCS-00008-021) "
-        /><br /><br />
-        Password:<br /><input
-          id="pass"
-          type="password"
-          name="pass"
-          placeholder="Enter your password"
-        /><br /><br />
-        Confirm Password:<br /><input
-          id="con_pass"
-          type="password"
-          name="con_pass"
-          placeholder="Enter your password"
-        /><br /><br />
-        <button
-          type="submit"
-          id="sign_up_button"
-          name="sign_up_button"
-          onclick="return validate()"
-        >
-          Sign Up
-        </button>
-      </form>
-
-      <div id="signupdiv">
-        <span>Already have an account?<a href="SIGNIN.html">Log In</a></span>
+                </form>
+                <div id="signupdiv">
+                </div>
+              </div>
+            </div>  
+          </div>
+        <div class="col-sm"></div>
       </div>
     </div>
+    <script>
+      //  JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
-  <script>
-    function validate() {
-      var fName = document.getElementById('fName');
-
-      var lName = document.getElementById('lName');
-
-      var admNumber = document.getElementById('adm_number');
-
-      var Password = document.getElementById('pass').value;
-
-      var conPass = document.getElementById('con_pass').value;
-
-      var btn = document.getElementById('sign_up_button');
-      if (
-        fName.value === '' ||
-        lName.value === '' ||
-        admNumber.value === '' ||
-        Password === '' ||
-        conPass === ''
-      ) {
-        {
-          alert('Fields cannot be empty');
-          return false;
-        }
-      }
-      if (conPass !== Password) {
-        alert('passwords do no match');
-        return false;
-      }
-    }
-
-    btn.addEventListener('click', validate);
-  </script>
 </html>
