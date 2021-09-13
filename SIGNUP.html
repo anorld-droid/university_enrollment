@@ -39,8 +39,9 @@
                   <label for="profilePhotoFile">Profile Photo</label>
                   <br>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="profilePhotoFile" name="profilePhoto" placeholder="Foramts accepted : jpg, png and jpeg">
+                    <input type="file" class="custom-file-input" id="profilePhotoFile" name="profilePhoto"  required>
                     <label class="custom-file-label" for="profilePhotoFile">Choose file</label>
+                    <div class="invalid-feedback">Field cannot be empty</div>
                   </div>
                   <br>
                   <br>
@@ -90,13 +91,16 @@
         <div class="col-sm"></div>
       </div>
     </div>
-    <img src="uploads/download1.jpg" alt="">
-    <script>
-      
+    <script>     
       //  JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
-        window.addEventListener('load', function() {
+          window.addEventListener('load', function() {
+            $('input[type="file"]').change(function(e){
+                  var fileName = e.target.files[0].name;
+                $('.custom-file-label').html(fileName);
+              }
+            );
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
           var forms = document.getElementsByClassName('needs-validation');
           // Loop over them and prevent submission

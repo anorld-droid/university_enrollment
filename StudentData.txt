@@ -1,1 +1,1 @@
-[{"first name":"Wanjala","last name":"Patrice","adm number":"CCS-00008-019","password":"logo-recipe.jpg","profile photo":"uploads\/logo-recipe.jpg"}]
+[{"first name":"Wanjala","last name":"Patrice","adm number":"CCS-00008-019","password":"logo-recipe.jpg","profile photo":"uploads\/logo-recipe.jpg"},{"first name":"Vincent","last name":"Munene","adm number":"CCS-00012-019","password":"images.jpg","profile photo":"uploads\/images.jpg"}]
