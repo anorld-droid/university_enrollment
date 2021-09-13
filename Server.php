@@ -3,7 +3,65 @@ $fileInitialSize  = filesize("StudentData.txt");
 
 if (!empty($_POST['fName'])) {
 
-    $myData = array("first name" => $_POST["fName"], "last name" => $_POST["lName"], "adm number" => $_POST["admNumber"], "password" => $_POST["pass"]);
+    $target_dir = "uploads/";
+    $filename = $_FILES["profilePhoto"]["name"];
+    $target_file = $target_dir . basename($_FILES["profilePhoto"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["profilePhoto"]["tmp_name"]);
+    $tempname = $_FILES["profilePhoto"]["tmp_name"];
+    $imageTypes = array("jpg", "png", "jpeg");
+
+    if ($check === false) {
+        echo "
+            <script>
+            alert('File is not an image');
+            window.location.href='SIGNUP.html';
+            </script>";
+        exit();
+    }
+
+    if (file_exists($filename)) {
+        echo "
+        <script>
+        alert('File already exists');
+        window.location.href='SIGNUP.html';
+        </script>";
+        exit();
+    }
+    if ($_FILES["profilePhoto"]["size"] > 500000) {
+        echo "
+        <script>
+        alert('File is too large');
+        window.location.href='SIGNUP.html';
+        </script>";
+        exit();
+    }
+    if (
+        $imageFileType !== "jpg" &&
+        $imageFileType !== "png" &&
+        $imageFileType !== "jpeg"
+    ) {
+        echo "
+       <script>
+       alert('Only, jpg, png and jpeg formats are allowed.');
+       window.location.href='SIGNUP.html';
+       </script>";
+        exit();
+    }
+
+    if (move_uploaded_file($tempname, $target_file)) {
+        echo "
+            <script>
+            alert('File uploaded');
+            window.location.href='SIGNUP.html';
+            </script>";
+    }
+    $profile_photo;
+    $myData = array(
+        "first name" => $_POST["fName"],
+        "last name" => $_POST["lName"], "adm number" => $_POST["admNumber"], "password" => $filename, "profile photo" => $target_file
+    );
     //  $json = json_encode($myData);
 
 

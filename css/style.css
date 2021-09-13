@@ -1,0 +1,18 @@
+.card {
+  margin-top: 60px;
+}
+#sign_in_card {
+  margin-top: 120px;
+}
+.sign_up_body,
+.sign_in_body {
+  background-image: url('../login-page-background-image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home {
+  background-image: url('../home-background-image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
