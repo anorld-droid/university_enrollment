@@ -50,9 +50,19 @@
                                 }
 
                                 ?>
-                            </tbody>
 
+                                <tr>
+                                </tr>
+                            </tbody>
                         </table>
+                        <div class="row">
+                            <div class="col-sm"></div>
+                            <div class="col-sm">
+                                <a href="downloadpdf.php" class="btn btn-primary btn-lg btn-block">Download PDF Version</a>
+                            </div>
+                            <div class="col-sm"></div>
+                        </div>
+                        <!-- <td><button id="pdf_button" name="pdf_button" class="btn btn-primary btn-lg btn-block" type="submit">Download PDF Version</button></td> -->
                     </div>
                 </div>
             </div>
