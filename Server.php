@@ -127,7 +127,13 @@
                                     }
                                     // echo "SUCCEFULLY REGISTERED" . '<br>';
 
+                                    $sql = "INSERT INTO student_data(fname,lname,profile_picture,adm_number,pass) VALUES('$fName','$lName','$profile_pic', '$adm_number','$pass')";
 
+                                    if (mysqli_query($conn, $sql)) {
+                                        echo "Records inserted successfully.";
+                                    } else {
+                                        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+                                    }
                                 } else {
 
                                     $admNumber = $_POST["adm_number"];
