@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body class="sign_up_body">
+    <div class="container" >
+      <div class="row">
+        <div class="col-sm"></div>
+          <div class="col-sm-8">
+            <div class="card text-white bg-dark mb-3">
+              <div class="card-header text-center">
+                <h5>Sign Up</h5>
+              </div>
+              <div class="card-body">
+                <form  class="needs-validation" action="../php/Server.php" method="POST" enctype="multipart/form-data" novalidate>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="firstName">First Name</label>
+                      <input type="text" id="fName"class="form-control" name="fName" placeholder="First name" required>
+                      <div class="invalid-feedback">
+                        Please enter your First Name
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" id="lName" class="form-control" name="lName" placeholder="Last name" required>
+                      <div class="invalid-feedback">
+                        Please enter your Last Name
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <label for="profilePhotoFile">Profile Photo</label>
+                  <br>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="profilePhotoFile" name="profilePhoto"  required>
+                    <label class="custom-file-label" for="profilePhotoFile">Choose file</label>
+                    <div class="invalid-feedback">Field cannot be empty</div>
+                  </div>
+                  <br>
+                  <br>
+                  <div class="form-group">
+                    <label for="basicPay">Admission Number</label>
+                    <input type="text" class="form-control " id="adm_number" name="admNumber" placeholder="Admission Number" required>
+                    <div class="invalid-feedback">
+                      Please enter your admission number
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="basicPay">Password</label>
+                    <input type="password" class="form-control " id="pass" name="pass" placeholder="Password" required>
+                    <div class="invalid-feedback">
+                      Please enter your password
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="basicPay">Confirm Password</label>
+                    <input type="password" class="form-control " id="con_pass" name="con_pass" placeholder="Confirm Password" required>
+                    <div class="invalid-feedback">
+                      Please enter your password
+                    </div>
+                  </div>
+        
+                  <div class="row">
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                       <button id="sign_up_button" name="sign_up_button" class="btn btn-primary btn-lg btn-block" type="submit">Sign up</button>
+                      </div>
+                    <div class="col-sm"></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-6">
+                       Already have an account?<a href="SIGNIN.html">Log In</a>
+                    </div>
+                    <div class="col-sm-3"></div>
+                  </div>
+
+                </form>
+                <div id="signupdiv">
+                </div>
+              </div>
+            </div>  
+          </div>
+        <div class="col-sm"></div>
+      </div>
+    </div>
+    <script>     
+      //  JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+          window.addEventListener('load', function() {
+            $('input[type="file"]').change(function(e){
+                  var fileName = e.target.files[0].name;
+                $('.custom-file-label').html(fileName);
+              }
+            );
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
