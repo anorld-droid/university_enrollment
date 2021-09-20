@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('fpdf.php');
 
 
@@ -31,23 +32,33 @@ class PDF extends FPDF
     }
     function Body()
     {
+        if (isset($_SESSION['firstName']) and isset($_SESSION['lastName'])) {
+            $firstname = $_SESSION['firstName'];
+            $lastname = $_SESSION['lastName'];
+        }
+        if (isset($_SESSION['admissionNum'])) {
+            $admNumber = $_SESSION['admissionNum'];
+        }
+        if (isset($_SESSION['password'])) {
+            $password = $_SESSION['password'];
+        }
         // $this->SetFont('Arial', 'B', 15);
         // $this->Cell(40, 6, "PROFILE PHOTO:", 0, 0);
         $this->ln();
         $this->SetFont('Arial', 'B', 15);
         $this->Cell(40, 6, "NAME:", 0, 0);
         $this->SetFont('Times', '', 12);
-        $this->Cell(10, 6, $_POST['first_name'] . " " . $_POST['last_name']);
+        $this->Cell(10, 6, $firstname . " " . $lastname);
         $this->ln();
         $this->SetFont('Arial', 'B', 15);
         $this->Cell(40, 6, "ADM NO:", 0, 0);
         $this->SetFont('Times', '', 12);
-        $this->Cell(10, 6, $_POST['admission_number']);
+        $this->Cell(10, 6, $admNumber);
         $this->ln();
         $this->SetFont('Arial', 'B', 15);
         $this->Cell(40, 6, "PASSWORD:", 0, 0);
         $this->SetFont('Times', '', 12);
-        $this->Cell(10, 6, $_POST['password']);
+        $this->Cell(10, 6, $password);
     }
 }
 $pdf = new PDF();

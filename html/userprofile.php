@@ -67,16 +67,45 @@ if (isset($_SESSION['password'])) {
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="../html/profile.html">
+                            <a class="nav-link active" href="../html/profile.html">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text  text-light">Profile</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../html/registrationstageone.html">
+                            <a class="nav-link " data-toggle="collapse" href="#stages" role="button" aria-expanded="false" aria-controls="stages">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
                                 <span class="nav-link-text  text-light">Enroll</span>
                             </a>
+                            <div class="collapse pl-lg-5 pl-sm-5 pl-xs-5" id="stages">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link collapse " href="../html/stageone.php">
+                                            <i class="ni ni-check-bold text-default"></i>
+                                            <span class="nav-link-text  text-light">Stage One</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                            <i class="ni ni-check-bold text-default"></i>
+                                            <span class="nav-link-text  text-light">Stage Two</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                            <i class="ni ni-check-bold text-default"></i>
+                                            <span class="nav-link-text  text-light">Stage Three</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                            <i class="ni ni-check-bold text-default"></i>
+                                            <span class="nav-link-text  text-light">Stage Four</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../html/SIGNIN.html">
@@ -201,7 +230,6 @@ if (isset($_SESSION['password'])) {
                                         <?php
 
                                         echo "<span class=\"mb-0 text-sm  font-weight-bold\">" . $firstname . " " . $lastname . "</span>";
-
                                         ?>
                                     </div>
                                 </div>
@@ -247,7 +275,7 @@ if (isset($_SESSION['password'])) {
                         echo " <h1 class=\"display-2 text-white\">Hello  " . $fname[0] . "</h1>";
                         ?>
                         <p class="text-white mt-0 mb-5">This is your profile page. You can see the details that we have about you and update if incorrect.</p>
-                        <a href="#!" class="btn btn-neutral">Edit profile</a>
+                        <a href="../php/userpdf.php" class="btn btn-neutral">Download PDF</a>
                     </div>
                 </div>
             </div>

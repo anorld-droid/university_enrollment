@@ -23,8 +23,11 @@ if (isset($_SESSION['firstName']) and isset($_SESSION['lastName'])) {
   $firstname = $_SESSION['firstName'];
   $lastname = $_SESSION['lastName'];
 }
-if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
-  $firstname = $_SESSION['admissionNum'];
+if (isset($_SESSION['admissionNum'])) {
+  $admNumber = $_SESSION['admissionNum'];
+}
+if (isset($_SESSION['password'])) {
+  $password = $_SESSION['password'];
 }
 ?>
 <!DOCTYPE html>
@@ -64,13 +67,13 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="../html/adminProfile.php">
+              <a class="nav-link" href="../html/adminProfile.php">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text  text-light">Profile</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../html/tables.html">
+              <a class="nav-link active" href="../html/tables.html">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text  text-light">Tables</span>
               </a>
@@ -82,7 +85,7 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../html/SIGNIN.html">
+              <a class="nav-link" href="../html/SIGNUP.html">
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text  text-light">Register</span>
               </a>
@@ -121,7 +124,7 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
   <!-- Main content -->
   <div class="main-content" id="panel">
     <!-- Topnav -->
-    <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Search form -->
@@ -214,7 +217,7 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
                   <span>Support</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
+                <a href="../html/SIGNIN.html" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
@@ -226,116 +229,106 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
     </nav>
     <!-- Header -->
     <!-- Header -->
-    <div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(../images/home-background-image.jpg); background-size: cover; background-position: center top;">
-      <!-- Mask -->
-      <span class="mask bg-gradient-default opacity-8"></span>
-      <!-- Header container -->
-      <div class="container-fluid d-flex align-items-center">
-        <div class="row">
-          <div class="col-lg-7 col-md-10">
-            <?php
-            $fname = explode(" ", $firstname);
-            echo " <h1 class=\"display-2 text-white\">Hello  " . $fname[0] . "</h1>";
-            ?>
-            <p class="text-white mt-0 mb-5">This is your profile page. You can see the details that we have about you and update if incorrect.</p>
-            <a href="#!" class="btn btn-neutral">Edit profile</a>
+    <div class="header bg-gradient-default pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tables</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Delete</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6 bg-dark">
+      <!-- Table -->
       <div class="row">
         <div class="col">
-          <div class="card bg-dark">
-            <div class="card-header ">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">Edit profile </h3>
-                </div>
-                <div class="col-4 text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-                </div>
-              </div>
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-white mb-0">Registered student</h3>
             </div>
-            <div class="card-body">
-              <!-- Edit profile form  -->
-              <form>
-                <h6 class="heading-small text-muted mb-4">User information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control text-dark" placeholder="Username" value="lucky.jesse">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control text-dark" placeholder="jesse@example.com">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control text-dark" placeholder="First name" value="Lucky">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control text-dark" placeholder="Last name" value="Jesse">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-4" />
-                <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-address">Address</label>
-                        <input id="input-address" class="form-control text-dark" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-city">City</label>
-                        <input type="text" id="input-city" class="form-control text-dark" placeholder="City" value="New York">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-country">Country</label>
-                        <input type="text" id="input-country" class="form-control text-dark" placeholder="Country" value="United States">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-country">Postal code</label>
-                        <input type="number" id="input-postal-code" class="form-control text-dark" placeholder="Postal code">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-4" />
-                <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">About me</h6>
-                <div class="pl-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label text-light">About Me</label>
-                    <textarea rows="4" class="form-control text-dark" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                  </div>
-                </div>
-              </form>
-              <!-- End of form  -->
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col" class="sort" data-sort="name">Name</th>
+                    <th scope="col" class="sort" data-sort="budget">Admission Number</th>
+                    <th scope="col">School</th>
+                    <th scope="col" class="sort" data-sort="status">Status</th>
+                    <th scope="col" class="sort" data-sort="completion">Completion</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <?php
+                  $my_file = "../php/StudentData.txt";
+
+                  $obtainedData = json_decode(file_get_contents($my_file), true);
+
+                  foreach ($obtainedData as  $val) {
+                    echo "<tr>";
+                    echo   "<th scope=\"row\">";
+                    echo     "<div class=\"media align-items-center\">";
+                    echo       "<a href=\"#\" class=\"avatar rounded-circle mr-3\">";
+                    echo           "<img  src=\"../" . $val['profile photo'] .  " \" height=\"40\" width=\"100\" alt=\"Profile photo\">";
+                    echo        "</a>";
+                    echo        "<div class=\"media-body\">";
+                    echo            "<span class=\"name mb-0 text-sm\">" . $val['first name'] . " " . $val['last name'] . "</span>";
+                    echo        "</div>";
+                    echo     "</div>";
+                    echo    "</th>";
+                    echo    "<td>";
+                    echo        $val['adm number'];
+                    echo    "</td>";
+                    echo    "<td>";
+                    echo        "Computing and Informatics"; //TODO
+                    echo    "</td>";
+                    echo    "<td>";
+                    echo       "<span class=\"badge badge-dot mr-4\">";
+                    echo          "<i class=\"bg-warning\"></i>";
+                    echo          "<span class=\"status\">pending</span>"; // TODO
+                    echo        "</span>";
+                    echo     "</td>";
+                    echo    "<td>";
+                    echo        "<div class=\"d-flex align-items-center\">";
+                    echo            "<span class=\"completion mr-2\">60%</span>"; //TODO
+                    echo        "</div>";
+                    echo         "<div>";
+                    echo                "<div class=\"progress\">";
+                    echo                    "<div class=\"progress-bar bg-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\"></div>";
+                    echo                 "</div>";
+                    echo         "</div>";
+                    echo    "</td>";
+                    echo    "<td class=\"text-right\">";
+                    echo       "<div class=\"dropdown\">";
+                    echo           "<a class=\"btn btn-sm btn-icon-only text-light\" href=\"#\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">";
+                    echo           "<i class=\"fas fa-ellipsis-v\"></i>";
+                    echo           "</a>";
+                    echo            "<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-arrow\">";
+                    echo                "<a class=\"dropdown-item\" href=\"#\">Edit</a>";
+                    echo                "<a class=\"dropdown-item\" href=\"#\">Delete</a>";
+                    echo            "</div>";
+                    echo       "</div>";
+                    echo    "</td>";
+                    echo   "</tr>";
+                  }
+
+                  ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

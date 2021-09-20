@@ -64,13 +64,13 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="../html/profile.html">
+              <a class="nav-link active" href="../html/adminProfile.php">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text  text-light">Profile</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../html/tables.html">
+              <a class="nav-link" href="../html/tables.php">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text  text-light">Tables</span>
               </a>
@@ -254,7 +254,7 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
                   <h3 class="mb-0">Edit profile </h3>
                 </div>
                 <div class="col-4 text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                  <a href="#!" class="btn btn-sm btn-primary">Save Changes</a>
                 </div>
               </div>
             </div>
