@@ -4,6 +4,8 @@ require_once 'db.php';
 $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
 
 
+
+
 $fileInitialSize  = filesize("StudentData.txt");
 if (isset($_POST['fName'])) {
 
@@ -111,9 +113,10 @@ if (isset($_POST['fName'])) {
     $pass = $_POST["pass"];
     $profile_pic = $target_file;
     $status = "pending";
-    $completion = 0;    
+    $completion = 0;
 
     $values = array($fName, $lName, $profile_pic, $adm_number, $pass, $status, $completion);
+
 
 
     insertRecords($db, $values);

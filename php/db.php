@@ -13,18 +13,19 @@ function connect($server, $user, $password, $db_name)
     }
     return $db;
 }
-//function selectRecords(mysqli $db)
-//{
-$data = [];
-$sql = "SELECT * FROM student_data";
-$resultSet = $db->query($sql);
+function selectRecords(mysqli $db)
+{
+    $data = [];
+    $sql = "SELECT * FROM student_data";
+    $resultSet = $db->query($sql);
+    while ($row = $resultSet->fetch_assoc()) {
+        $data[] = $row;
+    }
 
-$data[] = $resultSet;
-print_r($data);
 
-// return $data;
-
-//}
+    //var_dump($data);
+    return $data;
+}
 
 
 function insertRecords(mysqli $db, array $record)

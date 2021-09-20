@@ -13,19 +13,19 @@ $check = 0;
 $my_file = "StudentData.txt";
 if (file_exists($my_file)) {
 
-    $obtainedData = json_decode(file_get_contents($my_file), true);
-    
+    //  $obtainedData = json_decode(file_get_contents($my_file), true);
+    $data = selectRecords($db);
 
     // $keys = array_keys($obtainedData);
-    foreach ($obtainedData as  $val) {
-        if ($val['adm number'] === $admNumber) {
+    foreach ($data as  $val) {
+        if ($val['adm_number'] === $admNumber) {
             $check++;
-            if ($val['password'] === $password) {
-                $_SESSION['firstName'] = $val['first name'];
-                $_SESSION['lastName'] = $val['last name'];
-                $_SESSION['profilePhoto'] = $val['profile photo'];
-                $_SESSION['admissionNum'] = $val['adm number'];
-                $_SESSION['password'] = $val['password'];
+            if ($val['pass'] === $password) {
+                $_SESSION['firstName'] = $val['fname'];
+                $_SESSION['lastName'] = $val['lname'];
+                $_SESSION['profilePhoto'] = $val['profile_picture'];
+                $_SESSION['admissionNum'] = $val['adm_number'];
+                $_SESSION['password'] = $val['pass'];
                 echo "
                     <script>
                     window.location.href='../html/userprofile.php';
