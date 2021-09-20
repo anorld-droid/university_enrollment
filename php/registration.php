@@ -1,5 +1,9 @@
 <?php
-require_once 'database.php';
+require_once 'config.php';
+require_once 'db.php';
+$db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
+
+
 $fileInitialSize  = filesize("StudentData.txt");
 if (isset($_POST['fName'])) {
 
@@ -64,11 +68,6 @@ if (isset($_POST['fName'])) {
         "password" => $_POST["pass"], "profile photo" => $target_file
     );
 
-    $fName = $_POST["fName"];
-    $lName = $_POST["lName"];
-    $adm_number = $_POST["admNumber"];
-    $pass = $_POST["pass"];
-    $profile_pic = $target_file;
     //  $json = json_encode($myData);
 
 
@@ -101,12 +100,21 @@ if (isset($_POST['fName'])) {
         echo "file does not exist";
     }
     // echo "SUCCEFULLY REGISTERED" . '<br>';
+    //database operation starts here
 
-    $sql = "INSERT INTO student_data(fname,lname,profile_picture,adm_number,pass,status,completion) VALUES('$fName','$lName','$profile_pic', '$adm_number','$pass', 'pending', '0')";
 
-    if (mysqli_query($conn, $sql)) {
-        echo "Records inserted successfully.";
-    } else {
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-    }
+
+
+    $fName = $_POST["fName"];
+    $lName = $_POST["lName"];
+    $adm_number = $_POST["admNumber"];
+    $pass = $_POST["pass"];
+    $profile_pic = $target_file;
+    $status = "pending";
+    $completion = 0;    
+
+    $values = array($fName, $lName, $profile_pic, $adm_number, $pass, $status, $completion);
+
+
+    insertRecords($db, $values);
 }

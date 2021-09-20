@@ -1,5 +1,7 @@
 <?php
-
+require_once 'config.php';
+require_once 'db.php';
+$db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
 
 $admNumber = $_POST["adm_number"];
 $password = $_POST["password"];
@@ -12,7 +14,7 @@ $my_file = "StudentData.txt";
 if (file_exists($my_file)) {
 
     $obtainedData = json_decode(file_get_contents($my_file), true);
-
+    
 
     // $keys = array_keys($obtainedData);
     foreach ($obtainedData as  $val) {
