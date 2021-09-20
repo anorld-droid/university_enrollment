@@ -238,7 +238,7 @@ if (isset($_SESSION['password'])) {
                                 <div class="dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome!</h6>
                                 </div>
-                                <a href="#!" class="dropdown-item">
+                                <a href="userprofile.php" class="dropdown-item">
                                     <i class="ni ni-single-02"></i>
                                     <span>My profile</span>
                                 </a>
@@ -251,7 +251,7 @@ if (isset($_SESSION['password'])) {
                                     <span>Support</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#!" class="dropdown-item">
+                                <a href="SIGNUP.html" class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>
@@ -300,20 +300,7 @@ if (isset($_SESSION['password'])) {
                             <form>
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-username">Username</label>
-                                                <input type="text" id="input-username" class="form-control text-dark" placeholder="Username" value=<?php echo $admNumber; ?>>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-email">Email address</label>
-                                                <input type="email" id="input-email" class="form-control text-dark" placeholder="jesse@example.com">
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
@@ -331,6 +318,12 @@ if (isset($_SESSION['password'])) {
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
+                                                <label class="form-control-label text-light" for="input-username">Username</label>
+                                                <input type="text" id="input-username" class="form-control text-dark" placeholder="Username" value=<?php echo $admNumber; ?>>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-password" value=<?php echo $admNumber ?>>Password</label>
                                                 <input type="text" id="input-password" class="form-control text-dark" placeholder="Password" value=<?php echo $password ?>>
                                             </div>
@@ -343,32 +336,33 @@ if (isset($_SESSION['password'])) {
                                 <h6 class="heading-small text-muted mb-4">Contact information</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-address">Address</label>
-                                                <input id="input-address" class="form-control text-dark" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+                                                <label class="form-control-label text-light" for="input-email">Email address</label>
+                                                <input type="email" id="input-email" class="form-control text-dark" placeholder="jesse@example.com">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-city">District</label>
-                                                <input type="text" id="input-city" class="form-control text-dark" placeholder="City" value="New York">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-country">County</label>
-                                                <input type="text" id="input-country" class="form-control text-dark" placeholder="Country" value="United States">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-country">Phone Number</label>
                                                 <input type="number" id="input-postal-code" class="form-control text-dark" placeholder="phone number">
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label text-light" for="input-city">District</label>
+                                                <input type="text" id="input-city" class="form-control text-dark" placeholder="District" name="district">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label text-light" for="input-country">County</label>
+                                                <input type="text" id="input-country" class="form-control text-dark" placeholder="County" name="County">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <hr class="my-4" />

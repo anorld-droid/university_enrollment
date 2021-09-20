@@ -70,7 +70,7 @@ if (isset($_SESSION['admissionNum']) and isset($_SESSION['lastName'])) {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../html/tables.html">
+              <a class="nav-link" href="../html/tables.php">
                 <i class="ni ni-bullet-list-67 text-default"></i>
                 <span class="nav-link-text  text-light">Tables</span>
               </a>

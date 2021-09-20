@@ -244,7 +244,7 @@ if (isset($_SESSION['password'])) {
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="SIGNUP.html" class="btn btn-sm btn-neutral">New</a>
               <a href="#" class="btn btn-sm btn-neutral">Delete</a>
             </div>
           </div>
@@ -277,8 +277,16 @@ if (isset($_SESSION['password'])) {
                   $my_file = "../php/StudentData.txt";
 
                   $obtainedData = json_decode(file_get_contents($my_file), true);
-
+                  $complete = 50;
                   foreach ($obtainedData as  $val) {
+
+                    if ($complete < 100) {
+                      $background = "bg-warning";
+                      $status = "pending";
+                    } else {
+                      $background = "bg-success";
+                      $status = "complete";
+                    }
                     echo "<tr>";
                     echo   "<th scope=\"row\">";
                     echo     "<div class=\"media align-items-center\">";
@@ -294,22 +302,25 @@ if (isset($_SESSION['password'])) {
                     echo        $val['adm number'];
                     echo    "</td>";
                     echo    "<td>";
-                    echo        "Computing and Informatics"; //TODO
+                    echo        "Computing and Informatics"; //TODO $val['school'];
+
                     echo    "</td>";
                     echo    "<td>";
                     echo       "<span class=\"badge badge-dot mr-4\">";
-                    echo          "<i class=\"bg-warning\"></i>";
-                    echo          "<span class=\"status\">pending</span>"; // TODO
+                    echo          "<i class=\"" . $background . "\"></i>";
+                    echo          "<span class=\"status\">" . $status . "</span>"; // TODO $val['status'];
                     echo        "</span>";
                     echo     "</td>";
                     echo    "<td>";
                     echo        "<div class=\"d-flex align-items-center\">";
-                    echo            "<span class=\"completion mr-2\">60%</span>"; //TODO
+                    echo            "<span class=\"completion mr-2\">" . $complete . "%</span>"; //TODO $val['completion'];
                     echo        "</div>";
                     echo         "<div>";
                     echo                "<div class=\"progress\">";
-                    echo                    "<div class=\"progress-bar bg-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\"></div>";
-                    echo                 "</div>";
+
+
+                    echo                    "<div class=\"progress-bar " . $background . "\" role=\"progressbar\" aria-valuenow=\"" . $complete . "\"  aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " . $complete . "%;\"></div>";
+                    echo                 "</div>"; //aria-valuenow=\"."$val['completion'];."\"                    //width: ".$val['completion']."%"."
                     echo         "</div>";
                     echo    "</td>";
                     echo    "<td class=\"text-right\">";
@@ -324,6 +335,7 @@ if (isset($_SESSION['password'])) {
                     echo       "</div>";
                     echo    "</td>";
                     echo   "</tr>";
+                    $complete += 10;
                   }
 
                   ?>
