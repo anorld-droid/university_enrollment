@@ -38,7 +38,9 @@ if (isset($_SESSION['password'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>Maseno University - Stage Four Enrollment</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Favicon -->
     <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
@@ -48,11 +50,13 @@ if (isset($_SESSION['password'])) {
     <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
+    <!-- my css -->
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 
 <body>
     <!-- Sidenav -->
-    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-dark" id="sidenav-main">
+    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-gray-500 bg-dark" id="sidenav-main">
         <div class="scrollbar-inner">
             <!-- Brand -->
             <div class="sidenav-header   align-items-center">
@@ -67,7 +71,7 @@ if (isset($_SESSION['password'])) {
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="../html/profile.html">
+                            <a class="nav-link " href="../html/userprofile.php">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text  text-light">Profile</span>
                             </a>
@@ -98,14 +102,13 @@ if (isset($_SESSION['password'])) {
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                        <a class="nav-link active" href="../html/stagefour.php">
                                             <i class="ni ni-check-bold text-default"></i>
                                             <span class="nav-link-text  text-light">Stage Four</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../html/SIGNIN.html">
@@ -263,123 +266,202 @@ if (isset($_SESSION['password'])) {
         </nav>
         <!-- Header -->
         <!-- Header -->
-        <div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(../images/home-background-image.jpg); background-size: cover; background-position: center top;">
-            <!-- Mask -->
-            <span class="mask bg-gradient-default opacity-8"></span>
-            <!-- Header container -->
-            <div class="container-fluid d-flex align-items-center">
-                <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <?php
-                        $fname = explode(" ", $firstname);
-                        echo " <h1 class=\"display-2 text-white\">Hello  " . $fname[0] . "</h1>";
-                        ?>
-                        <p class="text-white mt-0 mb-5">This is your profile page. You can see the details that we have about you and update if incorrect.</p>
-                        <a href="../php/userpdf.php" class="btn btn-neutral">Download PDF</a>
-                    </div>
-                </div>
-            </div>
+        <div class=" pb-6">
         </div>
         <!-- Page content -->
         <div class="container-fluid mt--6 bg-dark">
             <div class="row">
-                <div class="col">
-                    <div class="card bg-dark">
-                        <div class="card-header ">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h3 class="mb-0">Edit profile </h3>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                <div class="col-sm-12 ">
+                    <div class="card bg-dark  bg-default ">
+                        <div class="card-header  bg-dark align-items-center">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="mb-0 text-light text-center">COURSE REGISTRATION</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <!-- Edit profile form  -->
-                            <form>
-                                <h6 class="heading-small text-muted mb-4">User information</h6>
-                                <div class="pl-lg-4">
+                        <div class="card-body ">
+                            <!-- Course registration form  -->
+                            <form class="needs-validation" action="../php/registration.php" method="POST" novalidate>
+                                <h6 class="heading-small text-muted mb-2"></h6>
+                                <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-username">Username</label>
-                                                <input type="text" id="input-username" class="form-control text-dark" placeholder="Username" value=<?php echo $admNumber; ?>>
+                                                <label class="form-control-label text-light" for="input-nhif">Course</label>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course1" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-email">Email address</label>
-                                                <input type="email" id="input-email" class="form-control text-dark" placeholder="jesse@example.com">
+                                                <label class="form-control-label text-light" for="input-nhif">Subject Code</label>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code1" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-first-name" value=<?php echo $admNumber ?>>First name</label>
-                                                <input type="text" id="input-first-name" class="form-control text-dark" placeholder="First name" value=<?php echo $firstname ?>>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course2" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-last-name">Last name</label>
-                                                <input type="text" id="input-last-name" class="form-control text-dark" placeholder="Last name" value=<?php echo $lastname; ?>>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-password" value=<?php echo $admNumber ?>>Password</label>
-                                                <input type="text" id="input-password" class="form-control text-dark" placeholder="Password" value=<?php echo $password ?>>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code2" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                </div>
-                                <hr class="my-4" />
-                                <!-- Address -->
-                                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                                <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-address">Address</label>
-                                                <input id="input-address" class="form-control text-dark" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course3" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code3" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course4" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code4" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course5" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code5" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course6" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code6" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-city">District</label>
-                                                <input type="text" id="input-city" class="form-control text-dark" placeholder="City" value="New York">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course7" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-country">County</label>
-                                                <input type="text" id="input-country" class="form-control text-dark" placeholder="Country" value="United States">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code7" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-country">Phone Number</label>
-                                                <input type="number" id="input-postal-code" class="form-control text-dark" placeholder="phone number">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course8" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code8" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <hr class="my-4" />
-                                <!-- Description -->
-                                <h6 class="heading-small text-muted mb-4">About me</h6>
-                                <div class="pl-lg-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label text-light">About Me</label>
-                                        <textarea rows="4" class="form-control text-dark" placeholder="A few words about you ...">Now Something about yourself.</textarea>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course8" placeholder="Course" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code8" placeholder="Code" required>
+                                                <div class="invalid-feedback">
+                                                    Field cannot be empty
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-5"></div>
+                                        <div class="col-sm-2">
+                                            <button id="next_button" name="next_button" class="btn btn-primary btn-lg btn-block" type="submit">FINISH</button>
+                                        </div>
+                                        <div class="col-sm-5"></div>
+                                    </div>
                             </form>
                             <!-- End of form  -->
                         </div>
@@ -414,8 +496,31 @@ if (isset($_SESSION['password'])) {
             </footer>
         </div>
     </div>
+    <script>
+        //  JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
     <!-- Argon Scripts -->
     <!-- Core -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
@@ -423,6 +528,8 @@ if (isset($_SESSION['password'])) {
     <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
     <!-- Argon JS -->
     <script src="../assets/js/argon.js?v=1.2.0"></script>
+    <!-- Bootstrap scripts -->
+
 </body>
 
 </html>

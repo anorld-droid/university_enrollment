@@ -38,7 +38,7 @@ if (isset($_SESSION['password'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>Maseno University - Stage One Enrollment</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Favicon -->
@@ -90,19 +90,19 @@ if (isset($_SESSION['password'])) {
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                        <a class="nav-link collapse" href="../html/stagetwo.php">
                                             <i class="ni ni-check-bold text-default"></i>
                                             <span class="nav-link-text  text-light">Stage Two</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                        <a class="nav-link collapse" href="../html/stagethree.php">
                                             <i class="ni ni-check-bold text-default"></i>
                                             <span class="nav-link-text  text-light">Stage Three</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                        <a class="nav-link collapse" href="../html/stagefour.php">
                                             <i class="ni ni-check-bold text-default"></i>
                                             <span class="nav-link-text  text-light">Stage Four</span>
                                         </a>
@@ -325,6 +325,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Date of birth -->
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="form-group">
@@ -969,22 +970,22 @@ if (isset($_SESSION['password'])) {
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6">
                         <div class="copyright text-center  text-lg-left  text-muted">
-                            &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                            &copy; 2020 <a href="#!" class="font-weight-bold ml-1">Pain Creations</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+                                <a href="#!" class="nav-link">Pain Creations</a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                                <a href="#!" class="nav-link">About Us</a>
                             </li>
                             <li class="nav-item">
-                                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                                <a href="#!" class="nav-link">Blog</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+                            <li class=" nav-item">
+                                <a href="https://github.com/anorld-droid/university_enrollment" class="nav-link" target="_blank">Git Hub </a>
                             </li>
                         </ul>
                     </div>
