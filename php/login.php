@@ -10,6 +10,7 @@ ob_start();
 session_start();
 
 $check = 0;
+
 $my_file = "StudentData.txt";
 if (file_exists($my_file)) {
 
@@ -17,6 +18,8 @@ if (file_exists($my_file)) {
     $data = selectRecords($db);
 
     // $keys = array_keys($obtainedData);
+
+    //select and display each student
     foreach ($data as  $val) {
         if ($val['adm_number'] === $admNumber) {
             $check++;
@@ -79,4 +82,37 @@ if (file_exists($my_file)) {
     }
 } else {
     echo "file does not exist";
+}
+
+//check if admin exitsts and display all students details
+
+$adminData = selectForAdmin($db);
+$check2 = 0;
+
+foreach ($adminData as $val) {
+    if ($val['adm_number'] === "admin") {
+        $check2++;
+        if ($val['pass'] === $password) {
+            $_SESSION['firstName'] = $val['fname'];
+            $_SESSION['lastName'] = $val['lname'];
+            $_SESSION['profilePhoto'] = $val['profile_picture'];
+            $_SESSION['admissionNum'] = $val['adm_number'];
+            $_SESSION['password'] = $val['pass'];
+          //  selectRecords($db);
+            echo "
+                    <script>
+                    window.location.href='../html/adminProfile.php';
+                    </script>";
+        } else {
+            echo "
+                        <script>
+                        alert('Check password and try again');
+                        window.location.href='../html/SIGNIN.html';
+                        </script>";
+            break;
+        }
+    }
+}
+if ($check2 === 0) {
+    echo "User Has not Signed up";
 }

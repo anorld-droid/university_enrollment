@@ -33,7 +33,17 @@ function connect($server, $user, $password, $db_name)
                      completion int NOT NULL,
                       PRIMARY KEY  (ID))";
     if ($db->query($sql1) === TRUE) {
-        echo "Database and Table Online";
+      //  echo "Database and Table Online";
+    }
+    $sql2 = "CREATE TABLE IF NOT EXISTS admin_data (ID int(11) AUTO_INCREMENT,
+                      fname varchar(255) NOT NULL,
+                      lname varchar(255) NOT NULL,
+                      profile_picture longblob NOT NULL,
+                      adm_number varchar(255) NOT NULL,
+                      pass varchar (255) NOT NULL,
+                      PRIMARY KEY  (ID))";
+    if ($db->query($sql2) === TRUE) {
+       // echo "Database and Table Online";
     }
     return $db;
 }
@@ -41,6 +51,19 @@ function selectRecords(mysqli $db)
 {
     $data = [];
     $sql = "SELECT * FROM student_data";
+    $resultSet = $db->query($sql);
+    while ($row = $resultSet->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+
+    //var_dump($data);
+    return $data;
+}
+
+function selectForAdmin(mysqli $db){
+    $data = [];
+    $sql = "SELECT * FROM admin_data";
     $resultSet = $db->query($sql);
     while ($row = $resultSet->fetch_assoc()) {
         $data[] = $row;
@@ -66,7 +89,7 @@ function insertRecords(mysqli $db, array $record)
 
 function insertToAdmin(mysqli $db, array $record)
 {
-    $sql = "INSERT INTO admin_details(`fname`,`lname`,`profile_picture`,`adm_number`,`pass`) VALUES('$record[0]','$record[1]','$record[2]','$record[3]','$record[4]')";
+    $sql = "INSERT INTO admin_data(`fname`,`lname`,`profile_picture`,`adm_number`,`pass`) VALUES('$record[0]','$record[1]','$record[2]','$record[3]','$record[4]')";
 
 
     if ($db->query($sql)) {

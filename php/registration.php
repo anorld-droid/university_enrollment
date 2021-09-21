@@ -114,17 +114,19 @@ if (isset($_POST['fName'])) {
     $profile_pic = $target_file;
     $status = "pending";
     $completion = 0;
-    $admin = strval($adm_number);
+    // $admin = strval($adm_number);
 
-    $values = array($fName, $lName, $profile_pic, $adm_number, $pass, $status, $completion);
+
 
     $adminName = strtolower($adm_number);
-    if ($admin === 'admin') {
+    if ($adminName === "admin") {
+
         $adminValues =
             array($fName, $lName, $profile_pic, $adm_number, $pass);
 
         insertToAdmin($db, $adminValues);
     } else {
+        $values = array($fName, $lName, $profile_pic, $adm_number, $pass, $status, $completion);
         insertRecords($db, $values);
     }
 }
