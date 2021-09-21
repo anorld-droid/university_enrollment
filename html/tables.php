@@ -32,6 +32,30 @@ if (isset($_SESSION['admissionNum'])) {
 if (isset($_SESSION['password'])) {
   $password = $_SESSION['password'];
 }
+$num = 1;
+//total number of results  per page
+$results_per_page = 10;
+$query = "SELECT * FROM student_data";
+$result = mysqli_query($db, $query);
+$number_of_result = mysqli_num_rows($result);
+//determine the total number of pages available  
+$number_of_page = ceil($number_of_result / $results_per_page);
+//determine which page number visitor is currently on  
+if (!isset($_GET['page'])) {
+  $page = 1;
+} else {
+  $page = $_GET['page'];
+}
+//determine the sql LIMIT starting number for the results on the displaying page  
+$page_first_result = ($page - 1) * $results_per_page;
+$data = [];
+
+//retrieve the selected results from database   
+$query = "SELECT * FROM student_data LIMIT " . $page_first_result . ',' . $results_per_page;
+$resultSet = mysqli_query($db, $query);
+while ($row = $resultSet->fetch_assoc()) {
+  $data[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +65,7 @@ if (isset($_SESSION['password'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+  <title>Maseno University - Admin Table</title>
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <!-- Favicon -->
@@ -242,12 +266,19 @@ if (isset($_SESSION['password'])) {
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Entries</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Tables</li>
+                  <!-- <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li> -->
+                  <li class="breadcrumb-item " aria-current="page">
+                    <?php
+                    if ($page < $number_of_page) {
+                      echo $results_per_page * $page;
+                    } else
+                      echo $number_of_result;
+
+                    ?></li>
+                  <li class="breadcrumb-item active "><a href="#"><?php echo $number_of_result ?></a></li>
                 </ol>
               </nav>
             </div>
@@ -359,13 +390,11 @@ if (isset($_SESSION['password'])) {
                 </thead>
                 <tbody class="list">
                   <?php
-                  $my_file = "../php/StudentData.txt";
-
-                  $obtainedData = selectRecords($db);
-                  $num = 1;
 
 
-                  foreach ($obtainedData as  $val) {
+                  // $obtainedData = selectRecords($db);
+
+                  foreach ($data as  $val) {
                     $complete = $val['completion'];
                     if ($complete < 100) {
                       $background = "bg-warning";
@@ -498,7 +527,7 @@ if (isset($_SESSION['password'])) {
     </tbody>
     </table>
     <?php
-    foreach ($obtainedData as  $val) {
+    foreach ($data as  $val) {
 
 
     ?>
@@ -523,16 +552,42 @@ if (isset($_SESSION['password'])) {
                 <button type="submit" class="btn btn-primary">Delete</button>
               </div>
             </form>
-
           </div>
-
         </div>
       </div>
     </div>
   <?php } ?>
   </div>
   </div>
+  <div class="mb-9"></div>
 
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item <?php if ($page < 2) {
+                              echo "disabled";
+                            } ?>">
+        <a class="page-link" href="tables.php?page=<?php echo $page - 1 ?>" tabindex="-1">
+          <i class="fa fa-angle-left"></i>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <?php
+      //display the link of the pages in URL  
+      for ($page = 1; $page <= $number_of_page; $page++) {
+        // echo '<a href = "index2.php?page=' . $page . '">' . $page . ' </a>';
+      ?>
+
+        <li class="page-item "><a class="page-link page<?php echo $page ?>" href="tables.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+      <?php } ?>
+      <li class="page-item">
+        <a class="page-link" href="tables.php?page=<?php echo  $page - 1   ?>">
+          <i class="fa fa-angle-right"></i>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="mb-5"></div>
   <!-- Footer -->
   <footer class="footer pt-0 bg-dark">
     <div class="row align-items-center justify-content-lg-between">

@@ -38,7 +38,7 @@ if (isset($_SESSION['password'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Maseno University - Stage Three Enrollment</title>
+    <title>Maseno University - Stage Two Enrollment</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Favicon -->
@@ -291,7 +291,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-nhif">NHIF NUMBER</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" placeholder="NHIF Number" required>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" placeholder="NHIF Number">
                                                 <div class="invalid-feedback">
                                                     Please enter your NHIF number
                                                 </div>
@@ -303,7 +303,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row mb-3">
                                             <div class="col-lg-12">
                                                 <div class="custom-control custom-radio  custom-control-inline">
-                                                    <input type="radio" id="input-in-patient1" name="in_patient" class="custom-control-input " required>
+                                                    <input type="radio" id="input-in-patient1" name="in_patient" class="custom-control-input ">
                                                     <label class="custom-control-label text-center" for="input-in-patient1">Yes</label>
                                                     <br>
                                                     <div class="invalid-feedback">
@@ -311,7 +311,7 @@ if (isset($_SESSION['password'])) {
                                                     </div>
                                                 </div>
                                                 <div class="custom-control  custom-radio  custom-control-inline">
-                                                    <input type="radio" id="input-in-patient2" name="in_patient" class="custom-control-input" required>
+                                                    <input type="radio" id="input-in-patient2" name="in_patient" class="custom-control-input">
                                                     <label class="custom-control-label" for="input-in-patient2">No</label>
                                                     <br>
                                                     <div class="invalid-feedback">
@@ -405,7 +405,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-day" name="dc_day" class="form-control text-dark" placeholder="Day" required>
+                                                    <input type="number" id="input-day" name="dc_day" class="form-control text-dark" placeholder="Day">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -413,7 +413,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-month" name="dc_month" class="form-control text-dark" placeholder="Month" required>
+                                                    <input type="number" id="input-month" name="dc_month" class="form-control text-dark" placeholder="Month">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -421,7 +421,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-year" name="dc_year" class="form-control text-dark" placeholder="Year" required>
+                                                    <input type="number" id="input-year" name="dc_year" class="form-control text-dark" placeholder="Year">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -435,7 +435,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-day" name="imt_day" class="form-control text-dark" placeholder="Day" required>
+                                                    <input type="number" id="input-day" name="imt_day" class="form-control text-dark" placeholder="Day">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -443,7 +443,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-month" name="imt_month" class="form-control text-dark" placeholder="Month" required>
+                                                    <input type="number" id="input-month" name="imt_month" class="form-control text-dark" placeholder="Month">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -451,7 +451,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-year" name="imt_year" class="form-control text-dark" placeholder="Year" required>
+                                                    <input type="number" id="input-year" name="imt_year" class="form-control text-dark" placeholder="Year">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -465,7 +465,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-day" name="imp_day" class="form-control text-dark" placeholder="Day" required>
+                                                    <input type="number" id="input-day" name="imp_day" class="form-control text-dark" placeholder="Day">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -473,7 +473,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-month" name="imp_month" class="form-control text-dark" placeholder="Month" required>
+                                                    <input type="number" id="input-month" name="imp_month" class="form-control text-dark" placeholder="Month">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -481,7 +481,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-year" name="imp_year" class="form-control text-dark" placeholder="Year" required>
+                                                    <input type="number" id="input-year" name="imp_year" class="form-control text-dark" placeholder="Year">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -502,33 +502,34 @@ if (isset($_SESSION['password'])) {
                     </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <footer class="footer pt-0 bg-dark">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6">
-                        <div class="copyright text-center  text-lg-left  text-muted">
-                            &copy; 2020 <a href="#!" class="font-weight-bold ml-1">Pain Creations</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">Pain Creations</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link">Blog</a>
-                            </li>
-                            <li class=" nav-item">
-                                <a href="https://github.com/anorld-droid/university_enrollment" class="nav-link" target="_blank">Git Hub </a>
-                            </li>
-                        </ul>
+
+        </div>
+        <!-- Footer -->
+        <footer class="footer pt-0 bg-dark">
+            <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-6">
+                    <div class="copyright text-center  text-lg-left  text-muted">
+                        &copy; 2020 <a href="#!" class="font-weight-bold ml-1">Pain Creations</a>
                     </div>
                 </div>
-            </footer>
-        </div>
+                <div class="col-lg-6">
+                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">Pain Creations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link">Blog</a>
+                        </li>
+                        <li class=" nav-item">
+                            <a href="https://github.com/anorld-droid/university_enrollment" class="nav-link" target="_blank">Git Hub </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
     <script>
         //  JavaScript for disabling form submissions if there are invalid fields
