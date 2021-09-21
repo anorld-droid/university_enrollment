@@ -85,7 +85,7 @@ function updateRecords(mysqli $db, array $record)
 {
     $sql = "UPDATE student_data SET `fname`='$record[0]', `lname`='$record[1]', `adm_number`='$record[2]', `pass`='$record[3]'  WHERE `ID`='$record[4]';";
     if ($db->query($sql)) {
-        echo "records updated succefully";
+        // echo "records updated succefully";
     } else {
         echo "failed";
     }
@@ -96,7 +96,7 @@ function insertRecords(mysqli $db, array $record)
 
 
     if ($db->query($sql)) {
-        echo "records inserted succefully";
+        // echo "records inserted succefully";
     } else {
         echo "failed";
     }
@@ -108,7 +108,7 @@ function insertToAdmin(mysqli $db, array $record)
 
 
     if ($db->query($sql)) {
-        echo "records inserted succefully";
+        // echo "records inserted succefully";
     } else {
         echo "failed";
     }

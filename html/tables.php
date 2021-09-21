@@ -18,14 +18,20 @@
 require_once '../php/config.php';
 require_once '../php/db.php';
 $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
-
-
-$profilePhoto = "../images/home-background-image.jpg";
-$firstname = "Mulindi";
-$lastname = "Vincent";
-$admNumber = "CCS/00082/019";
-
-$password = "admin213";
+session_start();
+if (isset($_SESSION['profilePhoto'])) {
+  $profilePhoto = $_SESSION["profilePhoto"];
+}
+if (isset($_SESSION['firstName']) and isset($_SESSION['lastName'])) {
+  $firstname = $_SESSION['firstName'];
+  $lastname = $_SESSION['lastName'];
+}
+if (isset($_SESSION['admissionNum'])) {
+  $admNumber = $_SESSION['admissionNum'];
+}
+if (isset($_SESSION['password'])) {
+  $password = $_SESSION['password'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -247,7 +253,7 @@ $password = "admin213";
             </div>
             <div class="col-lg-6 col-5 text-right">
               <a href="#newModal" data-toggle="modal" class="btn btn-sm btn-neutral">New</a>
-              <a href="#" class="btn btn-sm btn-neutral">Download PDF</a>
+              <a href="../php/downloadpdf.php" class="btn btn-sm btn-neutral">Download PDF</a>
             </div>
           </div>
         </div>

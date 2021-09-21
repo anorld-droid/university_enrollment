@@ -1,4 +1,6 @@
 <?php
+require_once '../php/config.php';
+require_once '../php/db.php';
 require('fpdf.php');
 
 
@@ -7,7 +9,7 @@ class PDF extends FPDF
     function Header()
     {
         // Logo
-        $this->Image('universitylogo.png', 10, 6, 20, 20);
+        $this->Image('../images/universitylogo.png', 10, 6, 20, 20);
         // Arial bold 15
         $this->SetFont('Arial', 'B', 15);
         // Move to the right
@@ -37,6 +39,8 @@ class PDF extends FPDF
         // $this->SetDrawColor(128, 0, 0);
         // $this->SetLineWidth(.3);
         global $w;
+        $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
+
         // Header
         $header = array('Index', 'First Name', 'Last Name', 'Admission Number', 'Profile Photo');
         foreach ($header as $col) {
@@ -49,16 +53,16 @@ class PDF extends FPDF
         $id = 1;
         $my_file = "StudentData.txt";
 
-        $data = json_decode(file_get_contents($my_file), true);
+        $data = selectRecords($db);
         foreach ($data as $row) {
             $this->SetFont('Times', '', 12);
             $this->Cell(23.82, 20, $id, 1);
-            $this->Cell(37.3, 20, $row['first name'], 1);
-            $this->Cell(36.7, 20, $row['last name'], 1);
-            $this->Cell(58.5, 20, $row['adm number'], 1);
+            $this->Cell(37.3, 20, $row['fname'], 1);
+            $this->Cell(36.7, 20, $row['lname'], 1);
+            $this->Cell(58.5, 20, $row['adm_number'], 1);
             $x = $this->GetX();
             $y = $this->GetY();
-            $this->MultiCell(43, 20, $this->Image($row['profile photo'], $x + 3, $y + 1, 35, 17), 1);
+            $this->MultiCell(43, 20, $this->Image($row['profile_picture'], $x + 3, $y + 1, 35, 17), 1);
             $this->Cell(10);
             $this->Ln();
             $id++;

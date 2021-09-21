@@ -59,7 +59,6 @@ if (isset($_POST['fName'])) {
     if (move_uploaded_file($tempname, $target_file)) {
         echo "
                                             <script>
-                                            alert('File uploaded');
                                             window.location.href='../html/SIGNIN.html';
                                             </script>";
     }
@@ -90,12 +89,12 @@ if (isset($_POST['fName'])) {
         file_put_contents($my_file, $jsondata);
         $newFileSize = fstat($file);
         if ($newFileSize['size'] > $fileInitialSize) {
-            echo "
-                <script>
-                alert('SUCCEFULLY REGISTERED');
-                window.location.href='../html/SIGNIN.html';
-                </script>
-                    ";
+            // echo "
+            //     <script>
+            //     // alert('SUCCEFULLY REGISTERED');
+            //     window.location.href='../html/SIGNIN.html';
+            //     </script>
+            //         ";
         }
         fclose($file);
     } else {
