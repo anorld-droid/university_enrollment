@@ -282,7 +282,7 @@ if (isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body ">
                             <!-- Student details form  -->
-                            <form class="needs-validation" action="../php/???????" method="POST" novalidate>
+                            <form class="needs-validation" action="../php/advanceStage.php" method="POST" novalidate>
                                 <input type="hidden" name="stage" value="1" />
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
