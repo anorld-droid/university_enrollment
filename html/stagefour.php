@@ -225,7 +225,7 @@ if (isset($_SESSION['password'])) {
                                     <span class="avatar avatar-sm rounded-circle">
                                         <?php
 
-                                        echo "<img class=\"rounded-circle\" src=\"../" . $profilePhoto . "\" height=\"40\" width=\"100\" alt=\"University Logo\">";
+                                        echo "<img class=\"rounded-circle\" src=\"" . $profilePhoto . "\" height=\"40\" width=\"100\" alt=\"University Logo\">";
 
                                         ?>
                                     </span>
@@ -254,7 +254,7 @@ if (isset($_SESSION['password'])) {
                                     <span>Support</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#!" class="dropdown-item">
+                                <a href="SIGNIN.html" class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>
@@ -276,29 +276,29 @@ if (isset($_SESSION['password'])) {
                         <div class="card-header  bg-dark align-items-center">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="mb-0 text-light text-center">COURSE REGISTRATION</h3>
+                                    <h3 class="mb-0 text-light text-center">HOSTEL</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body ">
                             <!-- Course registration form  -->
-                            <form class="needs-validation" action="../php/registration.php" method="POST" novalidate>
+                            <form class="needs-validation" action="../php/enrollment.php" method="POST" novalidate>
                                 <h6 class="heading-small text-muted mb-2"></h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-nhif">Course</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course1" placeholder="Course" required>
+                                                <label class="form-control-label text-light" for="input-nhif">Hostel Name</label>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="hostl_name" placeholder="Hostel Name" required>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-nhif">Subject Code</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code1" placeholder="Code" required>
+                                                <label class="form-control-label text-light" for="input-nhif">Room Number</label>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="room_number" placeholder="Room number" required>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -308,166 +308,41 @@ if (isset($_SESSION['password'])) {
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course2" placeholder="Course" required>
+                                                <label class="form-control-label text-light" for="input-nhif">If non-residence Area Of Residence </label>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course1" placeholder="Area of residence">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code2" placeholder="Code" required>
+                                                <label class="form-control-label text-light" for="input-nhif">Contact</label>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code1" placeholder="Contact">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="mb-5"></div>
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course3" placeholder="Course" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code3" placeholder="Code" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                <div class="row">
+                                    <div class="col-sm-5"></div>
+                                    <div class="col-sm-2">
+                                        <button id="next_button" name="next_button" class="btn btn-primary btn-lg btn-block" type="submit">NEXT</button>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course4" placeholder="Course" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code4" placeholder="Code" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course5" placeholder="Course" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code5" placeholder="Code" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course6" placeholder="Course" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code6" placeholder="Code" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course7" placeholder="Course" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code7" placeholder="Code" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course8" placeholder="Course" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code8" placeholder="Code" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course8" placeholder="Course" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code8" placeholder="Code" required>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-5"></div>
-                                        <div class="col-sm-2">
-                                            <button id="next_button" name="next_button" class="btn btn-primary btn-lg btn-block" type="submit">FINISH</button>
-                                        </div>
-                                        <div class="col-sm-5"></div>
-                                    </div>
+                                    <div class="col-sm-5"></div>
+                                </div>
                             </form>
                             <!-- End of form  -->
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="mb-6"></div>
+
             <!-- Footer -->
             <footer class="footer pt-0 bg-dark">
                 <div class="row align-items-center justify-content-lg-between">

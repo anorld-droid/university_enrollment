@@ -251,7 +251,7 @@ if (isset($_SESSION['password'])) {
                                     <span>Support</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="SIGNUP.html" class="dropdown-item">
+                                <a href="../html/SIGNIN.html" class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>

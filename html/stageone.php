@@ -225,7 +225,7 @@ if (isset($_SESSION['password'])) {
                                     <span class="avatar avatar-sm rounded-circle">
                                         <?php
 
-                                        echo "<img class=\"rounded-circle\" src=\"../" . $profilePhoto . "\" height=\"40\" width=\"100\" alt=\"University Logo\">";
+                                        echo "<img class=\"rounded-circle\" src=\"" . $profilePhoto . "\" height=\"40\" width=\"100\" alt=\"Profile Photo\">";
 
                                         ?>
                                     </span>
@@ -254,7 +254,7 @@ if (isset($_SESSION['password'])) {
                                     <span>Support</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="#!" class="dropdown-item">
+                                <a href="../html/SIGNIN.html" class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>
@@ -282,7 +282,8 @@ if (isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body ">
                             <!-- Student details form  -->
-                            <form class="needs-validation" action="../php/registration.php" method="POST" novalidate>
+                            <form class="needs-validation" action="../php/???????" method="POST" novalidate>
+                                <input type="hidden" name="stage" value="1" />
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
