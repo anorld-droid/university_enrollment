@@ -33,7 +33,7 @@ function connect($server, $user, $password, $db_name)
                      completion int NOT NULL,
                       PRIMARY KEY  (ID))";
     if ($db->query($sql1) === TRUE) {
-      //  echo "Database and Table Online";
+        // echo "Database and Table Online";
     }
     $sql2 = "CREATE TABLE IF NOT EXISTS admin_data (ID int(11) AUTO_INCREMENT,
                       fname varchar(255) NOT NULL,
@@ -43,7 +43,7 @@ function connect($server, $user, $password, $db_name)
                       pass varchar (255) NOT NULL,
                       PRIMARY KEY  (ID))";
     if ($db->query($sql2) === TRUE) {
-       // echo "Database and Table Online";
+        // echo "Database and Table Online";
     }
     return $db;
 }
@@ -60,8 +60,14 @@ function selectRecords(mysqli $db)
     //var_dump($data);
     return $data;
 }
+function deleteRecords(mysqli $db,  $id)
+{
+    $sql = "DELETE FROM student_data WHERE `ID` = '$id' ";
+    $db->query($sql);
+}
 
-function selectForAdmin(mysqli $db){
+function selectForAdmin(mysqli $db)
+{
     $data = [];
     $sql = "SELECT * FROM admin_data";
     $resultSet = $db->query($sql);
@@ -75,6 +81,15 @@ function selectForAdmin(mysqli $db){
 }
 
 
+function updateRecords(mysqli $db, array $record)
+{
+    $sql = "UPDATE student_data SET `fname`='$record[0]', `lname`='$record[1]', `adm_number`='$record[2]', `pass`='$record[3]'  WHERE `ID`='$record[4]';";
+    if ($db->query($sql)) {
+        echo "records updated succefully";
+    } else {
+        echo "failed";
+    }
+}
 function insertRecords(mysqli $db, array $record)
 {
     $sql = "INSERT INTO student_data(`fname`,`lname`,`profile_picture`,`adm_number`,`pass`,`status`,`completion`) VALUES('$record[0]','$record[1]','$record[2]','$record[3]','$record[4]','$record[5]','$record[6]')";

@@ -222,7 +222,7 @@ if (isset($_SESSION['password'])) {
                                     <span class="avatar avatar-sm rounded-circle">
                                         <?php
 
-                                        echo "<img class=\"rounded-circle\" src=\"../" . $profilePhoto . "\" height=\"40\" width=\"100\" alt=\"University Logo\">";
+                                        echo "<img class=\"rounded-circle\" src=\"" . $profilePhoto . "\" height=\"40\" width=\"100\" alt=\"University Logo\">";
 
                                         ?>
                                     </span>
