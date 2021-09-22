@@ -282,7 +282,7 @@ if (isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body ">
                             <!-- Course registration form  -->
-                            <form class="needs-validation" action="../php/enrollment.php" method="POST" novalidate>
+                            <form class="needs-validation" action="../php/advanceStage.php" method="POST" novalidate>
                                 <h6 class="heading-small text-muted mb-2"></h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
@@ -331,7 +331,7 @@ if (isset($_SESSION['password'])) {
                                 <div class="row">
                                     <div class="col-sm-5"></div>
                                     <div class="col-sm-2">
-                                        <button id="next_button" name="next_button" class="btn btn-primary btn-lg btn-block" type="submit">NEXT</button>
+                                        <button id="next_button" name="next_button" class="btn btn-primary btn-lg btn-block" type="submit">FINISH</button>
                                     </div>
                                     <div class="col-sm-5"></div>
                                 </div>

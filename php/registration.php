@@ -104,7 +104,7 @@ if (isset($_POST['fName'])) {
     //database operation starts here
 
 
-
+session_start();
 
     $fName = $_POST["fName"];
     $lName = $_POST["lName"];
@@ -112,7 +112,7 @@ if (isset($_POST['fName'])) {
     $pass = $_POST["pass"];
     $profile_pic = $target_file;
     $status = "pending";
-    $completion = 0;
+     $completion = 0;
     // $admin = strval($adm_number);
 
 

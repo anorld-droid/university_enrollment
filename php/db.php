@@ -113,3 +113,14 @@ function insertToAdmin(mysqli $db, array $record)
         echo "failed";
     }
 }
+
+function updateCompletion(mysqli $db, $adm_number, $completion)
+{
+    $completionLevel = $completion + 25;
+    $sql = "UPDATE student_data SET `completion` = '$completionLevel' WHERE `adm_number`='$adm_number';";
+    if ($db->query($sql)) {
+        // echo "records inserted succefully";
+    } else {
+        echo "failed";
+    }
+}

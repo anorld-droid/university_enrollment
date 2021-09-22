@@ -12,35 +12,34 @@ session_start();
 $check = 0;
 
 $my_file = "StudentData.txt";
-if ($admNumber === "admin"){
+if ($admNumber === "admin") {
 
-                $adminData = selectForAdmin($db);
+    $adminData = selectForAdmin($db);
 
-                foreach ($adminData as $val) {
+    foreach ($adminData as $val) {
 
-                    if ($val['pass'] === $password) {
-                        $_SESSION['firstName'] = $val['fname'];
-                        $_SESSION['lastName'] = $val['lname'];
-                        $_SESSION['profilePhoto'] = $val['profile_picture'];
-                        $_SESSION['admissionNum'] = $val['adm_number'];
-                        $_SESSION['password'] = $val['pass'];
-                        //  selectRecords($db);
-                        echo "
+        if ($val['pass'] === $password) {
+            $_SESSION['firstName'] = $val['fname'];
+            $_SESSION['lastName'] = $val['lname'];
+            $_SESSION['profilePhoto'] = $val['profile_picture'];
+            $_SESSION['admissionNum'] = $val['adm_number'];
+            $_SESSION['password'] = $val['pass'];
+           
+            //  selectRecords($db);
+            echo "
                     <script>
                     window.location.href='../html/adminProfile.php';
                     </script>";
-                    } else {
-                        echo "
+        } else {
+            echo "
                         <script>
                         alert('Check password and try again');
                         window.location.href='../html/SIGNIN.html';
                         </script>";
-                        break;
-                    }
-                }
-           
-}
-else {
+            break;
+        }
+    }
+} else {
 
 
     //  $obtainedData = json_decode(file_get_contents($my_file), true);
@@ -76,11 +75,11 @@ else {
                         </script>";
                 break;
             }
-                //check if admin exitsts and display all students details
+            //check if admin exitsts and display all students details
         }
     }
 
     if ($check === 0) {
         echo "User Has not Signed up";
     }
-} 
+}
