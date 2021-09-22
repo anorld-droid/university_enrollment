@@ -53,9 +53,25 @@ $data = [];
 //retrieve the selected results from database   
 $query = "SELECT * FROM student_data LIMIT " . $page_first_result . ',' . $results_per_page;
 $resultSet = mysqli_query($db, $query);
-while ($row = $resultSet->fetch_assoc()) {
-  $data[] = $row;
+
+
+if (!empty($_POST)) {
+  $text = $_POST['search_text'];
+  if (!empty($text)) {
+    $sql
+      = "SELECT * FROM student_data WHERE  fname LIKE '%" . $text . "%' ";
+    $searchResult = mysqli_query($db, $sql);
+
+    while ($row = $searchResult->fetch_assoc()) {
+      $data[] = $row;
+    }
+  }
+} else {
+  while ($row = $resultSet->fetch_assoc()) {
+    $data[] = $row;
+  }
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -160,13 +176,13 @@ while ($row = $resultSet->fetch_assoc()) {
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Search form -->
-          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main" method="post" action="tables.php">
             <div class="form-group mb-0">
               <div class="input-group input-group-alternative input-group-merge">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control" placeholder="Search" type="text">
+                <input class="form-control" placeholder="Search" type="text" name="search_text">
               </div>
             </div>
             <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
