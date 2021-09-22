@@ -9,7 +9,7 @@ foreach ($adminData as $val) {
     $_SESSION['completion'] = $val['completion'];
 }
 if ($_POST['stage'] === "1") {
-    updateCompletion($db, $_SESSION['admissionNum'], $_SESSION['completion']);
+    updateCompletion($db, $_POST['uid'], $_SESSION['completion']);
 
     //  echo $_SESSION['completion'];
     echo "
@@ -17,14 +17,14 @@ if ($_POST['stage'] === "1") {
                         window.location.href='../html/stagetwo.php';
                         </script>";
 } elseif ($_POST['stage'] === "2") {
-    updateCompletion($db, $_SESSION['admissionNum'], $_SESSION['completion']);
+    updateCompletion($db, $_POST['uid'], $_SESSION['completion']);
     echo "
                         <script>
                         window.location.href='../html/stagethree.php';
                         </script>";
 } elseif ($_POST['stage'] === "3") {
     if (isset($_POST['residence'])) {
-        updateCompletion($db, $_SESSION['admissionNum'], $_SESSION['completion']);
+        updateCompletion($db, $_POST['uid'], $_SESSION['completion']);
         echo "
                         <script>
                         window.location.href='../html/stagefour.php';
@@ -37,7 +37,7 @@ if ($_POST['stage'] === "1") {
                         window.location.href='../html/stagethree.php';
                         </script>";
         } else {
-            updateCompletion($db, $_SESSION['admissionNum'], $_SESSION['completion']);
+            updateCompletion($db, $_POST['uid'], $_SESSION['completion']);
             echo "
                         <script>
                         window.location.href='../html/stagefour.php';
@@ -45,7 +45,7 @@ if ($_POST['stage'] === "1") {
         }
     }
 } else {
-    updateCompletion($db, $_SESSION['admissionNum'], $_SESSION['completion']);
+    updateCompletion($db, $_POST['uid'], $_SESSION['completion']);
     echo "
                         <script>
                         window.location.href='../html/userprofile.php';

@@ -29,6 +29,10 @@ if (isset($_SESSION['admissionNum'])) {
 if (isset($_SESSION['password'])) {
     $password = $_SESSION['password'];
 }
+if (isset($_SESSION['completion'])) {
+    $completion = $_SESSION['completion'];
+    // echo "<script>alert(" . $completion . ")</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,32 +77,57 @@ if (isset($_SESSION['password'])) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " data-toggle="collapse" href="#stages" role="button" aria-expanded="false" aria-controls="stages">
+                            <a class="nav-link <?php if ($completion == '100') {
+                                                    echo "disabled";
+                                                }
+                                                ?> " data-toggle="collapse" href="#stages" role="button" aria-expanded="false" aria-controls="stages">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
-                                <span class="nav-link-text  text-light">Enroll</span>
+                                <span class="nav-link-text  <?php if ($completion == '100') {
+                                                                echo "text-muted";
+                                                            } else {
+                                                                echo "text-light";
+                                                            } ?>">Enroll</span>
                             </a>
                             <div class="collapse pl-lg-5 pl-sm-5 pl-xs-5" id="stages">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link collapse " href="../html/stageone.php">
+                                        <a class="nav-link collapse <?php if ($completion >= '25') {
+                                                                        echo "disabled";
+                                                                    } ?>" href="../html/stageone.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text  text-light">Stage One</span>
+                                            <span class="nav-link-text   <?php if ($completion >= '25') {
+                                                                                echo "text-muted";
+                                                                            } else {
+                                                                                echo "text-light";
+                                                                            } ?>">Stage One</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stagetwo.php">
+                                        <a class="nav-link collapse <?php if ($completion >= '50') {
+                                                                        echo "disabled";
+                                                                    } ?>" href="../html/stagetwo.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text  text-light">Stage Two</span>
+                                            <span class="nav-link-text   <?php if ($completion >= '50') {
+                                                                                echo "text-muted";
+                                                                            } else {
+                                                                                echo "text-light";
+                                                                            } ?>">Stage Two</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stagethree.php">
+                                        <a class="nav-link collapse <?php if ($completion >= '75') {
+                                                                        echo "disabled";
+                                                                    } ?>" href="../html/stagethree.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text  text-light">Stage Three</span>
+                                            <span class="nav-link-text  <?php if ($completion >= '75') {
+                                                                            echo "text-muted";
+                                                                        } else {
+                                                                            echo "text-light";
+                                                                        } ?>">Stage Three</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stageone.php">
+                                        <a class="nav-link collapse" href="../html/stagefour.php">
                                             <i class="ni ni-check-bold text-default"></i>
                                             <span class="nav-link-text  text-light">Stage Four</span>
                                         </a>

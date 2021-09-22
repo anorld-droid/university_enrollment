@@ -24,7 +24,7 @@ if ($admNumber === "admin") {
             $_SESSION['profilePhoto'] = $val['profile_picture'];
             $_SESSION['admissionNum'] = $val['adm_number'];
             $_SESSION['password'] = $val['pass'];
-           
+
             //  selectRecords($db);
             echo "
                     <script>
@@ -60,6 +60,9 @@ if ($admNumber === "admin") {
                 $_SESSION['admissionNum'] = $val['adm_number'];
                 $_SESSION['password'] = $val['pass'];
                 $_SESSION['completion'] = $val['completion'];
+                $_SESSION['userid'] = $val['ID'];
+                // echo  $_SESSION['userid'];
+
                 echo "
                     <script>
                     window.location.href='../html/userprofile.php';

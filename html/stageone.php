@@ -29,6 +29,13 @@ if (isset($_SESSION['admissionNum'])) {
 if (isset($_SESSION['password'])) {
     $password = $_SESSION['password'];
 }
+if (isset($_SESSION['userid'])) {
+    $id = $_SESSION['userid'];
+}
+if (isset($_SESSION['completion'])) {
+    $completion = $_SESSION['completion'];
+    // echo "<script>alert(" . $completion . ")</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,28 +84,46 @@ if (isset($_SESSION['password'])) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " data-toggle="collapse" href="#stages" role="button" aria-expanded="false" aria-controls="stages">
+                            <a class="nav-link" data-toggle="collapse" href="#stages" role="button" aria-expanded="false" aria-controls="stages">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
                                 <span class="nav-link-text  text-light">Enroll</span>
                             </a>
                             <div class="collapse pl-lg-5 pl-sm-5 pl-xs-5" id="stages">
                                 <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link collapse active" href="../html/stageone.php">
+                                    <li class="nav-item active">
+                                        <a class="nav-link collapse <?php if ($completion >= '25') {
+                                                                        echo "disabled";
+                                                                    } ?>" href="../html/stageone.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text  text-light">Stage One</span>
+                                            <span class="nav-link-text   <?php if ($completion == '25') {
+                                                                                echo "text-muted";
+                                                                            } else {
+                                                                                echo "text-light";
+                                                                            } ?>">Stage One</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stagetwo.php">
+                                        <a class="nav-link collapse <?php if ($completion >= '50') {
+                                                                        echo "disabled";
+                                                                    } ?>" href="../html/stagetwo.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text  text-light">Stage Two</span>
+                                            <span class="nav-link-text   <?php if ($completion >= '50') {
+                                                                                echo "text-muted";
+                                                                            } else {
+                                                                                echo "text-light";
+                                                                            } ?>">Stage Two</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse" href="../html/stagethree.php">
+                                        <a class="nav-link collapse <?php if ($completion >= '75') {
+                                                                        echo "disabled";
+                                                                    } ?>" href="../html/stagethree.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text  text-light">Stage Three</span>
+                                            <span class="nav-link-text  <?php if ($completion >= '75') {
+                                                                            echo "text-muted";
+                                                                        } else {
+                                                                            echo "text-light";
+                                                                        } ?>">Stage Three</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -284,19 +309,20 @@ if (isset($_SESSION['password'])) {
                             <!-- Student details form  -->
                             <form class="needs-validation" action="../php/advanceStage.php" method="POST" novalidate>
                                 <input type="hidden" name="stage" value="1" />
+                                <input type="hidden" name="uid" value=<?php echo $id; ?> />
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-first-name">First Name</label>
-                                                <input type="text" id="input-first-name" class="form-control text-dark" value=<?php echo $firstname; ?> required>
+                                                <input type="text" id="input-first-name" class="form-control text-dark" value=<?php echo $firstname; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-last-name">Last Name</label>
-                                                <input type="text" id="input-last-name" class="form-control text-dark" value=<?php echo $lastname; ?> required>
+                                                <input type="text" id="input-last-name" class="form-control text-dark" value=<?php echo $lastname; ?>>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -310,7 +336,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-school">School Admitted Into</label>
-                                                <input type="text" id="input-school" class="form-control text-dark" placeholder="School" required>
+                                                <input type="text" id="input-school" class="form-control text-dark" placeholder="School">
                                                 <div class="invalid-feedback">
                                                     Please enter your school
                                                 </div>
@@ -319,7 +345,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-programme">Programme Admitted For</label>
-                                                <input type="text" id="input-programme" class="form-control text-dark" placeholder="Programme" required>
+                                                <input type="text" id="input-programme" class="form-control text-dark" placeholder="Programme">
                                                 <div class="invalid-feedback">
                                                     Please enter your programme
                                                 </div>
@@ -332,7 +358,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-day">Date Of Birth</label>
                                                 <label class="form-control-label text-light" for="input-day"></label>
-                                                <input type="number" id="input-day" name="dob_day" class="form-control text-dark" placeholder="Day" required>
+                                                <input type="number" id="input-day" name="dob_day" class="form-control text-dark" placeholder="Day">
                                                 <div class="invalid-feedback">
                                                     Please enter your day of birth
                                                 </div>
@@ -341,7 +367,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-month"><br></label>
-                                                <input type="number" id="input-month" name="dob_month" class="form-control text-dark" placeholder="Month" required>
+                                                <input type="number" id="input-month" name="dob_month" class="form-control text-dark" placeholder="Month">
                                                 <div class="invalid-feedback">
                                                     Please enter your month of birth
                                                 </div>
@@ -350,7 +376,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-month"><br></label>
-                                                <input type="number" id="input-year" name="dob_year" class="form-control text-dark" placeholder="Year" required>
+                                                <input type="number" id="input-year" name="dob_year" class="form-control text-dark" placeholder="Year">
                                                 <div class="invalid-feedback">
                                                     Please enter your year of birth
                                                 </div>
@@ -365,14 +391,14 @@ if (isset($_SESSION['password'])) {
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" required>
+                                                <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadioInline1">Male</label>
                                                 <div class="invalid-feedback">
                                                     Please enter your gender
                                                 </div>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" required>
+                                                <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadioInline2">Female</label>
                                                 <div class="invalid-feedback">
                                                     Please enter your gender
@@ -388,7 +414,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_village">Place Of Birth</label>
                                                 <label class="form-control-label text-light" for="input_village"></label>
-                                                <input type="text" id="input_village" name="pob_village" class="form-control text-dark" placeholder="Village" required>
+                                                <input type="text" id="input_village" name="pob_village" class="form-control text-dark" placeholder="Village">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -397,7 +423,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_location"><br></label>
-                                                <input type="text" id="input-location" name="pob_location" class="form-control text-dark" placeholder="Location" required>
+                                                <input type="text" id="input-location" name="pob_location" class="form-control text-dark" placeholder="Location">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -406,7 +432,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_district"><br></label>
-                                                <input type="text" id="input-district" name="pob_district" class="form-control text-dark" placeholder="District" required>
+                                                <input type="text" id="input-district" name="pob_district" class="form-control text-dark" placeholder="District">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -416,7 +442,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_county"><br> </label>
-                                                <input type="text" id="input_county" name="pob_county" class="form-control text-dark" placeholder="County" required>
+                                                <input type="text" id="input_county" name="pob_county" class="form-control text-dark" placeholder="County">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -428,7 +454,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_name_chief">Name Of Chief</label>
                                                 <label class="form-control-label text-light" for="input_name_chief"></label>
-                                                <input type="text" id="input_name_chief" name="pob_chief" class="form-control text-dark" placeholder="Names" required>
+                                                <input type="text" id="input_name_chief" name="pob_chief" class="form-control text-dark" placeholder="Names">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -437,7 +463,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_police_station">Nearest Police Station</label>
-                                                <input type="text" id="input-police_station" name="pob_police_station" class="form-control text-dark" placeholder="Name of Police Station" required>
+                                                <input type="text" id="input-police_station" name="pob_police_station" class="form-control text-dark" placeholder="Name of Police Station">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -449,7 +475,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_nationality">Nationality</label>
-                                                <input type="text" id="input_nationality" name="pob_nationality" class="form-control text-dark" placeholder="Nationality" required>
+                                                <input type="text" id="input_nationality" name="pob_nationality" class="form-control text-dark" placeholder="Nationality">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -458,7 +484,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_religion">Religion</label>
-                                                <input type="text" id="input_religion" name="religion" class="form-control text-dark" placeholder="Religion" required>
+                                                <input type="text" id="input_religion" name="religion" class="form-control text-dark" placeholder="Religion">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -471,14 +497,14 @@ if (isset($_SESSION['password'])) {
                                             <label class="form-control-label text-light" for="input-day">Marital Status</label>
                                             <br>
                                             <div class="custom-control  custom-radio custom-control-inline">
-                                                <input type="radio" id="maritalstatus1" name="maritalstatus" class="custom-control-input" required>
+                                                <input type="radio" id="maritalstatus1" name="maritalstatus" class="custom-control-input">
                                                 <label class="custom-control-label" for="maritalstatus1">Married</label>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="maritalstatus2" name="maritalstatus" class="custom-control-input" required>
+                                                <input type="radio" id="maritalstatus2" name="maritalstatus" class="custom-control-input">
                                                 <label class="custom-control-label" for="maritalstatus2">Single</label>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
@@ -501,7 +527,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_telephone">Address Of correspondence</label>
                                                 <label class="form-control-label text-light" for="input_telephone"></label>
-                                                <input type="number" id="input_telephone" name="correspondence_telephone" class="form-control text-dark" placeholder="Telephone" required>
+                                                <input type="number" id="input_telephone" name="correspondence_telephone" class="form-control text-dark" placeholder="Telephone">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -510,7 +536,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_fax"><br></label>
-                                                <input type="number" id="input-fax" name="pob_fax" class="form-control text-dark" placeholder="Fax" required>
+                                                <input type="number" id="input-fax" name="pob_fax" class="form-control text-dark" placeholder="Fax">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -519,7 +545,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_email"><br> </label>
-                                                <input type="text" id="input_email" name="pob_email" class="form-control text-dark" placeholder="Email" required>
+                                                <input type="text" id="input_email" name="pob_email" class="form-control text-dark" placeholder="Email">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -531,7 +557,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-5">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_nationality">Full Names Of Mother</label>
-                                                <input type="text" id="input_nationality" name="pob_nationality" class="form-control text-dark" placeholder="Full Names" required>
+                                                <input type="text" id="input_nationality" name="pob_nationality" class="form-control text-dark" placeholder="Full Names">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -540,7 +566,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="mother_occupation">Mother Occupation</label>
-                                                <input type="text" id="mother_occupation" name="m_occupation" class="form-control text-dark" placeholder="Mother Occupation" required>
+                                                <input type="text" id="mother_occupation" name="m_occupation" class="form-control text-dark" placeholder="Mother Occupation">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -550,14 +576,14 @@ if (isset($_SESSION['password'])) {
                                             <label class="form-control-label text-light" for="mother_status">Check Where Possible</label>
                                             <br>
                                             <div class="custom-control custom-radio  custom-control-inline">
-                                                <input type="radio" id="mother_status_id1" name="mother_status" class="custom-control-input" required>
+                                                <input type="radio" id="mother_status_id1" name="mother_status" class="custom-control-input">
                                                 <label class="custom-control-label text-center" for="mother_status_id1">Alive</label>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
                                             </div>
                                             <div class="custom-control  custom-radio  custom-control-inline">
-                                                <input type="radio" id="mother_status_id2" name="mother_status" class="custom-control-input" required>
+                                                <input type="radio" id="mother_status_id2" name="mother_status" class="custom-control-input">
                                                 <label class="custom-control-label" for="mother_status_id2">Dead</label>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
@@ -569,7 +595,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-5">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_nationality">Full Names Of Father</label>
-                                                <input type="text" id="input_nationality" name="pob_nationality" class="form-control text-dark" placeholder="Full Names" required>
+                                                <input type="text" id="input_nationality" name="pob_nationality" class="form-control text-dark" placeholder="Full Names">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -578,7 +604,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="mother_occupation">Father Occupation</label>
-                                                <input type="text" id="father_occupation" name="f_occupation" class="form-control text-dark" placeholder="Father Occupation" required>
+                                                <input type="text" id="father_occupation" name="f_occupation" class="form-control text-dark" placeholder="Father Occupation">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -589,7 +615,7 @@ if (isset($_SESSION['password'])) {
                                             <label class="form-control-label text-light" for="father_status">Check Where Possible</label>
                                             <br>
                                             <div class="custom-control custom-radio  custom-control-inline">
-                                                <input type="radio" id="father_status_id1" name="father_status" class="custom-control-input " required>
+                                                <input type="radio" id="father_status_id1" name="father_status" class="custom-control-input ">
                                                 <label class="custom-control-label text-center" for="father_status_id1">Alive</label>
                                                 <br>
                                                 <div class="invalid-feedback">
@@ -597,7 +623,7 @@ if (isset($_SESSION['password'])) {
                                                 </div>
                                             </div>
                                             <div class="custom-control  custom-radio  custom-control-inline">
-                                                <input type="radio" id="father_status_id2" name="father_status" class="custom-control-input" required>
+                                                <input type="radio" id="father_status_id2" name="father_status" class="custom-control-input">
                                                 <label class="custom-control-label" for="father_status_id2">Dead</label>
                                                 <br>
                                                 <div class="invalid-feedback">
@@ -619,7 +645,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-8">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_brothers_sisters_names">Names Of Brother's and Sister's</label>
-                                                <textarea rows="4" id="input_brothers_sisters_names" name="names_of_brothers_sisters" class="form-control text-dark" placeholder="Full Names" required></textarea>
+                                                <textarea rows="4" id="input_brothers_sisters_names" name="names_of_brothers_sisters" class="form-control text-dark" placeholder="Full Names"></textarea>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -628,7 +654,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_bs_address">Addresses'</label>
-                                                <textarea rows="4" id="input_bs_address" name="address_of_brothers_sisters" class="form-control text-dark" placeholder="Addresses" required></textarea>
+                                                <textarea rows="4" id="input_bs_address" name="address_of_brothers_sisters" class="form-control text-dark" placeholder="Addresses"></textarea>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -643,7 +669,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_name1">Name</label>
-                                                    <input type="text" id="input_emergency_name1" name="emergency_name1" class="form-control text-dark" placeholder="Full Names" required>
+                                                    <input type="text" id="input_emergency_name1" name="emergency_name1" class="form-control text-dark" placeholder="Full Names">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -652,7 +678,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_relationship1">Relationship</label>
-                                                    <input type="text" id="input_emergency_relationship1" name="emergency_relationship1" class="form-control text-dark" placeholder="Relationship" required>
+                                                    <input type="text" id="input_emergency_relationship1" name="emergency_relationship1" class="form-control text-dark" placeholder="Relationship">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -663,7 +689,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_address1">Address</label>
-                                                    <input type="text" id="input_emergency_address1" name="emergency_address1" class="form-control text-dark" placeholder="Address" required>
+                                                    <input type="text" id="input_emergency_address1" name="emergency_address1" class="form-control text-dark" placeholder="Address">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -672,7 +698,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_telephone1">Telephone</label>
-                                                    <input type="number" id="input_emergency_telephone1" name="emergency_telephone1" class="form-control text-dark" placeholder="Telephone" required>
+                                                    <input type="number" id="input_emergency_telephone1" name="emergency_telephone1" class="form-control text-dark" placeholder="Telephone">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -684,7 +710,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_name2">Name</label>
-                                                    <input type="text" id="input_emergency_name2" name="emergency_name2" class="form-control text-dark" placeholder="Full Names" required>
+                                                    <input type="text" id="input_emergency_name2" name="emergency_name2" class="form-control text-dark" placeholder="Full Names">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -693,7 +719,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_relationship2">Relationship</label>
-                                                    <input type="text" id="input_emergency_relationship2" name="emergency_relationship2" class="form-control text-dark" placeholder="Relationship" required>
+                                                    <input type="text" id="input_emergency_relationship2" name="emergency_relationship2" class="form-control text-dark" placeholder="Relationship">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -704,7 +730,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_address2">Address</label>
-                                                    <input type="text" id="input_emergency_address2" name="emergency_address2" class="form-control text-dark" placeholder="Address" required>
+                                                    <input type="text" id="input_emergency_address2" name="emergency_address2" class="form-control text-dark" placeholder="Address">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -713,7 +739,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_emergency_telephone2">Telephone</label>
-                                                    <input type="number" id="input_emergency_telephone2" name="emergency_telephone2" class="form-control text-dark" placeholder="Telephone" required>
+                                                    <input type="number" id="input_emergency_telephone2" name="emergency_telephone2" class="form-control text-dark" placeholder="Telephone">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -726,7 +752,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_school_name">Last School Name</label>
-                                                <input type="text" id="input_school_name" name="school_name" class="form-control text-dark" placeholder="School Name" required>
+                                                <input type="text" id="input_school_name" name="school_name" class="form-control text-dark" placeholder="School Name">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -735,7 +761,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_emergency_address">Last School Address</label>
-                                                <input type="text" id="input_emergency_address" name="emergency_contact" class="form-control text-dark" placeholder="School Address" required>
+                                                <input type="text" id="input_emergency_address" name="emergency_contact" class="form-control text-dark" placeholder="School Address">
 
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
@@ -747,7 +773,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_index_number">Index Number</label>
-                                                <input type="text" id="input_index_number" name="index_number" class="form-control text-dark" placeholder="Index Number" required>
+                                                <input type="text" id="input_index_number" name="index_number" class="form-control text-dark" placeholder="Index Number">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -756,7 +782,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input_mean_grade">Mean Grade</label>
-                                                <input type="text" id="input_mean_grade" name="mean_grade" class="form-control text-dark" placeholder="Mean Grade" required>
+                                                <input type="text" id="input_mean_grade" name="mean_grade" class="form-control text-dark" placeholder="Mean Grade">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -770,7 +796,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input_maths">Subject</label>
-                                                    <input id="input_maths" class="form-control text-dark" name="maths" value=" Maths" type="text" required>
+                                                    <input id="input_maths" class="form-control text-dark" name="maths" value=" Maths" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -779,7 +805,7 @@ if (isset($_SESSION['password'])) {
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label class="form-control-label text-light" for="input-grade">Grade</label>
-                                                    <input id="input-grade" class="form-control text-dark" name="maths_grade" placeholder="Grade" type="text" required>
+                                                    <input id="input-grade" class="form-control text-dark" name="maths_grade" placeholder="Grade" type="text">
 
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
@@ -790,7 +816,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input id="input_maths" class="form-control text-dark" name="english" value=" English" type="text" required>
+                                                    <input id="input_maths" class="form-control text-dark" name="english" value=" English" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -798,7 +824,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input id="input-grade" class="form-control text-dark" name="english_grade" placeholder="Grade" type="text" required>
+                                                    <input id="input-grade" class="form-control text-dark" name="english_grade" placeholder="Grade" type="text">
 
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
@@ -809,7 +835,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input id="input_maths" class="form-control text-dark" name="kiswahili" value=" Kiswahili" type="text" required>
+                                                    <input id="input_maths" class="form-control text-dark" name="kiswahili" value=" Kiswahili" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -817,7 +843,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input id="input-grade" class="form-control text-dark" name="kiswahili_grade" placeholder="Grade" type="text" required>
+                                                    <input id="input-grade" class="form-control text-dark" name="kiswahili_grade" placeholder="Grade" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -827,7 +853,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input id="input_maths" class="form-control text-dark" name="subject4" placeholder="Subject" type="text" required>
+                                                    <input id="input_maths" class="form-control text-dark" name="subject4" placeholder="Subject" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -835,7 +861,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input id="input-grade" class="form-control text-dark" name="subject4_grade" placeholder="Grade" type="text" required>
+                                                    <input id="input-grade" class="form-control text-dark" name="subject4_grade" placeholder="Grade" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -845,7 +871,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input id="input_maths" class="form-control text-dark" name="subject5" placeholder="Subject" type="text" required>
+                                                    <input id="input_maths" class="form-control text-dark" name="subject5" placeholder="Subject" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -853,7 +879,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input id="input-grade" class="form-control text-dark" name="subject5_grade" placeholder="Grade" type="text" required>
+                                                    <input id="input-grade" class="form-control text-dark" name="subject5_grade" placeholder="Grade" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -863,7 +889,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input class="form-control text-dark" name="subject6" placeholder="Subject" type="text" required>
+                                                    <input class="form-control text-dark" name="subject6" placeholder="Subject" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -871,7 +897,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input class="form-control text-dark" name="subject6_grade" placeholder="Grade" type="text" required>
+                                                    <input class="form-control text-dark" name="subject6_grade" placeholder="Grade" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -881,7 +907,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input class="form-control text-dark" name="subject7" placeholder="Subject" type="text" required>
+                                                    <input class="form-control text-dark" name="subject7" placeholder="Subject" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -889,7 +915,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input class="form-control text-dark" name="subject7_grade" placeholder="Grade" type="text" required>
+                                                    <input class="form-control text-dark" name="subject7_grade" placeholder="Grade" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -899,7 +925,7 @@ if (isset($_SESSION['password'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input class="form-control text-dark" name="subject8" placeholder="Subject" type="text" required>
+                                                    <input class="form-control text-dark" name="subject8" placeholder="Subject" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -907,7 +933,7 @@ if (isset($_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input class="form-control text-dark" name="subject8_grade" placeholder="Grade" type="text" required>
+                                                    <input class="form-control text-dark" name="subject8_grade" placeholder="Grade" type="text">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
