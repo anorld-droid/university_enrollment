@@ -32,10 +32,8 @@ if (isset($_SESSION['password'])) {
 if (isset($_SESSION['userid'])) {
     $id = $_SESSION['userid'];
 }
-if (isset($_SESSION['completion'])) {
-    $completion = $_SESSION['completion'];
-    // echo "<script>alert(" . $completion . ")</script>";
-}
+$completion = 50;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,11 +89,11 @@ if (isset($_SESSION['completion'])) {
                             <div class="collapse pl-lg-5 pl-sm-5 pl-xs-5" id="stages">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link collapse <?php if ($completion >= '25') {
+                                        <a class="nav-link collapse <?php if ($completion >= 25) {
                                                                         echo "disabled";
                                                                     } ?>" href="../html/stageone.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text   <?php if ($completion >= '25') {
+                                            <span class="nav-link-text   <?php if ($completion >= 25) {
                                                                                 echo "text-muted";
                                                                             } else {
                                                                                 echo "text-light";
@@ -103,11 +101,11 @@ if (isset($_SESSION['completion'])) {
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link collapse <?php if ($completion >= '50') {
+                                        <a class="nav-link collapse <?php if ($completion >= 50) {
                                                                         echo "disabled";
                                                                     } ?>" href="../html/stagetwo.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text   <?php if ($completion == '50') {
+                                            <span class="nav-link-text   <?php if ($completion >= 50) {
                                                                                 echo "text-muted";
                                                                             } else {
                                                                                 echo "text-light";
@@ -115,11 +113,11 @@ if (isset($_SESSION['completion'])) {
                                         </a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a class="nav-link collapse <?php if ($completion >= '75') {
+                                        <a class="nav-link collapse <?php if ($completion >= 75) {
                                                                         echo "disabled";
                                                                     } ?> active" href="../html/stagethree.php">
                                             <i class="ni ni-check-bold text-default"></i>
-                                            <span class="nav-link-text  <?php if ($completion >= '75') {
+                                            <span class="nav-link-text  <?php if ($completion >= 75) {
                                                                             echo "text-muted";
                                                                         } else {
                                                                             echo "text-light";
@@ -309,6 +307,7 @@ if (isset($_SESSION['completion'])) {
                             <!-- Student details form  -->
                             <form class="needs-validation" action="../php/advanceStage.php" method="POST" novalidate>
                                 <input type="hidden" name="stage" value="3" />
+                                <input type="hidden" name="complete" value="75">
                                 <input type="hidden" name="uid" value=<?php echo $id; ?> />
                                 <h6 class="heading-small text-muted mb-2">DECLARATION FORM</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">

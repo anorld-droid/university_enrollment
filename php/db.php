@@ -116,11 +116,11 @@ function insertToAdmin(mysqli $db, array $record)
 
 function updateCompletion(mysqli $db, $id, $completion)
 {
-    if ($completion > '100') {
-        $completionLevel  = 100;
-    } else {
-        $completionLevel = $completion + 25;
-    }
+    // if ($completion > 100) {
+    //     $completionLevel  = 100;
+    // } else {
+    $completionLevel = $completion;
+    // }
     $sql = "UPDATE student_data SET `completion` = '$completionLevel' WHERE `ID`='$id';";
     if ($db->query($sql)) {
         // echo "records inserted succefully";
