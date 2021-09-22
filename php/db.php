@@ -128,15 +128,3 @@ function updateCompletion(mysqli $db, $id, $completion)
         echo "failed";
     }
 }
-
-function searchDatabase(mysqli $db, $searchText)
-{
-    $data = [];
-    $sql = "SELECT * FROM student_data WHERE  fname LIKE '%" . $searchText . "%' ";
-    $resultSet = $db->query($sql);
-    while ($row = $resultSet->fetch_assoc()) {
-        $data[] = $row;
-    }
-   
-    return $data;
-}
