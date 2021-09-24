@@ -53,6 +53,6 @@ if ($_POST['stage'] === "1") {
     updateCompletion($db, $_POST['uid'], $_POST['complete']);
     echo "
                         <script>
-                        window.location.href='../html/userprofile.php';
+                        window.location.href='../html/SIGNIN.html';
                         </script>";
 }

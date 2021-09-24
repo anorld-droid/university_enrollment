@@ -315,7 +315,7 @@ $completion = 75;
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-nhif">Hostel Name</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="hostl_name" placeholder="Hostel Name" required>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="hostl_name" placeholder="Hostel Name">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -324,7 +324,7 @@ $completion = 75;
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-nhif">Room Number</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="room_number" placeholder="Room number" required>
+                                                <input type="text" id="input-nhif" class="form-control text-dark" name="room_number" placeholder="Room number">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>

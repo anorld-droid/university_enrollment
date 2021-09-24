@@ -17,18 +17,18 @@
 <?php
 
 session_start();
-if (isset($_SESSION['profilePhoto'])) {
-  $profilePhoto = $_SESSION["profilePhoto"];
+if (isset($_SESSION['pPhoto'])) {
+  $profilePhoto = $_SESSION["pPhoto"];
 }
-if (isset($_SESSION['firstName']) and isset($_SESSION['lastName'])) {
-  $firstname = $_SESSION['firstName'];
-  $lastname = $_SESSION['lastName'];
+if (isset($_SESSION['fName']) and isset($_SESSION['lastName'])) {
+  $firstname = $_SESSION['fName'];
+  $lastname = $_SESSION['lName'];
 }
-if (isset($_SESSION['admissionNum'])) {
-  $admNumber = $_SESSION['admissionNum'];
+if (isset($_SESSION['admNum'])) {
+  $admNumber = $_SESSION['admNum'];
 }
-if (isset($_SESSION['password'])) {
-  $password = $_SESSION['password'];
+if (isset($_SESSION['pass'])) {
+  $password = $_SESSION['pass'];
 }
 ?>
 <!DOCTYPE html>

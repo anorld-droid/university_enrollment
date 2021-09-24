@@ -19,18 +19,15 @@ require_once '../php/config.php';
 require_once '../php/db.php';
 $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
 session_start();
-if (isset($_SESSION['profilePhoto'])) {
-  $profilePhoto = $_SESSION["profilePhoto"];
+if (isset($_SESSION['pPhoto'])) {
+  $profilePhoto = $_SESSION["pPhoto"];
 }
-if (isset($_SESSION['firstName']) and isset($_SESSION['lastName'])) {
-  $firstname = $_SESSION['firstName'];
-  $lastname = $_SESSION['lastName'];
+if (isset($_SESSION['fName']) and isset($_SESSION['lName'])) {
+  $firstname = $_SESSION['fName'];
+  $lastname = $_SESSION['lName'];
 }
-if (isset($_SESSION['admissionNum'])) {
-  $admNumber = $_SESSION['admissionNum'];
-}
-if (isset($_SESSION['password'])) {
-  $password = $_SESSION['password'];
+if (isset($_SESSION['pass'])) {
+  $password = $_SESSION['pass'];
 }
 $num = 1;
 //total number of results  per page
@@ -297,10 +294,15 @@ if (!empty($_POST)) {
                   <li class="breadcrumb-item active "><a href="#"><?php echo $number_of_result ?></a></li>
                 </ol>
               </nav>
+
             </div>
+
             <div class="col-lg-6 col-5 text-right">
               <a href="#newModal" data-toggle="modal" class="btn btn-sm btn-neutral">New</a>
-              <a href="../php/downloadpdf.php" class="btn btn-sm btn-neutral">Download PDF</a>
+              <form action="../php/downloadpdf.php" method="POST">
+                <input type="text" name="stagelevel" placeholder="Stage level">
+                <button type="submit" class="btn btn-sm btn-neutral">Download PDF</a>
+              </form>
             </div>
           </div>
         </div>
@@ -396,6 +398,7 @@ if (!empty($_POST)) {
               <table class="table align-items-center table-dark table-flush">
                 <thead class="thead-dark">
                   <tr>
+                    <th scope="col" class="sort" data-sort="name">Serial</th>
                     <th scope="col" class="sort" data-sort="name">Name</th>
                     <th scope="col" class="sort" data-sort="budget">Admission Number</th>
                     <th scope="col">School</th>
@@ -499,7 +502,7 @@ if (!empty($_POST)) {
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label text-light" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control text-dark" name="admNumber" placeholder="Username" value=<?php echo $admNumber; ?>>
+                        <input type="text" id="input-username" class="form-control text-dark" name="admNumber" placeholder="Username" value=<?php echo $val['adm_number']; ?>>
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -609,22 +612,22 @@ if (!empty($_POST)) {
     <div class="row align-items-center justify-content-lg-between">
       <div class="col-lg-6">
         <div class="copyright text-center  text-lg-left  text-muted">
-          &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+          &copy; 2020 <a href="#!" class="font-weight-bold ml-1">Pain Creations</a>
         </div>
       </div>
       <div class="col-lg-6">
         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
           <li class="nav-item">
-            <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+            <a href="#!" class="nav-link">Pain Creations</a>
           </li>
           <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+            <a href="#!" class="nav-link">About Us</a>
           </li>
           <li class="nav-item">
-            <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+            <a href="#!" class="nav-link">Blog</a>
           </li>
-          <li class="nav-item">
-            <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+          <li class=" nav-item">
+            <a href="https://github.com/anorld-droid/university_enrollment" class="nav-link" target="_blank">Git Hub </a>
           </li>
         </ul>
       </div>

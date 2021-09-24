@@ -3,7 +3,7 @@ require_once 'config.php';
 require_once 'db.php';
 $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
 
-if ($_POST['deleteRecord']) {
+if (isset($_POST['deleteRecord'])) {
     $id = $_POST['deleteRecord'];
     deleteRecords($db, $id);
     echo "
@@ -21,8 +21,8 @@ if ($_POST['deleteRecord']) {
 
     updateRecords($db, $Updatedvalues);
     echo "
-<script>
-window.location.href='../html/tables.php';
-</script>
+        <script>
+        window.location.href='../html/tables.php';
+        </script>
     ";
 }

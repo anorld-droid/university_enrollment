@@ -60,6 +60,19 @@ function selectRecords(mysqli $db)
     //var_dump($data);
     return $data;
 }
+function selectPdfRecords(mysqli $db, $completion)
+{
+    $data = [];
+    $sql = "SELECT * FROM student_data WHERE `completion` = $completion";
+    $resultSet = $db->query($sql);
+    while ($row = $resultSet->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+
+    //var_dump($data);
+    return $data;
+}
 function deleteRecords(mysqli $db,  $id)
 {
     $sql = "DELETE FROM student_data WHERE `ID` = '$id' ";

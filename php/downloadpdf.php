@@ -53,19 +53,37 @@ class PDF extends FPDF
         $id = 1;
         $my_file = "StudentData.txt";
 
-        $data = selectRecords($db);
-        foreach ($data as $row) {
-            $this->SetFont('Times', '', 12);
-            $this->Cell(23.82, 20, $id, 1);
-            $this->Cell(37.3, 20, $row['fname'], 1);
-            $this->Cell(36.7, 20, $row['lname'], 1);
-            $this->Cell(58.5, 20, $row['adm_number'], 1);
-            $x = $this->GetX();
-            $y = $this->GetY();
-            $this->MultiCell(43, 20, $this->Image($row['profile_picture'], $x + 3, $y + 1, 35, 17), 1);
-            $this->Cell(10);
-            $this->Ln();
-            $id++;
+        $stagelevel = $_POST['stagelevel'];
+        if ($stagelevel == '25' || $stagelevel == '50' || $stagelevel == '75' || $stagelevel == '100') {
+            $data = selectPdfRecords($db, $stagelevel);
+            foreach ($data as $row) {
+                $this->SetFont('Times', '', 12);
+                $this->Cell(23.82, 20, $id, 1);
+                $this->Cell(37.3, 20, $row['fname'], 1);
+                $this->Cell(36.7, 20, $row['lname'], 1);
+                $this->Cell(58.5, 20, $row['adm_number'], 1);
+                $x = $this->GetX();
+                $y = $this->GetY();
+                $this->MultiCell(43, 20, $this->Image($row['profile_picture'], $x + 3, $y + 1, 35, 17), 1);
+                $this->Cell(10);
+                $this->Ln();
+                $id++;
+            }
+        } else {
+            $data = selectRecords($db);
+            foreach ($data as $row) {
+                $this->SetFont('Times', '', 12);
+                $this->Cell(23.82, 20, $id, 1);
+                $this->Cell(37.3, 20, $row['fname'], 1);
+                $this->Cell(36.7, 20, $row['lname'], 1);
+                $this->Cell(58.5, 20, $row['adm_number'], 1);
+                $x = $this->GetX();
+                $y = $this->GetY();
+                $this->MultiCell(43, 20, $this->Image($row['profile_picture'], $x + 3, $y + 1, 35, 17), 1);
+                $this->Cell(10);
+                $this->Ln();
+                $id++;
+            }
         }
     }
 }

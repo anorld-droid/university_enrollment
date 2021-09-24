@@ -19,11 +19,11 @@ if ($admNumber === "admin") {
     foreach ($adminData as $val) {
 
         if ($val['pass'] === $password) {
-            $_SESSION['firstName'] = $val['fname'];
-            $_SESSION['lastName'] = $val['lname'];
-            $_SESSION['profilePhoto'] = $val['profile_picture'];
-            $_SESSION['admissionNum'] = $val['adm_number'];
-            $_SESSION['password'] = $val['pass'];
+            $_SESSION['fName'] = $val['fname'];
+            $_SESSION['lName'] = $val['lname'];
+            $_SESSION['pPhoto'] = $val['profile_picture'];
+            $_SESSION['admNum'] = $val['adm_number'];
+            $_SESSION['pass'] = $val['pass'];
 
             //  selectRecords($db);
             echo "
