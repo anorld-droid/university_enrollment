@@ -25,8 +25,8 @@ of the students who are at any stage of the enrollment.
 
 <hr>
 
-<b>1</b>Ensure you have <a href="https://www.apachefriends.org/index.html">XAMPP</a> or any other Web Server installed.<br>
-<b>2</b>Fork the repo then clone<br>
-<b>3</b>Change direcory to university_enrollment.<br>
-<b>4</b>Create a new branch.<br>
-<b>5</b>Make your changes, commit, push then create a pull request.<br>
+<b>1.</b> Ensure you have <a href="https://www.apachefriends.org/index.html">XAMPP</a> or any other Web Server installed.<br>
+<b>2.</b> Fork the repo then clone<br>
+<b>3.</b> Change direcory to university_enrollment.<br>
+<b>4.</b> Create a new branch.<br>
+<b>5.</b> Make your changes, commit, push then create a pull request.<br>
