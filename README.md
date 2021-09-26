@@ -21,7 +21,7 @@ of the students who are at any stage of the enrollment.
 
 <img src="Profile.PNG" />
 
-## How To conribute
+## How To contribute
 
 <hr>
 
