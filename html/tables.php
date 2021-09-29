@@ -52,8 +52,10 @@ $query = "SELECT * FROM student_data LIMIT " . $page_first_result . ',' . $resul
 $resultSet = mysqli_query($db, $query);
 
 
-if (!empty($_POST)) {
+if (isset($_POST["search_text"])) {
+
   $text = $_POST['search_text'];
+  echo "updated";
   if (!empty($text)) {
     $sql
       = "SELECT * FROM student_data WHERE  fname LIKE '%" . $text . "%' ";
@@ -62,6 +64,7 @@ if (!empty($_POST)) {
     while ($row = $searchResult->fetch_assoc()) {
       $data[] = $row;
     }
+    // echo json_encode($mydata);
   }
 } else {
   while ($row = $resultSet->fetch_assoc()) {
@@ -179,7 +182,7 @@ if (!empty($_POST)) {
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control" placeholder="Search" type="text" name="search_text">
+                <input class="form-control" placeholder="Search" type="text" id="search_text" name="search_text" onkeyup="searchfunction(this.value);">
               </div>
             </div>
             <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
@@ -391,14 +394,13 @@ if (!empty($_POST)) {
       <div class="row">
         <div class="col">
           <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0">
+            <div class="card-header bg-transparent border-0" id="beforetable">
               <h3 class="text-white mb-0">Registered student</h3>
             </div>
             <div class="table-responsive">
-              <table class="table align-items-center table-dark table-flush">
+              <table class="table align-items-center table-dark table-flush" id="datatable">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col" class="sort" data-sort="name">Serial</th>
                     <th scope="col" class="sort" data-sort="name">Name</th>
                     <th scope="col" class="sort" data-sort="budget">Admission Number</th>
                     <th scope="col">School</th>
@@ -407,7 +409,8 @@ if (!empty($_POST)) {
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody class="list">
+                <tbody class="list" id="tabledata">
+                  <input type="hidden" id="data">
                   <?php
 
 
@@ -634,9 +637,52 @@ if (!empty($_POST)) {
     </div>
   </footer>
   <script>
-    //  JavaScript for disabling form submissions if there are invalid fields
+    var searchRequest = null;
+
+    function searchfunction(value) {
+
+      if (searchRequest != null) searchRequest.abort();
+      $("#datatable").remove();
+      searchRequest = $.ajax({
+        type: "post",
+        url: "../php/search.php",
+        data: {
+          'search_text': value
+        },
+        dataType: 'json',
+        success: function(msg) {
+          // $.ajax({
+          //   type: "post",
+          //   url: "tables.php",
+          //   data: {
+          //     'search_text': msg
+          //   },
+          //   success: function(msg) {
+          // alert(msg.content);
+          //   }
+          // });
+
+          $("#beforetable").after(msg)
+          //Receiving the result of search here
+          // $("#datatable").append(msg);
+          // for (let i = 0; i <= msg.length; i++) {
+          //   alert(msg[i].fname)
+          // }
+
+
+
+        }
+      });
+    }
     (function() {
       'use strict';
+      //searching on keyup event
+      document.getElementById('search_text').keyup(function() {
+
+        var value = $(this).val();
+
+      });
+      //  disabling form submissions if there are invalid fields
       window.addEventListener('load', function() {
         $('input[type="file"]').change(function(e) {
           var fileName = e.target.files[0].name;
