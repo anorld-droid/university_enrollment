@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <style>
+      .wrapper {
+        width: 360px;
+        padding: 20px;
+      }
+      .form-label {
+        margin-right: 10px;
+      }
+    </style>
+    <title>Ajax</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="input-group mb-3">
+          <label for="search" class="form-label">Search</label>
+
+          <input
+            type="text"
+            id="search"
+            class="form-control"
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            onkeyup="showSuggetions(this.value)"
+          />
+        </div>
+      </div>
+      <h2>Suggetions:</h2>
+      <hr />
+      <div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+
+              <th scope="col">School</th>
+              <th scope="col">Admission Number</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody id="table_body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script>
+    function showSuggetions(query) {
+      if (query.length === 0) {
+        document.getElementById('table_body').innerHTML = '';
+        return;
+      } else {
+        var xhtml = new XMLHttpRequest();
+        xhtml.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('table_body').innerHTML = this.responseText;
+          }
+        };
+        xhtml.open('GET', 'dbOperation.php?query=' + query, true);
+        xhtml.send();
+      }
+    }
+  </script>
+</html>
