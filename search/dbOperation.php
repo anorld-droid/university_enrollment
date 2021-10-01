@@ -1,5 +1,6 @@
 <?php
 $searchQuery = $_REQUEST['query'];
+$formattedQuery = trim($searchQuery);
 $conn = mysqli_connect("localhost", "root", "", "student_query");
 
 $query = "CREATE DATABASE IF NOT EXISTS student_query";
@@ -14,7 +15,7 @@ $sql1 = "CREATE TABLE IF NOT EXISTS query_storage (ID int(11) AUTO_INCREMENT,
 
 
 
-$query2 = "SELECT * FROM query_storage WHERE `name`   LIKE  '" . $searchQuery . "%'";
+$query2 = "SELECT * FROM query_storage WHERE `name`   LIKE  '" . $formattedQuery . "%'";
 $resultSet = mysqli_query($conn, $query2);
 
 if (mysqli_num_rows($resultSet)) {

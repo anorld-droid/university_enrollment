@@ -67,6 +67,8 @@
   </body>
   <script>
     function showSuggetions(query) {
+      var inputField = document.getElementById('search').value;
+      
       if (query.length === 0) {
         document.getElementById('table_body').innerHTML = '';
         return;
