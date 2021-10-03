@@ -47,11 +47,11 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-
-              <th scope="col">School</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
               <th scope="col">Admission Number</th>
-              <th scope="col">Handle</th>
+              <th scope="col">status</th>
+              <th scope="col">completion</th>
             </tr>
           </thead>
           <tbody id="table_body"></tbody>
@@ -68,7 +68,7 @@
   <script>
     function showSuggetions(query) {
       var inputField = document.getElementById('search').value;
-      
+
       if (query.length === 0) {
         document.getElementById('table_body').innerHTML = '';
         return;
