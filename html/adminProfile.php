@@ -20,7 +20,7 @@ session_start();
 if (isset($_SESSION['pPhoto'])) {
   $profilePhoto = $_SESSION["pPhoto"];
 }
-if (isset($_SESSION['fName']) and isset($_SESSION['lastName'])) {
+if (isset($_SESSION['fName']) and isset($_SESSION['lName'])) {
   $firstname = $_SESSION['fName'];
   $lastname = $_SESSION['lName'];
 }

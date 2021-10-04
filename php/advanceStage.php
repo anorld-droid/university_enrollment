@@ -16,6 +16,7 @@ if ($_POST['stage'] === "1") {
     $_SESSION["admissionNum"] = $_POST['admissionNum'];
     $_SESSION["password"] = $_POST['password'];
     $_SESSION["id"] = $_POST['userid'];
+    
     echo "<script> window.location.href='../html/stagetwo.php';</script>";
 
     // $stagetwo = '';

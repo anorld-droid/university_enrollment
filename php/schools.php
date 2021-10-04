@@ -117,3 +117,9 @@ var_dump($json_value);
 
 $json_decoded = json_decode($json_value, true);
 var_dump($json_decoded);
+
+$to_email = 'munenevincent49@gmail.com';
+$subject = 'Testing PHP Mail';
+$message = 'This mail is sent using the PHP mail function';
+$headers = 'From: noreply @ company . com';
+mail($to_email, $subject, $message, $headers);
