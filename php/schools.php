@@ -40,8 +40,9 @@ for ($i = 0; $i < mysqli_num_rows($schoolResult); $i++) {
 
     $generalArray[] = $combinedArray;
 }
-$json_value = json_encode($generalArray);
-var_dump($json_value);
+// $json_value = json_encode($generalArray);
+echo json_encode($generalArray);
+// var_dump($json_value);
 
-$json_decoded = json_decode($json_value, true);
-var_dump($json_decoded);
+// $json_decoded = json_decode($json_value, true);
+// var_dump($json_decoded);

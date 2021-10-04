@@ -26,9 +26,11 @@ if (isset($_POST['search_text'])) {
         while ($row = $searchResult->fetch_assoc()) {
             $complete = $row['completion'];
             if ($complete < 100) {
+                $ifdisabled = " ";
                 $background = "bg-warning";
                 $status = "pending";
             } else {
+                $ifdisabled = "disabled";
                 $background = "bg-success";
                 $status = "complete";
             }
@@ -71,6 +73,15 @@ if (isset($_POST['search_text'])) {
             $mydata .=            "<i class=\"fas fa-ellipsis-v\"></i>";
             $mydata .=            "</a>";
             $mydata .=             "<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-arrow\">";
+            $mydata .=                "<form action=\"stageone.php\" method=\"post\">";
+            $mydata .=                 "<input type=\"hidden\" name=\"firstName\" value= \"" . $row['fname'] . "\">";
+            $mydata .=                 "<input type=\"hidden\" name=\"lastName\" value= \"" . $row['lname'] . "\">";
+            $mydata .=                "<input type=\"hidden\" name=\"profilePhoto\" value= \"" . $row['profile_picture'] . "\">";
+            $mydata .=                 "<input type=\"hidden\" name=\"admissionNum\" value= \"" . $row['adm_number'] . "\">";
+            $mydata .=                "<input type=\"hidden\" name=\"userid\" value= \"" . $row['ID'] . "\">";
+            $mydata .=                 "<input type=\"hidden\" name=\"password\" value= \"" . $row['pass'] . "\">";
+            $mydata .=                "<button  type=\"submit\" class=\"dropdown-item\"" . $ifdisabled . " >Enroll</button>";
+            $mydata .=                 "</form>";
             $mydata .=                 "<a class=\"dropdown-item\" href=\"#" . $row['fname'] . $num . "\" data-toggle=\"modal\">Edit</a>";
             $mydata .=                 "<a class=\"dropdown-item\" href=\"#deleteRecord" . $row['ID'] . "\" data-toggle=\"modal\">Delete</a>";
             $mydata .=             "</div>";
