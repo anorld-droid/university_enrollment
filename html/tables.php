@@ -412,16 +412,16 @@ if (isset($_POST["search_text"])) {
                 <tbody class="list" id="tabledata">
                   <input type="hidden" id="data">
                   <?php
-
-
                   // $obtainedData = selectRecords($db);
 
                   foreach ($data as  $val) {
                     $complete = $val['completion'];
                     if ($complete < 100) {
+                      $ifdisabled = " ";
                       $background = "bg-warning";
                       $status = "pending";
                     } else {
+                      $ifdisabled = "disabled";
                       $background = "bg-success";
                       $status = "complete";
                     }
@@ -464,256 +464,287 @@ if (isset($_POST["search_text"])) {
                     echo           "<i class=\"fas fa-ellipsis-v\"></i>";
                     echo           "</a>";
                     echo            "<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-arrow\">";
+                    echo                "<form action=\"stageone.php\" method=\"post\">";
+                    echo                 "<input type=\"hidden\" name=\"firstName\" value= \"" . $val['fname'] . "\">";
+                    echo                 "<input type=\"hidden\" name=\"lastName\" value= \"" . $val['lname'] . "\">";
+                    echo                 "<input type=\"hidden\" name=\"profilePhoto\" value= \"" . $val['profile_picture'] . "\">";
+                    echo                 "<input type=\"hidden\" name=\"admissionNum\" value= \"" . $val['adm_number'] . "\">";
+                    echo                 "<input type=\"hidden\" name=\"userid\" value= \"" . $val['ID'] . "\">";
+                    echo                 "<input type=\"hidden\" name=\"password\" value= \"" . $val['pass'] . "\">";
+                    echo                "<button  type=\"submit\" class=\"dropdown-item\"" . $ifdisabled . " >Enroll</button>";
+                    echo                 "</form>";
+                    // echo                "<a class=\"dropdown-item  " . $ifdisabled . " \" href=\"#enrollStudent" . $val['ID'] . "\" data-toggle=\"modal\">Enroll</a>";
                     echo                "<a class=\"dropdown-item\" href=\"#" . $val['fname'] . $num . "\" data-toggle=\"modal\">Edit</a>";
                     echo                "<a class=\"dropdown-item\" href=\"#deleteRecord" . $val['ID'] . "\" data-toggle=\"modal\">Delete</a>";
                     echo            "</div>";
                     echo       "</div>";
                     echo    "</td>";
                     echo   "</tr>";
-                    echo   "<div class=\"modal fade\" id=\"" . $val['fname'] . $num . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"" . $val['lname'] . " aria-hidden=\"true\">";
-                    echo      "<div class=\"modal-dialog modal-lg\" role=\"document\">";
-                    echo       "<div class=\"modal-content\">";
-                    echo          "<div class=\"modal-header text-center\">";
-                    echo             "<h5 class=\"modal-title\" id=\"" . $val['lname'] . "\">Edit</h5>";
                   ?>
                     <!-- Edit modal -->
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>
-            <div class="modal-body">
-              <form action="../php/adminUpdateRecord.php" method="POST">
-                <input type="hidden" name="id" value=<?php echo $val['ID']; ?>>
-                <h6 class="heading-small text-muted mb-4">User information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control text-dark" name="fname" value=<?php echo $val['fname']; ?>>
+                    <div class="modal fade" id=<?php echo $val['fname'] . $num ?> tabindex="-1" role="dialog" aria-labelledby=<?php echo $val['lname'] ?> aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center">
+                            <h5 class="modal-title" id=<?php echo $val['lname'] ?>>Edit</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="../php/adminUpdateRecord.php" method="POST">
+                              <input type="hidden" name="id" value=<?php echo $val['ID']; ?>>
+                              <h6 class="heading-small text-muted mb-4">User information</h6>
+                              <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label class="form-control-label text-light" for="input-first-name">First name</label>
+                                      <input type="text" id="input-first-name" class="form-control text-dark" name="fname" value=<?php echo $val['fname']; ?>>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label class="form-control-label text-light" for="input-last-name">Last name</label>
+                                      <input type="text" id="input-last-name" class="form-control text-dark" name="lname" value=<?php echo $val['lname']; ?>>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label class="form-control-label text-light" for="input-username">Username</label>
+                                      <input type="text" id="input-username" class="form-control text-dark" name="admNumber" placeholder="Username" value=<?php echo $val['adm_number']; ?>>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label class="form-control-label text-light" for="input-password">Password</label>
+                                      <input type="text" id="input-password" class="form-control text-dark" placeholder="Password" name="pass" value=<?php echo $val['pass'] ?>>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr class="my-4" />
+                              <!-- Address -->
+                              <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                              <div class="pl-lg-4">
+                                <div class="row">
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label class="form-control-label text-light" for="input-email">Email address</label>
+                                      <input type="email" id="input-email" class="form-control text-dark" placeholder="Email">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label class="form-control-label text-light" for="input-country">Phone Number</label>
+                                      <input type="number" id="input-postal-code" class="form-control text-dark" placeholder="phone number">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control text-dark" name="lname" value=<?php echo $val['lname']; ?>>
-                      </div>
+                  <?php $num++;
+                  } ?>
+                </tbody>
+              </table>
+              <?php foreach ($data as $val) { ?>
+                <!-- Delete Modal -->
+                <?php echo  "<div class=\"modal fade\" id=\"deleteRecord" . $val['ID'] . "\"   tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"deletemeLabel\" aria-hidden=\"true\">"; ?>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deletemeLabel">Delete Record</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control text-dark" name="admNumber" placeholder="Username" value=<?php echo $val['adm_number']; ?>>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-password">Password</label>
-                        <input type="text" id="input-password" class="form-control text-dark" placeholder="Password" name="pass" value=<?php echo $val['pass'] ?>>
-                      </div>
+                    <div class="modal-body">
+                      <form action="../php/adminUpdateRecord.php" method="post">
+                        <input type="hidden" name="deleteRecord" value=<?php echo $val['ID'] ?>>
+                        <p>
+                          Are you sure you want to delete this record?
+                        </p>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
-                <hr class="my-4" />
-                <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control text-dark" placeholder="Email">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label text-light" for="input-country">Phone Number</label>
-                        <input type="number" id="input-postal-code" class="form-control text-dark" placeholder="phone number">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                  </div>
-              </form>
+            </div>
+
+          <?php }
+          ?>
+          </div>
+        </div>
+
+
+
+        <div class="mb-9"></div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item <?php if ($page < 2) {
+                                    echo "disabled";
+                                  } ?>">
+              <a class="page-link" href="tables.php?page=<?php echo $page - 1 ?>" tabindex="-1">
+                <i class="fa fa-angle-left"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <?php
+            //display the link of the pages in URL  
+            for ($page = 1; $page <= $number_of_page; $page++) {
+              // echo '<a href = "index2.php?page=' . $page . '">' . $page . ' </a>';
+            ?>
+
+              <li class="page-item "><a class="page-link page<?php echo $page ?>" href="tables.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+            <?php } ?>
+            <li class="page-item">
+              <a class="page-link" href="tables.php?page=<?php echo  $page - 1   ?>">
+                <i class="fa fa-angle-right"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="mb-5"></div>
+        <!-- Footer -->
+        <footer class="footer pt-0 bg-dark">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6">
+              <div class="copyright text-center  text-lg-left  text-muted">
+                &copy; 2020 <a href="#!" class="font-weight-bold ml-1">Pain Creations</a>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="#!" class="nav-link">Pain Creations</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#!" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#!" class="nav-link">Blog</a>
+                </li>
+                <li class=" nav-item">
+                  <a href="https://github.com/anorld-droid/university_enrollment" class="nav-link" target="_blank">Git Hub </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-      </div>
+        </footer>
+        <script>
+          //Stage one dependant fields
+          var subjectObject = {
+            "HTML": ["Links", "Images", "Tables", "Lists"],
+            "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
+            "JavaScript": ["Variables", "Operators", "Functions", "Conditions"],
+            "PHP": ["Variables", "Strings", "Arrays"],
+            "SQL": ["SELECT", "UPDATE", "DELETE"]
+          };
 
-    <?php $num++;
-                  } ?>
-    </tbody>
-    </table>
-    <?php
-    foreach ($data as  $val) {
-
-
-    ?>
-      <!-- Delete Modal -->
-      <?php echo  "<div class=\"modal fade\" id=\"deleteRecord" . $val['ID'] . "\"   tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"deletemeLabel\" aria-hidden=\"true\">"; ?>
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="deletemeLabel">Delete Record</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form action="../php/adminUpdateRecord.php" method="post">
-              <input type="hidden" name="deleteRecord" value=<?php echo $val['ID'] ?>>
-              <p>
-                Are you sure you want to delete this record?
-              </p>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Delete</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  <?php } ?>
-  </div>
-  </div>
-  <div class="mb-9"></div>
-
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item <?php if ($page < 2) {
-                              echo "disabled";
-                            } ?>">
-        <a class="page-link" href="tables.php?page=<?php echo $page - 1 ?>" tabindex="-1">
-          <i class="fa fa-angle-left"></i>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <?php
-      //display the link of the pages in URL  
-      for ($page = 1; $page <= $number_of_page; $page++) {
-        // echo '<a href = "index2.php?page=' . $page . '">' . $page . ' </a>';
-      ?>
-
-        <li class="page-item "><a class="page-link page<?php echo $page ?>" href="tables.php?page=<?php echo $page ?>"><?php echo $page ?></a></li>
-      <?php } ?>
-      <li class="page-item">
-        <a class="page-link" href="tables.php?page=<?php echo  $page - 1   ?>">
-          <i class="fa fa-angle-right"></i>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <div class="mb-5"></div>
-  <!-- Footer -->
-  <footer class="footer pt-0 bg-dark">
-    <div class="row align-items-center justify-content-lg-between">
-      <div class="col-lg-6">
-        <div class="copyright text-center  text-lg-left  text-muted">
-          &copy; 2020 <a href="#!" class="font-weight-bold ml-1">Pain Creations</a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-          <li class="nav-item">
-            <a href="#!" class="nav-link">Pain Creations</a>
-          </li>
-          <li class="nav-item">
-            <a href="#!" class="nav-link">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="#!" class="nav-link">Blog</a>
-          </li>
-          <li class=" nav-item">
-            <a href="https://github.com/anorld-droid/university_enrollment" class="nav-link" target="_blank">Git Hub </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-  <script>
-    var searchRequest = null;
-
-    function searchfunction(value) {
-
-      if (searchRequest != null) searchRequest.abort();
-      $("#datatable").remove();
-      searchRequest = $.ajax({
-        type: "post",
-        url: "../php/search.php",
-        data: {
-          'search_text': value
-        },
-        dataType: 'json',
-        success: function(msg) {
-          // $.ajax({
-          //   type: "post",
-          //   url: "tables.php",
-          //   data: {
-          //     'search_text': msg
-          //   },
-          //   success: function(msg) {
-          // alert(msg.content);
-          //   }
-          // });
-
-          $("#beforetable").after(msg)
-          //Receiving the result of search here
-          // $("#datatable").append(msg);
-          // for (let i = 0; i <= msg.length; i++) {
-          //   alert(msg[i].fname)
-          // }
-
-
-
-        }
-      });
-    }
-    (function() {
-      'use strict';
-      //searching on keyup event
-      document.getElementById('search_text').keyup(function() {
-
-        var value = $(this).val();
-
-      });
-      //  disabling form submissions if there are invalid fields
-      window.addEventListener('load', function() {
-        $('input[type="file"]').change(function(e) {
-          var fileName = e.target.files[0].name;
-          $('.custom-file-label').html(fileName);
-        });
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
+          function enrollment(id) {
+            var schoolSel = document.getElementById("school" + id);
+            var programmeSel = document.getElementById("programme" + id);
+            for (var x in subjectObject) {
+              schoolSel.options[schoolSel.options.length] = new Option(x, x);
             }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-  </script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Argon JS -->
-  <script src="../assets/js/argon.js?v=1.2.0"></script>
+            schoolSel.onchange = function() {
+              programmeSel.length = 1;
+              //display correct values
+              for (var y in subjectObject[this.value]) {
+                programmeSel.options[programmeSel.options.length] = new Option(subjectObject[this.value][y], subjectObject[this.value][y]);
+              }
+            }
+          }
+          var searchRequest = null;
+
+          function searchfunction(value) {
+            if (searchRequest != null) searchRequest.abort();
+            $("#datatable").remove();
+            searchRequest = $.ajax({
+              type: "post",
+              url: "../php/search.php",
+              data: {
+                'search_text': value
+              },
+              dataType: 'json',
+              success: function(msg) {
+                $("#beforetable").after(msg)
+              }
+            });
+          }
+          //replacing details form with medical form
+          function replaceStageOne(id) {
+            // alert(id);
+            // $("#stageone").remove();
+            $.ajax({
+              type: "post",
+              url: "../php/stageOneResponse.php",
+              data: {
+                'stage': "1",
+                'uid': id,
+                'complete': "25"
+              },
+              dataType: 'json',
+              success: function(msg) {
+                alert(msg);
+                $("#studentDetailsLabel").replaceWith("Medical Examination")
+                $("#stageone").replaceWith(msg)
+                // $("submitStageOne").replaceWith(`<button id="submitStageTwo" class="btn btn-primary">Next</button>`);
+              }
+            });
+          }
+
+          function replaceStageTwo(id) {
+            alert(id);
+          }
+
+          (function() {
+            'use strict';
+            //  disabling form submissions if there are invalid fields
+            window.addEventListener('load', function() {
+              $('input[type="file"]').change(function(e) {
+                var fileName = e.target.files[0].name;
+                $('.custom-file-label').html(fileName);
+              });
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.getElementsByClassName('needs-validation');
+              // Loop over them and prevent submission
+              var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                  if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                }, false);
+              });
+            }, false);
+          })();
+        </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <!-- Argon Scripts -->
+        <!-- Core -->
+        <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
+        <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+        <!-- Argon JS -->
+        <script src="../assets/js/argon.js?v=1.2.0"></script>
 </body>
 
 </html>

@@ -82,6 +82,12 @@ $completion = 50;
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="../html/tables.php">
+                                <i class="ni ni-circle-08 text-pink"></i>
+                                <span class="nav-link-text  text-light">Table</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link " data-toggle="collapse" href="#stages" role="button" aria-expanded="false" aria-controls="stages">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
                                 <span class="nav-link-text  text-light">Enroll</span>
@@ -137,12 +143,6 @@ $completion = 50;
                             <a class="nav-link" href="../html/SIGNIN.html">
                                 <i class="ni ni-key-25 text-info"></i>
                                 <span class="nav-link-text  text-light">Login</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../html/SIGNIN.html">
-                                <i class="ni ni-circle-08 text-pink"></i>
-                                <span class="nav-link-text  text-light">Units</span>
                             </a>
                         </li>
                     </ul>
@@ -299,7 +299,7 @@ $completion = 50;
                         <div class="card-header  bg-dark align-items-center">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="mb-0 text-light text-center">DECLARATION AND COMMITMENT</h3>
+                                    <h3 class="mb-0 text-light text-center">FEE PAYMENT</h3>
                                 </div>
                             </div>
                         </div>
@@ -309,272 +309,7 @@ $completion = 50;
                                 <input type="hidden" name="stage" value="3" />
                                 <input type="hidden" name="complete" value="75">
                                 <input type="hidden" name="uid" value=<?php echo $id; ?> />
-                                <h6 class="heading-small text-muted mb-2">DECLARATION FORM</h6>
-                                <div class="pl-lg-4 pl-sm-4 pl-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-first-name">FIRST NAME</label>
-                                                <input type="text" id="input-first-name" class="form-control text-dark" value=<?php echo $firstname; ?>>
-                                                <div class="invalid-feedback">
-                                                    Please enter your first name
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-last-name">LAST NAME</label>
-                                                <input type="text" id="input-last-name" class="form-control text-dark" value=<?php echo $lastname; ?>>
-                                                <div class="invalid-feedback">
-                                                    Please enter your last name
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-othernames">OTHER NAMES</label>
-                                                <input type="text" id="input-othernames" class="form-control text-dark" placeholder="Other Names">
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-national-id">NATIONAL IDENTITY CARD NUMBER </label>
-                                                <input type="number" id="input-national-id" class="form-control text-dark" placeholder="National id">
-                                                <div class="invalid-feedback">
-                                                    Please enter your national ID number
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p class="text-light">
-                                                Do hereby declare that I have read the Rules and Regulations governing the Organization and
-                                                Discipline of Students at Maseno University, have understood their content and meaning and
-                                                undertake to abide by them.
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <label class="form-control-label text-light" for="input-adm-no">ADMISSION NUMBER</label>
-                                            <input type="text" id="input-adm-no" name="admNumber" class="form-control text-dark" placeholder="Admission number">
-                                            <div class="invalid-feedback">
-                                                Please enter your admission number
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-day">DATE</label>
-                                                <label class="form-control-label text-light" for="input-day"></label>
-                                                <input type="number" id="input-day" name="dc_day" class="form-control text-dark" placeholder="Day">
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-month"><br></label>
-                                                <input type="number" id="input-month" name="dc_month" class="form-control text-dark" placeholder="Month">
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-month"><br></label>
-                                                <input type="number" id="input-year" name="dc_year" class="form-control text-dark" placeholder="Year">
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="heading-small text-muted mb-4">AND WITNESSED IN THE PRESENCE OF PARENT/GUARDIAN </h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-dc-name">NAME</label>
-                                                    <input type="text" id="input-dc-name" name="dcp_name" class="form-control text-dark" placeholder="Names">
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-dc-relationship">RELATIONSHIP</label>
-                                                    <input type="text" id="input-dc-relationship" name="dcp_relationship" class="form-control text-dark" placeholder="Relationship">
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-national-id">NATIONAL IDENTITY CARD NUMBER </label>
-                                                    <input type="number" id="input-national-id" class="form-control text-dark" placeholder="National id">
-                                                    <div class="invalid-feedback">
-                                                        Please enter your national ID number
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-day">DATE</label>
-                                                    <label class="form-control-label text-light" for="input-day"></label>
-                                                    <input type="number" id="input-day" name="dcp_day" class="form-control text-dark" placeholder="Day">
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-month"><br></label>
-                                                    <input type="number" id="input-month" name="dcp_month" class="form-control text-dark" placeholder="Month">
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-month"><br></label>
-                                                    <input type="number" id="input-year" name="dcp_year" class="form-control text-dark" placeholder="Year">
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Commitment form-->
-                                <hr class="my-4" />
-                                <h6 class="heading-small text-muted mb-2">COMMITMENT FORM</h6>
-                                <div class="pl-lg-4 pl-sm-4 pl-xs-4">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <p class="text-light">
-                                                Dear Sir/Madam,
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-first-name">FIRST NAME</label>
-                                                <input type="text" id="input-first-name" class="form-control text-dark" name="cf_firstname" value=<?php echo $firstname; ?>>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-last-name">LAST NAME</label>
-                                                <input type="text" id="input-last-name" class="form-control text-dark" name="cf_lastname" value=<?php echo $lastname; ?>>
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-othernames">OTHER NAMES</label>
-                                                <input type="text" id="input-othernames" class="form-control text-dark" name="cf_othernames" placeholder="Other Names">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-ADM-NO">ADMISSION NUMBER</label>
-                                                <input type="text" id="input-ADM-NO" class="form-control text-dark" name="cf_admNumber" placeholder="Admission number">
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-last-name">ID/BIRTH CERTIFICATE NUMBER</label>
-                                                <input type="text" id="input-last-name" class="form-control text-dark" name="cf_idNumber" placeholder="ID Number">
-                                                <div class="invalid-feedback">
-                                                    Field cannot be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="heading-small text-muted mb-4">WITH REFERENCE TO YOUR LETTER OFFERING ME A PLACE IN </h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-school">SCHOOL OF</label>
-                                                    <input type="text" id="input-school" class="form-control text-dark" name="cf_school" placeholder="School">
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label text-light" for="input-school">FOR A COURSE LEAADING TO THE DEGREE/DIPLOMA OF</label>
-                                                    <input type="text" id="input-school" class="form-control text-dark" name="cf_course" placeholder="Programme">
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="heading-small text-muted mb-4">I DO HEREBY CONFIRM THAT</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="custom-control custom-radio mb-5">
-                                                    <input type="radio" id="customRadioInline1" name="confirm" class="custom-control-input">
-                                                    <label class="custom-control-label" for="customRadioInline1">
-                                                        <p class="text-white">
-                                                            I <strong class="text-muted">DO ACCEPT</strong> the offer and <strong class="text-muted"> PROMISE TO ABIDE</strong> by the regulations governing the conduct and discipline of the students of
-                                                            Maseno University unless I am requested to discontinue by the University authorities.</p>
-                                                    </label>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" id="customRadioInline2" name="confirm" class="custom-control-input">
-                                                    <label class="custom-control-label" for="customRadioInline2">
-                                                        <p class="text-white">
-                                                            I <strong class="text-muted">DO NOT ACCEPT</strong> the offer because of.
-                                                        </p>
-                                                    </label>
-                                                    <div class="invalid-feedback">
-                                                        Field cannot be empty
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <textarea rows="1" class="form-control text-dark" name="reason"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- Fee Payment-->
                                 <hr class="my-3" />
                                 <h6 class="heading-small text-muted mb-2">FEE PAYMENT</h6>
