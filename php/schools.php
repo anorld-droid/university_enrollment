@@ -112,9 +112,11 @@ for ($i = 0; $i < mysqli_num_rows($schoolResult); $i++) {
 
     $generalArray[] = $combinedArray;
 }
-$json_value = json_encode($generalArray);
-var_dump($json_value);
+// $json_value = json_encode($generalArray);
+echo json_encode($generalArray);
+// var_dump($json_value);
 
+<<<<<<< HEAD
 $json_decoded = json_decode($json_value, true);
 var_dump($json_decoded);
 
@@ -123,3 +125,7 @@ $subject = 'Testing PHP Mail';
 $message = 'This mail is sent using the PHP mail function';
 $headers = 'From: noreply @ company . com';
 mail($to_email, $subject, $message, $headers);
+=======
+// $json_decoded = json_decode($json_value, true);
+// var_dump($json_decoded);
+>>>>>>> edbef3866a3069c9b1817261937570456f0e0d67

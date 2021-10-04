@@ -15,8 +15,8 @@ if ($_POST['stage'] === "1") {
     $_SESSION["lastName"] = $_POST['lastName'];
     $_SESSION["admissionNum"] = $_POST['admissionNum'];
     $_SESSION["password"] = $_POST['password'];
-    $_SESSION["id"] = $_POST['userid'];
-    
+    $_SESSION["userid"] = $_POST['userid'];
+    $_SESSION["email"] = $_POST['email'];
     echo "<script> window.location.href='../html/stagetwo.php';</script>";
 
     // $stagetwo = '';
@@ -128,9 +128,31 @@ if ($_POST['stage'] === "1") {
         }
     }
 } else {
-    updateCompletion($db, $_POST['uid'], $_POST['complete']);
-    echo "
-                        <script>
-                        window.location.href='../html/tables.php';
-                        </script>";
+    $to =  "munenevincent49@gmail.com";
+    $subject = "Maseno University Successful Enrollment.";
+
+    $message = "<b>This is HTML message.</b>";
+    $message .= "<h1>This is headline.</h1>";
+
+    $header = "From:mulindipatrice00@gmail.com \r\n";
+    // $header .= "Cc:afgh@somedomain.com \r\n";
+    $header .= "MIME-Version: 1.0\r\n";
+    $header .= "Content-type: text/html\r\n";
+
+    $retval = mail($to, $subject, $message, $header);
+
+    if ($retval == true) {
+        echo "<script>
+        alert(\"Message Sent Successfully\");
+        </script>";
+        updateCompletion($db, $_POST['uid'], $_POST['complete']);
+    } else {
+        echo "<script>
+        alert(\"Message could not be sent..\");
+        </script>";
+    }
+    // echo "
+    //       <script>
+    //                     window.location.href='../html/tables.php';
+    //                     </script>";
 }

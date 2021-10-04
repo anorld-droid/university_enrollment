@@ -86,7 +86,7 @@ $completion = 25;
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link " href="../html/userprofile.php">
+                            <a class="nav-link " href="../html/adminProfile.php">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text  text-light">Profile</span>
                             </a>

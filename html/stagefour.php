@@ -19,6 +19,9 @@ session_start();
 if (isset($_SESSION['profilePhoto'])) {
     $profilePhoto = $_SESSION["profilePhoto"];
 }
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION["email"];
+}
 if (isset($_SESSION['firstName']) and isset($_SESSION['lastName'])) {
     $firstname = $_SESSION['firstName'];
     $lastname = $_SESSION['lastName'];
@@ -75,7 +78,7 @@ $completion = 75;
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link " href="../html/userprofile.php">
+                            <a class="nav-link " href="../html/adminProfile.php">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text  text-light">Profile</span>
                             </a>
@@ -307,6 +310,7 @@ $completion = 75;
                             <!-- Course registration form  -->
                             <form class="needs-validation" action="../php/advanceStage.php" method="POST" novalidate>
                                 <input type="hidden" name="uid" value=<?php echo $id; ?> />
+                                <input type="hidden" name="email" value=<?php echo $email; ?> />
                                 <input type="hidden" name="stage" value="4" />
                                 <input type="hidden" name="complete" value="100">
                                 <h6 class="heading-small text-muted mb-2"></h6>

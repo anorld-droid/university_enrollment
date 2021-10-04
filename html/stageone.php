@@ -23,6 +23,7 @@ if (isset($_POST['userid'])) {
     $admNumber = $_POST['admissionNum'];
     $password = $_POST['password'];
     $id = $_POST['userid'];
+    $email = $_POST['email'];
 }
 // if (isset($_SESSION['profilePhoto'])) {
 //     $profilePhoto = $_SESSION["profilePhoto"];
@@ -326,6 +327,7 @@ $completion = 0;
                                 echo                 "<input type=\"hidden\" name=\"admissionNum\" value= \"" . $admNumber . "\">";
                                 echo                 "<input type=\"hidden\" name=\"userid\" value= \"" . $id . "\">";
                                 echo                 "<input type=\"hidden\" name=\"password\" value= \"" . $password . "\">";
+                                echo                 "<input type=\"hidden\" name=\"email\" value= \"" . $email . "\">";
                                 ?>
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
@@ -392,7 +394,8 @@ $completion = 0;
                 </div>
             </div>
             <!-- Footer -->
-            <footer class="footer pt-0 bg-dark">
+            <div class="mb-8"></div>
+            <footer class="footer pt-0 bg-dark ">
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6">
                         <div class="copyright text-center  text-lg-left  text-muted">
@@ -430,7 +433,17 @@ $completion = 0;
         };
 
         window.onload = function() {
-            alert("llllllll");
+            // alert("...............");
+            // $.ajax('../php/schools.php', {
+            //     dataType: 'json',
+            //     success: function(msg) {
+            //         alert(msg);
+            //     },
+            //     error: function(errorMessage) { // error callback 
+            //         alert('Error: ' + errorMessage);
+            //     }
+            // });
+            // alert("llllllll");
             var schoolSel = document.getElementById("school");
             var programmeSel = document.getElementById("programme");
             for (var x in subjectObject) {

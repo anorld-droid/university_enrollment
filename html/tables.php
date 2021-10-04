@@ -415,6 +415,7 @@ if (isset($_POST["search_text"])) {
                   // $obtainedData = selectRecords($db);
 
                   foreach ($data as  $val) {
+                    $email = "munenevincent49@gmail.com";
                     $complete = $val['completion'];
                     if ($complete < 100) {
                       $ifdisabled = " ";
@@ -471,6 +472,7 @@ if (isset($_POST["search_text"])) {
                     echo                 "<input type=\"hidden\" name=\"admissionNum\" value= \"" . $val['adm_number'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"userid\" value= \"" . $val['ID'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"password\" value= \"" . $val['pass'] . "\">";
+                    echo                 "<input type=\"hidden\" name=\"email\" value= \"" . $email . "\">";
                     echo                "<button  type=\"submit\" class=\"dropdown-item\"" . $ifdisabled . " >Enroll</button>";
                     echo                 "</form>";
                     // echo                "<a class=\"dropdown-item  " . $ifdisabled . " \" href=\"#enrollStudent" . $val['ID'] . "\" data-toggle=\"modal\">Enroll</a>";
