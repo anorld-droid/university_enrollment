@@ -15,6 +15,14 @@
 -->
 
 <?php
+// if (isset($_POST['userid'])) {
+//     $profilePhoto = $_POST["profilePhoto"];
+//     $firstname = $_POST['firstName'];
+//     $lastname = $_POST['lastName'];
+//     $admNumber = $_POST['admissionNum'];
+//     $password = $_POST['password'];
+//     $uuid = $_POST['userid'];
+// }
 session_start();
 if (isset($_SESSION['profilePhoto'])) {
     $profilePhoto = $_SESSION["profilePhoto"];
@@ -30,7 +38,7 @@ if (isset($_SESSION['password'])) {
     $password = $_SESSION['password'];
 }
 if (isset($_SESSION['userid'])) {
-    $uuid = $_SESSION['userid'];
+    $uuid = $_SESSION['id'];
 }
 
 $completion = 25;
@@ -81,6 +89,12 @@ $completion = 25;
                             <a class="nav-link " href="../html/userprofile.php">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text  text-light">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../html/tables.php">
+                                <i class="ni ni-circle-08 text-pink"></i>
+                                <span class="nav-link-text  text-light">Table</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -141,12 +155,7 @@ $completion = 25;
                                 <span class="nav-link-text  text-light">Login</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../html/SIGNIN.html">
-                                <i class="ni ni-circle-08 text-pink"></i>
-                                <span class="nav-link-text  text-light">Units</span>
-                            </a>
-                        </li>
+
                     </ul>
                     <!-- Divider -->
                     <hr class="my-3">
@@ -311,6 +320,7 @@ $completion = 25;
                                 <input type="hidden" name="stage" value="2" />
                                 <input type="hidden" name="complete" value="50">
                                 <input type="hidden" name="uid" value=<?php echo $uuid; ?> />
+
                                 <h6 class="heading-small text-muted mb-2"></h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
@@ -351,75 +361,6 @@ $completion = 25;
                                                 <textarea name="in_patient_date" rows="2" class="form-control text-dark"></textarea>
                                             </div>
 
-                                        </div>
-                                    </div>
-                                    <h6 class="heading-small text-light mb-2">Have you suffered from or had symptoms of any of the following</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="d_tuberclosis">
-                                            <label class="custom-control-label text-white" for="customCheck1">Tuberculosis or other chest infection </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2" name="d_nervous">
-                                            <label class="custom-control-label text-white" for="customCheck2">Fits, Nervous disease or fainting attacks </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3" name="d_heart">
-                                            <label class="custom-control-label text-white" for="customCheck3">Heart Disease or Rheumatic fever </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4" name="d_digestive system">
-                                            <label class="custom-control-label text-white" for="customCheck4">Any diseases of the digestive system </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck5" name="d_genital">
-                                            <label class="custom-control-label text-white" for="customCheck5">Any disease of the Genital-Urinary System </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck6" name="d_allergy">
-                                            <label class="custom-control-label text-white" for="customCheck6">Allergies to food or drugs </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck7" name="d_malaria">
-                                            <label class="custom-control-label text-white" for="customCheck7">Malaria</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck8" name="d_std">
-                                            <label class="custom-control-label text-white" for="customCheck8">Sexually Transmitted Disease </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck9" name="d_polio">
-                                            <label class="custom-control-label text-white" for="customCheck9">Poliomyelitis </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck10" name="d_physical_deformity">
-                                            <label class="custom-control-label text-white" for="customCheck10">Any physical defect or deformity</label>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <label class="form-control-label text-light" for="customCheck11">Any disease not mentioned above</label>
-                                                <textarea rows="2" class="form-control text-dark" id="customCheck11" name="d_others"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="heading-small text-light mb-2">Has any member of your family suffered from:</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="input_mf1" name="mf_tuberclosis">
-                                            <label class="custom-control-label text-white" for="input_mf1">Tuberculosis </label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="input_mf2" name="mf_insanity">
-                                            <label class="custom-control-label text-white" for="customCheck9">Insanity or Mental illness</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="input_mf3" name="mf_diabetes">
-                                            <label class="custom-control-label text-white" for="input_mf3">Diabetes mellitus</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="input_mf4" name="mf_heart">
-                                            <label class="custom-control-label text-white" for="input_mf4">Heart Diseases</label>
                                         </div>
                                     </div>
                                     <h6 class="heading-small text-light mb-3">Have you been immunized against the following diseases</h6>
@@ -528,7 +469,6 @@ $completion = 25;
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- Footer -->
         <footer class="footer pt-0 bg-dark">

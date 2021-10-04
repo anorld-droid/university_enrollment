@@ -81,6 +81,12 @@ $completion = 75;
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="../html/tables.php">
+                                <i class="ni ni-circle-08 text-pink"></i>
+                                <span class="nav-link-text  text-light">Table</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link " data-toggle="collapse" href="#stages" role="button" aria-expanded="false" aria-controls="stages">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
                                 <span class="nav-link-text  text-light">Enroll</span>
@@ -136,12 +142,6 @@ $completion = 75;
                             <a class="nav-link" href="../html/SIGNIN.html">
                                 <i class="ni ni-key-25 text-info"></i>
                                 <span class="nav-link-text  text-light">Login</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../html/SIGNIN.html">
-                                <i class="ni ni-circle-08 text-pink"></i>
-                                <span class="nav-link-text  text-light">Units</span>
                             </a>
                         </li>
                     </ul>

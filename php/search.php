@@ -2,9 +2,8 @@
 require_once '../php/config.php';
 require_once '../php/db.php';
 $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
-if (!empty($_POST)) {
+if (isset($_POST['search_text'])) {
     $mydata = '';
-
     $text = $_POST['search_text'];
     if (!empty($text)) {
         $sql
@@ -155,4 +154,5 @@ if (!empty($_POST)) {
         $mydata .= "</table>";
         echo json_encode($mydata);
     }
+} else {
 }
