@@ -704,7 +704,6 @@ if (isset($_POST["search_text"])) {
                 alert(msg);
                 $("#studentDetailsLabel").replaceWith("Medical Examination")
                 $("#stageone").replaceWith(msg)
-                // $("submitStageOne").replaceWith(`<button id="submitStageTwo" class="btn btn-primary">Next</button>`);
               }
             });
           }

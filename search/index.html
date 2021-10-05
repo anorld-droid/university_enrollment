@@ -66,6 +66,17 @@
     ></script>
   </body>
   <script>
+    window.onload = function(){
+      query = " ";
+      var xhtml = new XMLHttpRequest();
+        xhtml.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('table_body').innerHTML = this.responseText;
+          }
+        };
+        xhtml.open('GET', 'dbOperation.php?query=' + query, true);
+        xhtml.send();
+    }
     function showSuggetions(query) {
       var inputField = document.getElementById('search').value;
 
