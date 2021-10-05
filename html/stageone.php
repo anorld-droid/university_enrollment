@@ -423,39 +423,60 @@ $completion = 0;
         </div>
     </div>
     <script>
-        //Stage one dependant fields
-        var subjectObject = {
-            "HTML": ["Links", "Images", "Tables", "Lists"],
-            "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
-            "JavaScript": ["Variables", "Operators", "Functions", "Conditions"],
-            "PHP": ["Variables", "Strings", "Arrays"],
-            "SQL": ["SELECT", "UPDATE", "DELETE"]
-        };
-
         window.onload = function() {
+            var schoolSel = document.getElementById("school");
+            var programmeSel = document.getElementById("programme");
             // alert("...............");
-            // $.ajax('../php/schools.php', {
+            xhr = new XMLHttpRequest();
+            // xhr.responseType = 'json';
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == "200") {
+                    let response = JSON.parse(xhr.responseText);
+                    // alert
+                    for (let index in response) {
+                        for (let school in response[index]) {
+                            schoolSel.options[schoolSel.options.length] = new Option(school, school);
+                        }
+                    }
+                    schoolSel.onchange = function() {
+                        programmeSel.length = 1;
+                        //display correct values
+                        for (let index in response) {
+                            for (let school in response[index][this.value]) {
+                                alert(response[index][this.value][school]);
+                                // for (var y in response[index][school]) {
+                                // alert(y);
+                                programmeSel.options[programmeSel.options.length] = new Option(response[index][this.value][school], response[index][this.value][school]);
+                                // }
+                            }
+                        }
+                    }
+
+
+
+                    // alert(response)
+                }
+            }
+            xhr.open("GET", "../php/schools.php", true);
+            xhr.send();
+            // $.ajax({
+            //     url: "../php/schools.php",
+            //     type: "GET",
             //     dataType: 'json',
             //     success: function(msg) {
             //         alert(msg);
-            //     },
-            //     error: function(errorMessage) { // error callback 
-            //         alert('Error: ' + errorMessage);
             //     }
             // });
             // alert("llllllll");
-            var schoolSel = document.getElementById("school");
-            var programmeSel = document.getElementById("programme");
-            for (var x in subjectObject) {
-                schoolSel.options[schoolSel.options.length] = new Option(x, x);
-            }
-            schoolSel.onchange = function() {
-                programmeSel.length = 1;
-                //display correct values
-                for (var y in subjectObject[this.value]) {
-                    programmeSel.options[programmeSel.options.length] = new Option(subjectObject[this.value][y], subjectObject[this.value][y]);
-                }
-            }
+            //Stage one dependant fields
+            var subjectObject = {
+                "HTML": ["Links", "Images", "Tables", "Lists"],
+                "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
+                "JavaScript": ["Variables", "Operators", "Functions", "Conditions"],
+                "PHP": ["Variables", "Strings", "Arrays"],
+                "SQL": ["SELECT", "UPDATE", "DELETE"]
+            };
+
         }
         //  JavaScript for disabling form submissions if there are invalid fields
         (function() {
