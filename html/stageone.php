@@ -316,19 +316,14 @@ $completion = 0;
                         </div>
                         <div class="card-body ">
                             <!-- Student details form  -->
-                            <form class="needs-validation" action="../php/advanceStage.php" method="POST" id="stageone" novalidate>
-                                <input type="hidden" name="stage" value="1" />
-                                <input type="hidden" name="uid" id="uuid" value=<?php echo $id; ?> />
-                                <input type="hidden" name="complete" value="25">
-                                <?php
-                                echo                 "<input type=\"hidden\" name=\"firstName\" value= \"" . $firstname . "\">";
-                                echo                 "<input type=\"hidden\" name=\"lastName\" value= \"" . $lastname . "\">";
-                                echo                 "<input type=\"hidden\" name=\"profilePhoto\" value= \"" . $profilePhoto . "\">";
-                                echo                 "<input type=\"hidden\" name=\"admissionNum\" value= \"" . $admNumber . "\">";
-                                echo                 "<input type=\"hidden\" name=\"userid\" value= \"" . $id . "\">";
-                                echo                 "<input type=\"hidden\" name=\"password\" value= \"" . $password . "\">";
-                                echo                 "<input type=\"hidden\" name=\"email\" value= \"" . $email . "\">";
-                                ?>
+                            <form class="needs-validation" id="stageone" novalidate>
+                                <input type="hidden" id="firstName" value=<?php echo $firstname ?>>
+                                <input type="hidden" id="lastName" value=<?php echo $lastname ?>>
+                                <input type="hidden" id="profilePhoto" value=<?php echo $profilePhoto ?>>
+                                <input type="hidden" id="admissionNum" value=<?php echo $admNumber ?>>
+                                <input type="hidden" id="userid" value=<?php echo $id ?>>
+                                <input type="hidden" id="password" value=<?php echo $password ?>>
+                                <input type="hidden" id="email" value=<?php echo $email ?>>
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
@@ -348,10 +343,11 @@ $completion = 0;
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-othernames">Email</label>
                                                 <input type="email" id="input-othernames" class="form-control text-dark" placeholder="Email" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter your email
+                                                </div>
                                             </div>
-                                            <div class="invalid-feedback">
-                                                Please enter your email
-                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="row">
@@ -359,7 +355,7 @@ $completion = 0;
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="school">School Admitted Into</label>
                                                 <select name=<?php echo "school"  ?> id="school" required>
-                                                    <option value="" class="form-control text-dark" selected="selected">Please choose your school</option>
+                                                    <option value="" class="form-control text-dark">Please choose your school</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please choose your school
@@ -370,7 +366,7 @@ $completion = 0;
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="programme">Programme Admitted For</label>
                                                 <select name="programme" id="programme" required>
-                                                    <option value="" class="form-control text-dark" selected="selected">Please choose your programme</option>
+                                                    <option value="" class="form-control text-dark">Please choose your programme</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please choose your programme
@@ -381,12 +377,11 @@ $completion = 0;
                                     <div class="row">
                                         <div class="col-sm-5"></div>
                                         <div class="col-sm-2">
-                                            <button id="next_button" name="next_button" class="btn btn-primary btn-lg " type="submit">NEXT</button>
+                                            <button class="btn btn-primary btn-lg " type="submit">NEXT</button>
                                         </div>
                                         <div class="col-sm-5"></div>
                                     </div>
                                 </div>
-
                             </form>
                             <!-- End of form  -->
                         </div>
@@ -423,6 +418,7 @@ $completion = 0;
         </div>
     </div>
     <script>
+        //On window load fill the school selectable with values
         window.onload = function() {
             var schoolSel = document.getElementById("school");
             var programmeSel = document.getElementById("programme");
@@ -438,64 +434,83 @@ $completion = 0;
                             schoolSel.options[schoolSel.options.length] = new Option(school, school);
                         }
                     }
+                    //on selecting a school display the appropriate associated  programmes
                     schoolSel.onchange = function() {
                         programmeSel.length = 1;
                         //display correct values
                         for (let index in response) {
                             for (let school in response[index][this.value]) {
-                                alert(response[index][this.value][school]);
-                                // for (var y in response[index][school]) {
-                                // alert(y);
                                 programmeSel.options[programmeSel.options.length] = new Option(response[index][this.value][school], response[index][this.value][school]);
-                                // }
                             }
                         }
                     }
 
-
-
-                    // alert(response)
                 }
             }
             xhr.open("GET", "../php/schools.php", true);
             xhr.send();
-            // $.ajax({
-            //     url: "../php/schools.php",
-            //     type: "GET",
-            //     dataType: 'json',
-            //     success: function(msg) {
-            //         alert(msg);
-            //     }
-            // });
-            // alert("llllllll");
-            //Stage one dependant fields
-            var subjectObject = {
-                "HTML": ["Links", "Images", "Tables", "Lists"],
-                "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
-                "JavaScript": ["Variables", "Operators", "Functions", "Conditions"],
-                "PHP": ["Variables", "Strings", "Arrays"],
-                "SQL": ["SELECT", "UPDATE", "DELETE"]
-            };
+
 
         }
         //  JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
+
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        alert('stop son')
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        let profilePhoto = document.getElementById('profilePhoto').value;
+                        let firstName = document.getElementById('firstName').value;
+                        let lastName = document.getElementById('lastName').value;
+                        let admissionNum = document.getElementById('admissionNum').value;
+                        let password = document.getElementById('password').value;
+                        let userid = document.getElementById('userid').value;
+                        let email = document.getElementById('email').value;
+                        let program = document.getElementById("programme").value;
+                        let stage = 1;
+                        let complete = 25;
+                        let dataObj = {
+                            'profilePhoto': profilePhoto,
+                            'firstName': firstName,
+                            'lastName': lastName,
+                            'admissionNum': admissionNum,
+                            'password': password,
+                            'userid': userid,
+                            'email': email,
+                            'program': program,
+                            'stage': stage,
+                            'complete': complete
                         }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+                        $.ajax({
+                            type: "post",
+                            url: "../php/advanceStage.php",
+                            data: dataObj,
+                            dataType: 'json',
+                            success: function(msg) {
+                                alert(msg);
+                                window.location.href = 'stagetwo.php';
+
+                            }
+                        });
+                        // $_SESSION["firstName"] = $_POST['firstName'];
+                        // $_SESSION["lastName"] = $_POST['lastName'];
+                        // $_SESSION["admissionNum"] = $_POST['admissionNum'];
+                        // $_SESSION["password"] = $_POST['password'];
+                        // $_SESSION["userid"] = $_POST['userid'];
+                        // $_SESSION["email"] = $_POST['email'];
+                        alert('Proceed')
+
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
     </script>
 
     <!-- Argon Scripts -->
