@@ -55,7 +55,7 @@ function connect($server, $user, $password, $db_name)
     FOREIGN KEY (course_id) REFERENCES courses(id)
       )";
     if ($db->query($university_enrollment_table)) {
-       // echo "records inserted succefully";
+        // echo "records inserted succefully";
     } else {
         echo "failed";
     }
@@ -159,20 +159,20 @@ function updateCompletion(mysqli $db, $id, $completion)
 
 function insert_to_enrollment_table(mysqli $db, $student_id, $course_id, $email)
 {
-    $insert_to_enrollment = "INSERT INTO university_enrollmen_data (`student_id`,`course_id`,`email`) VALUES ('$student_id','$course_id','$email')";
-    $db->query($insert_to_enrollment);
+    $insert_to_enrollment = "INSERT INTO university_enrollment_data (`student_id`,`course_id`,`email`) VALUES ('$student_id','$course_id','$email')";
+    mysqli_query($db, $insert_to_enrollment);
 }
 
 function selectFromCourses(mysqli $db, $course_name)
 {
- 
-    $sql = "SELECT `id` FROM courses WHERE courses.name = $course_name";
+    $sql = "SELECT `id` FROM courses where courses.name = '$course_name'";
     $result = $db->query($sql);
-    while($row = $result->fetch_assoc() ){
+    while ($row = $result->fetch_assoc()) {
         $id = $row['id'];
     }
     return $id;
 }
+
 
 
 
