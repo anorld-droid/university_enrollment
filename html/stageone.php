@@ -460,7 +460,9 @@ $completion = 0;
             // Loop over them and prevent submission
             var validation = Array.prototype.filter.call(forms, function(form) {
                 form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
+                    if () {
+
+                    } else if (form.checkValidity() === false) {
                         alert('stop son')
                         event.preventDefault();
                         event.stopPropagation();
@@ -498,12 +500,6 @@ $completion = 0;
 
                             }
                         });
-                        // $_SESSION["firstName"] = $_POST['firstName'];
-                        // $_SESSION["lastName"] = $_POST['lastName'];
-                        // $_SESSION["admissionNum"] = $_POST['admissionNum'];
-                        // $_SESSION["password"] = $_POST['password'];
-                        // $_SESSION["userid"] = $_POST['userid'];
-                        // $_SESSION["email"] = $_POST['email'];
                         alert('Proceed')
 
                     }
@@ -511,6 +507,11 @@ $completion = 0;
                 }, false);
             });
         }, false);
+
+        function validateEmail() {
+            let email = document.getElementById('email').value;
+            if
+        }
     </script>
 
     <!-- Argon Scripts -->
