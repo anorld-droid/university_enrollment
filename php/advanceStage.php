@@ -8,6 +8,10 @@ $adminData = selectRecords($db);
 foreach ($adminData as $val) {
     $_SESSION['completion'] = $val['completion'];
 }
+
+
+
+
 if ($_POST['stage'] === "1") {
     updateCompletion($db, $_POST['userid'], $_POST['complete']);
     $_SESSION["profilePhoto"] =  $_POST["profilePhoto"];
@@ -17,7 +21,11 @@ if ($_POST['stage'] === "1") {
     $_SESSION["password"] = $_POST['password'];
     $_SESSION["userid"] = $_POST['userid'];
     $_SESSION["email"] = $_POST['email'];
-    echo json_encode("Success");
+    $_SESSION['course'] = $_POST['program'];
+    $courseid = selectFromCourses($db, $_POST['program']);
+   
+    insert_to_enrollment_table($db, $_SESSION['userid'], $courseid, $_SESSION['email']);
+    echo json_encode($courseid);
 } elseif ($_POST['stage'] === "2") {
     updateCompletion($db, $_POST['uid'], $_POST['complete']);
     // echo $_SESSION['completion'] += '25';

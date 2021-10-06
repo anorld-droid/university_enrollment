@@ -3,13 +3,8 @@
 * Argon Dashboard - v1.2.0
 =========================================================
 * Product Page: https://www.creative-tim.com/product/argon-dashboard
-
-
 * Copyright  Creative Tim (http://www.creative-tim.com)
 * Coded by www.creative-tim.com
-
-
-
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
@@ -38,7 +33,7 @@ if (isset($_SESSION['password'])) {
     $password = $_SESSION['password'];
 }
 if (isset($_SESSION['userid'])) {
-    $uuid = $_SESSION['id'];
+    $uuid = $_SESSION['userid'];
 }
 
 $completion = 25;

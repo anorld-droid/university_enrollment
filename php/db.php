@@ -45,6 +45,20 @@ function connect($server, $user, $password, $db_name)
     if ($db->query($sql2) === TRUE) {
         // echo "Database and Table Online";
     }
+    $university_enrollment_table = "CREATE TABLE IF NOT EXISTS university_enrollment_data(
+  id int(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    student_id int (6) NOT NULL,
+    course_id int(6) NOT NULL,
+    email varchar(100) NOT NULL,
+    
+    FOREIGN KEY (student_id) REFERENCES student_data(id),
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+      )";
+    if ($db->query($university_enrollment_table)) {
+        // echo "records inserted succefully";
+    } else {
+        echo "failed";
+    }
     return $db;
 }
 function selectRecords(mysqli $db)
@@ -141,3 +155,26 @@ function updateCompletion(mysqli $db, $id, $completion)
         echo "failed";
     }
 }
+
+
+function insert_to_enrollment_table(mysqli $db, $student_id, $course_id, $email)
+{
+    $insert_to_enrollment = "INSERT INTO university_enrollment_data (`student_id`,`course_id`,`email`) VALUES ('$student_id','$course_id','$email')";
+    mysqli_query($db, $insert_to_enrollment);
+}
+
+function selectFromCourses(mysqli $db, $course_name)
+{
+    $sql = "SELECT `id` FROM courses where courses.name = '$course_name'";
+    $result = $db->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $id = $row['id'];
+    }
+    return $id;
+}
+
+
+
+
+
+// echo $courseId;

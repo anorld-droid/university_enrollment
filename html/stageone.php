@@ -3,13 +3,8 @@
 * Argon Dashboard - v1.2.0
 =========================================================
 * Product Page: https://www.creative-tim.com/product/argon-dashboard
-
-
 * Copyright  Creative Tim (http://www.creative-tim.com)
 * Coded by www.creative-tim.com
-
-
-
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
@@ -420,14 +415,18 @@ $completion = 0;
     <script>
         //On window load fill the school selectable with values
         window.onload = function() {
+
             var schoolSel = document.getElementById("school");
             var programmeSel = document.getElementById("programme");
             // alert("...............");
             xhr = new XMLHttpRequest();
             // xhr.responseType = 'json';
             xhr.onreadystatechange = function() {
+
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == "200") {
+
                     let response = JSON.parse(xhr.responseText);
+
                     // alert
                     for (let index in response) {
                         for (let school in response[index]) {
@@ -460,10 +459,7 @@ $completion = 0;
             // Loop over them and prevent submission
             var validation = Array.prototype.filter.call(forms, function(form) {
                 form.addEventListener('submit', function(event) {
-                    if () {
-
-                    } else if (form.checkValidity() === false) {
-                        alert('stop son')
+                    if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
                     } else {
@@ -495,12 +491,10 @@ $completion = 0;
                             data: dataObj,
                             dataType: 'json',
                             success: function(msg) {
-                                alert(msg);
                                 window.location.href = 'stagetwo.php';
-
                             }
                         });
-                        alert('Proceed')
+
 
                     }
                     form.classList.add('was-validated');
@@ -510,7 +504,7 @@ $completion = 0;
 
         function validateEmail() {
             let email = document.getElementById('email').value;
-            if
+
         }
     </script>
 
