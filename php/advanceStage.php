@@ -8,6 +8,10 @@ $adminData = selectRecords($db);
 foreach ($adminData as $val) {
     $_SESSION['completion'] = $val['completion'];
 }
+
+
+
+
 if ($_POST['stage'] === "1") {
     updateCompletion($db, $_POST['uid'], $_POST['complete']);
     $_SESSION["profilePhoto"] =  $_POST["profilePhoto"];
@@ -17,6 +21,12 @@ if ($_POST['stage'] === "1") {
     $_SESSION["password"] = $_POST['password'];
     $_SESSION["userid"] = $_POST['userid'];
     $_SESSION["email"] = $_POST['email'];
+    $_SESSION["course"] = $_POST['programme'];
+    $courseId = selectFromCourses($db, $_SESSION["course"]);
+
+    echo $_SESSION["course"];
+
+    insert_to_enrollment_table($db, $_SESSION["userid"], $courseId, $_SESSION['email']);
     echo "<script> window.location.href='../html/stagetwo.php';</script>";
 
     // $stagetwo = '';

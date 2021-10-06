@@ -33,7 +33,7 @@ if (isset($_SESSION['password'])) {
     $password = $_SESSION['password'];
 }
 if (isset($_SESSION['userid'])) {
-    $uuid = $_SESSION['id'];
+    $uuid = $_SESSION['userid'];
 }
 
 $completion = 25;
