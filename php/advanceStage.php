@@ -1,6 +1,7 @@
 <?php
 require_once 'config.php';
 require_once 'db.php';
+require_once 'mailOperations.php';
 $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
 session_start();
 
@@ -8,9 +9,6 @@ $adminData = selectRecords($db);
 foreach ($adminData as $val) {
     $_SESSION['completion'] = $val['completion'];
 }
-
-
-
 
 if ($_POST['stage'] === "1") {
     updateCompletion($db, $_POST['userid'], $_POST['complete']);
@@ -23,7 +21,7 @@ if ($_POST['stage'] === "1") {
     $_SESSION["email"] = $_POST['email'];
     $_SESSION['course'] = $_POST['program'];
     $courseid = selectFromCourses($db, $_POST['program']);
-   
+
     insert_to_enrollment_table($db, $_SESSION['userid'], $courseid, $_SESSION['email']);
     echo json_encode($courseid);
 } elseif ($_POST['stage'] === "2") {
@@ -58,31 +56,5 @@ if ($_POST['stage'] === "1") {
         }
     }
 } else {
-    $to =  "munenevincent49@gmail.com";
-    $subject = "Maseno University Successful Enrollment.";
-
-    $message = "<b>This is HTML message.</b>";
-    $message .= "<h1>This is headline.</h1>";
-
-    $header = "From:mulindipatrice00@gmail.com \r\n";
-    // $header .= "Cc:afgh@somedomain.com \r\n";
-    $header .= "MIME-Version: 1.0\r\n";
-    $header .= "Content-type: text/html\r\n";
-
-    $retval = mail($to, $subject, $message, $header);
-
-    if ($retval == true) {
-        echo "<script>
-        alert(\"Message Sent Successfully\");
-        </script>";
-        updateCompletion($db, $_POST['uid'], $_POST['complete']);
-    } else {
-        echo "<script>
-        alert(\"Message could not be sent..\");
-        </script>";
-    }
-    // echo "
-    //       <script>
-    //                     window.location.href='../html/tables.php';
-    //                     </script>";
+    sendMail($_SESSION["email"]);
 }

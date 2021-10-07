@@ -18,7 +18,7 @@ if (isset($_POST['userid'])) {
     $admNumber = $_POST['admissionNum'];
     $password = $_POST['password'];
     $id = $_POST['userid'];
-    $email = $_POST['email'];
+     $email = $_POST['email'];
 }
 // if (isset($_SESSION['profilePhoto'])) {
 //     $profilePhoto = $_SESSION["profilePhoto"];
@@ -318,7 +318,7 @@ $completion = 0;
                                 <input type="hidden" id="admissionNum" value=<?php echo $admNumber ?>>
                                 <input type="hidden" id="userid" value=<?php echo $id ?>>
                                 <input type="hidden" id="password" value=<?php echo $password ?>>
-                                <input type="hidden" id="email" value=<?php echo $email ?>>
+                                <!-- <input type="hidden" id="email" value=<?php echo $email ?>> -->
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
@@ -494,7 +494,7 @@ $completion = 0;
                                 window.location.href = 'stagetwo.php';
                             }
                         });
-                      
+
 
                     }
                     form.classList.add('was-validated');
