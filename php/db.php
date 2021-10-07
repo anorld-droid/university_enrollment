@@ -91,6 +91,8 @@ function deleteRecords(mysqli $db,  $id)
 {
     $sql = "DELETE FROM student_data WHERE `ID` = '$id' ";
     $db->query($sql);
+    $sql = "DELETE FROM university_enrollment_data WHERE `student_id` = '$id' ";
+    $db->query($sql);
 }
 
 function selectForAdmin(mysqli $db)

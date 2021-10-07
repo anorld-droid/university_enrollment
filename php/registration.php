@@ -104,15 +104,15 @@ if (isset($_POST['fName'])) {
     //database operation starts here
 
 
-session_start();
+    session_start();
 
-    $fName = $_POST["fName"];
-    $lName = $_POST["lName"];
-    $adm_number = $_POST["admNumber"];
-    $pass = $_POST["pass"];
+    $fName = filter_var($_POST["fName"], FILTER_SANITIZE_STRING);
+    $lName = filter_var($_POST["lName"], FILTER_SANITIZE_STRING);
+    $adm_number = filter_var($_POST["admNumber"], FILTER_SANITIZE_STRING);
+    $pass = filter_var($_POST["pass"], FILTER_SANITIZE_STRING);
     $profile_pic = $target_file;
     $status = "pending";
-     $completion = 0;
+    $completion = 0;
     // $admin = strval($adm_number);
 
 

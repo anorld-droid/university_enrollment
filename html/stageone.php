@@ -501,6 +501,11 @@ $completion = 0;
                 }, false);
             });
         }, false);
+
+        function validateEmail() {
+            let email = document.getElementById('email').value;
+
+        }
     </script>
 
     <!-- Argon Scripts -->

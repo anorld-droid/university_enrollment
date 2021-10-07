@@ -1,1 +1,0 @@
-[{"first name":"chris","last name":"kaiga","adm number":"ccs\/00285\/019","password":"chris","profile photo":"..\/uploads\/download (3).jpg"}]
