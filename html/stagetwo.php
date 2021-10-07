@@ -312,9 +312,9 @@ $completion = 25;
                         <div class="card-body ">
                             <!-- MEDICAL EXAMINATION form  -->
                             <form class="needs-validation" novalidate>
-                                <input type="hidden" name="stage" value="2" />
-                                <input type="hidden" name="complete" value="50">
-                                <input type="hidden" name="uid" value=<?php echo $uuid; ?> />
+                                <input type="hidden" id="stage" value="2" />
+                                <input type="hidden" id="complete" value="50">
+                                <input type="hidden" id="uid" value=<?php echo $uuid; ?> />
 
                                 <h6 class="heading-small text-muted mb-2"></h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
@@ -322,7 +322,7 @@ $completion = 25;
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-control-label text-light" for="input-nhif">NHIF NUMBER</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" placeholder="NHIF Number">
+                                                <input type="text" id="input-nhif" class="form-control text-dark" placeholder="NHIF Number" required>
                                                 <div class="invalid-feedback">
                                                     Please enter your NHIF number
                                                 </div>
@@ -334,7 +334,7 @@ $completion = 25;
                                         <div class="row mb-3">
                                             <div class="col-lg-12">
                                                 <div class="custom-control custom-radio  custom-control-inline">
-                                                    <input type="radio" id="input-in-patient1" name="in_patient" class="custom-control-input " required>
+                                                    <input type="radio" id="input-in-patient1" name="in_patient" class="custom-control-input ">
                                                     <label class="custom-control-label text-center" for="input-in-patient1">Yes</label>
                                                     <br>
                                                     <div class="invalid-feedback">
@@ -342,7 +342,7 @@ $completion = 25;
                                                     </div>
                                                 </div>
                                                 <div class="custom-control  custom-radio  custom-control-inline">
-                                                    <input type="radio" id="input-in-patient2" name="in_patient" class="custom-control-input" required>
+                                                    <input type="radio" id="input-in-patient2" name="in_patient" class="custom-control-input">
                                                     <label class="custom-control-label" for="input-in-patient2">No</label>
                                                     <br>
                                                     <div class="invalid-feedback">
@@ -367,7 +367,7 @@ $completion = 25;
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-day" name="dc_day" class="form-control text-dark" placeholder="Day" required>
+                                                    <input type="number" id="input-day" name="dc_day" class="form-control text-dark" placeholder="Day">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -375,7 +375,7 @@ $completion = 25;
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-month" name="dc_month" class="form-control text-dark" placeholder="Month" required>
+                                                    <input type="number" id="input-month" name="dc_month" class="form-control text-dark" placeholder="Month">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -383,7 +383,7 @@ $completion = 25;
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-year" name="dc_year" class="form-control text-dark" placeholder="Year" required>
+                                                    <input type="number" id="input-year" name="dc_year" class="form-control text-dark" placeholder="Year">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -397,7 +397,7 @@ $completion = 25;
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-day" name="imt_day" class="form-control text-dark" placeholder="Day" required>
+                                                    <input type="number" id="input-day" name="imt_day" class="form-control text-dark" placeholder="Day">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -405,7 +405,7 @@ $completion = 25;
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-month" name="imt_month" class="form-control text-dark" placeholder="Month" required>
+                                                    <input type="number" id="input-month" name="imt_month" class="form-control text-dark" placeholder="Month">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -413,7 +413,7 @@ $completion = 25;
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-year" name="imt_year" class="form-control text-dark" placeholder="Year" required>
+                                                    <input type="number" id="input-year" name="imt_year" class="form-control text-dark" placeholder="Year">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -427,7 +427,7 @@ $completion = 25;
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-day" name="imp_day" class="form-control text-dark" placeholder="Day" required>
+                                                    <input type="number" id="input-day" name="imp_day" class="form-control text-dark" placeholder="Day">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -435,7 +435,7 @@ $completion = 25;
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-month" name="imp_month" class="form-control text-dark" placeholder="Month" required>
+                                                    <input type="number" id="input-month" name="imp_month" class="form-control text-dark" placeholder="Month">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -443,7 +443,7 @@ $completion = 25;
                                             </div>
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                    <input type="number" id="input-year" name="imp_year" class="form-control text-dark" placeholder="Year" required>
+                                                    <input type="number" id="input-year" name="imp_year" class="form-control text-dark" placeholder="Year">
                                                     <div class="invalid-feedback">
                                                         Field cannot be empty
                                                     </div>
@@ -503,10 +503,27 @@ $completion = 25;
                 var validation = Array.prototype.filter.call(forms, function(form) {
                     form.addEventListener('submit', function(event) {
                         if (form.checkValidity() === false) {
+                            // alert("Stop Son");
                             event.preventDefault();
                             event.stopPropagation();
                         } else {
-
+                            let uid = $('#uid').val();
+                            let complete = $('#complete').val();
+                            $.ajax({
+                                type: "post",
+                                url: "../php/advanceStage.php",
+                                data: {
+                                    'stage': "2",
+                                    'uid': uid,
+                                    'complete': complete
+                                },
+                                dataType: 'json',
+                                success: function(msg) {
+                                    // alert(msg);
+                                    window.location.href = 'stagethree.php';
+                                }
+                            });
+                            alert("Proceed to stage three...");
                         }
                         form.classList.add('was-validated');
                     }, false);

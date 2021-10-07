@@ -472,7 +472,6 @@ if (isset($_POST["search_text"])) {
                     echo                 "<input type=\"hidden\" name=\"admissionNum\" value= \"" . $val['adm_number'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"userid\" value= \"" . $val['ID'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"password\" value= \"" . $val['pass'] . "\">";
-                    echo                 "<input type=\"hidden\" name=\"email\" value= \"" . $email . "\">";
                     echo                "<button  type=\"submit\" class=\"dropdown-item\"" . $ifdisabled . " >Enroll</button>";
                     echo                 "</form>";
                     // echo                "<a class=\"dropdown-item  " . $ifdisabled . " \" href=\"#enrollStudent" . $val['ID'] . "\" data-toggle=\"modal\">Enroll</a>";
@@ -647,15 +646,6 @@ if (isset($_POST["search_text"])) {
           </div>
         </footer>
         <script>
-          //Stage one dependant fields
-          var subjectObject = {
-            "HTML": ["Links", "Images", "Tables", "Lists"],
-            "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
-            "JavaScript": ["Variables", "Operators", "Functions", "Conditions"],
-            "PHP": ["Variables", "Strings", "Arrays"],
-            "SQL": ["SELECT", "UPDATE", "DELETE"]
-          };
-
           function enrollment(id) {
             var schoolSel = document.getElementById("school" + id);
             var programmeSel = document.getElementById("programme" + id);
@@ -701,16 +691,15 @@ if (isset($_POST["search_text"])) {
               },
               dataType: 'json',
               success: function(msg) {
-                alert(msg);
-                $("#studentDetailsLabel").replaceWith("Medical Examination")
-                $("#stageone").replaceWith(msg)
+                window.location.href = "stageOne.php"
+                // alert(msg);
+                // $("#studentDetailsLabel").replaceWith("Medical Examination")
+                // $("#stageone").replaceWith(msg)
               }
             });
           }
 
-          function replaceStageTwo(id) {
-            alert(id);
-          }
+
 
           (function() {
             'use strict';

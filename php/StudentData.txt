@@ -1,1 +1,1 @@
-
+[{"first name":"Kiogora","last name":"Emmanuel","adm number":"CCS-00099-019","password":"123","profile photo":"..\/uploads\/IMG-20190812-WA0018.jpg"}]

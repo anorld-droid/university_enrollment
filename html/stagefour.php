@@ -308,18 +308,18 @@ $completion = 75;
                         </div>
                         <div class="card-body ">
                             <!-- Course registration form  -->
-                            <form class="needs-validation" action="../php/advanceStage.php" method="POST" novalidate>
-                                <input type="hidden" name="uid" value=<?php echo $id; ?> />
-                                <input type="hidden" name="email" value=<?php echo $email; ?> />
-                                <input type="hidden" name="stage" value="4" />
-                                <input type="hidden" name="complete" value="100">
+                            <form class="needs-validation" novalidate>
+                                <input type="hidden" id="uid" value=<?php echo $id; ?> />
+                                <input type="hidden" id="email" value=<?php echo $email; ?> />
+                                <input type="hidden" id="stage" value="4" />
+                                <input type="hidden" id="complete" value="100">
                                 <h6 class="heading-small text-muted mb-2"></h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-nhif">Hostel Name</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="hostl_name" placeholder="Hostel Name">
+                                                <label class="form-control-label text-light" for="hostel">Hostel Name</label>
+                                                <input type="text" id="hostel" class="form-control text-dark" name="hostl_name" placeholder="Hostel Name">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -327,8 +327,8 @@ $completion = 75;
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-nhif">Room Number</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="room_number" placeholder="Room number">
+                                                <label class="form-control-label text-light" for="room_number">Room Number</label>
+                                                <input type="text" class="form-control text-dark" id="room_number" placeholder="Room number">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -338,8 +338,8 @@ $completion = 75;
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-nhif">If non-residence Area Of Residence </label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="course1" placeholder="Area of residence">
+                                                <label class="form-control-label text-light" for="area-of-residence">If non-residence Area Of Residence </label>
+                                                <input type="text" id="area-of-residence" class="form-control text-dark" placeholder="Area of residence">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -347,8 +347,8 @@ $completion = 75;
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-nhif">Contact</label>
-                                                <input type="text" id="input-nhif" class="form-control text-dark" name="code1" placeholder="Contact">
+                                                <label class="form-control-label text-light" for="contact">Contact</label>
+                                                <input type="text" id="contact" class="form-control text-dark" name="code1" placeholder="Contact">
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -361,7 +361,7 @@ $completion = 75;
                                 <div class="row">
                                     <div class="col-sm-5"></div>
                                     <div class="col-sm-2">
-                                        <button id="next_button" name="next_button" class="btn btn-primary btn-lg btn-block" type="submit">FINISH</button>
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit">FINISH</button>
                                     </div>
                                     <div class="col-sm-5"></div>
                                 </div>
@@ -414,6 +414,35 @@ $completion = 75;
                         if (form.checkValidity() === false) {
                             event.preventDefault();
                             event.stopPropagation();
+                        } else {
+                            let uid = $('#uid').val();
+                            let complete = $('#complete').val();
+                            let residence = $('#area-of-residence').val();
+                            let cf_fee = $('#cf_fee').val();
+                            $.ajax({
+                                type: "post",
+                                url: "../php/advanceStage.php",
+                                data: {
+                                    'stage': "4",
+                                    'uid': uid,
+                                    'complete': complete,
+                                    'residence': residence,
+                                },
+                                dataType: 'json',
+                                success: function(msg) {
+                                    // alert(msg);
+                                    if (msg === "Success") {
+                                        alert("Message Sent Successfully");
+                                        window.location.href = 'tables.php';
+                                    } else {
+                                        alert('Message Could not be sent...');
+                                        window.location.href = 'tables.php';
+                                    }
+                                }
+                            });
+                            alert("You have completed your registration ):");
+                            // setTimeout(function() {
+                            // }, 5000)
                         }
                         form.classList.add('was-validated');
                     }, false);
