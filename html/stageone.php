@@ -18,6 +18,7 @@ if (isset($_POST['userid'])) {
     $admNumber = $_POST['admissionNum'];
     $password = $_POST['password'];
     $id = $_POST['userid'];
+    // echo json_encode("Success");
 }
 // if (isset($_SESSION['profilePhoto'])) {
 //     $profilePhoto = $_SESSION["profilePhoto"];
@@ -479,7 +480,17 @@ $completion = 0;
                             'complete': complete,
                             'email': email
                         }
-
+                        // let data = new FormData();
+                        // data.append('profilePhoto', profilePhoto);
+                        // data.append('firstName', firstName);
+                        // data.append('lastName', lastName);
+                        // data.append('admissionNum', admissionNum);
+                        // data.append('password', password);
+                        // data.append('userid', userid);
+                        // data.append('program', program);
+                        // data.append('stage', stage);
+                        // data.append('complete', complete);
+                        // data.append('email', email);
                         $.ajax({
                             type: "post",
                             url: "../php/advanceStage.php",
@@ -488,12 +499,22 @@ $completion = 0;
                             success: function(msg) {
                                 // alert("Success" + msg);
                                 window.location.href = 'stagetwo.php';
+
                             },
                             error: function(err) {
-                                alert("Error" + err)
+                                alert("Error " + err);
                             }
                         });
-                        alert("Proceed to stage two...")
+                        // let xhr = new XMLHttpRequest();
+                        // xhr.onreadystatechange = function() {
+                        //     if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == "200") {
+                        //         alert("popopopoopopopopopopopopopopopopopopopopopopopopopoopopopopopopop")
+                        //         window.location.href = 'stagetwo.php';
+                        //     }
+                        // }
+                        // xhr.open("POST", "../php/advanceStage.php", false);
+                        // xhr.send(data);
+                        alert("Proceed to stage two...");
                     }
                     form.classList.add('was-validated');
                 }, false);

@@ -441,8 +441,6 @@ $completion = 75;
                                 }
                             });
                             alert("You have completed your registration ):");
-                            // setTimeout(function() {
-                            // }, 5000)
                         }
                         form.classList.add('was-validated');
                     }, false);

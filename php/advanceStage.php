@@ -8,8 +8,16 @@ $adminData = selectRecords($db);
 foreach ($adminData as $val) {
     $_SESSION['completion'] = $val['completion'];
 }
+// if ($_POST['enroll'] === "Proceed") {
+//     $_SESSION["profilePhoto"] =  $_POST["profilePhoto"];
+//     $_SESSION["firstName"] = $_POST['firstName'];
+//     $_SESSION["lastName"] = $_POST['lastName'];
+//     $_SESSION["admissionNum"] = $_POST['admissionNum'];
+//     $_SESSION["password"] = $_POST['password'];
+//     $_SESSION["userid"] = $_POST['userid'];
+//     echo json_encode("Proceed");
+// } else
 if ($_POST['stage'] === "1") {
-    updateCompletion($db, $_POST['userid'], $_POST['complete']);
     $_SESSION["profilePhoto"] =  $_POST["profilePhoto"];
     $_SESSION["firstName"] = $_POST['firstName'];
     $_SESSION["lastName"] = $_POST['lastName'];
@@ -18,6 +26,7 @@ if ($_POST['stage'] === "1") {
     $_SESSION["userid"] = $_POST['userid'];
     $_SESSION["email"] = $_POST['email'];
     $_SESSION['course'] = $_POST['program'];
+    updateCompletion($db, $_POST['userid'], $_POST['complete']);
     $courseid = selectFromCourses($db, $_POST['program']);
     insert_to_enrollment_table($db, $_SESSION['userid'], $courseid, $_SESSION['email']);
     echo json_encode("Success");
@@ -35,7 +44,7 @@ if ($_POST['stage'] === "1") {
             // echo "
             //             <script>
             //             alert('Fees Must Be Greater than 12000');
-            //             window.location.href='../html/stagethree.php';
+            //            
             //             </script>";
         } else {
             updateCompletion($db, $_POST['uid'], $_POST['complete']);

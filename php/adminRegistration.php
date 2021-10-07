@@ -29,7 +29,7 @@ if (isset($_POST['fName'])) {
 
     if (file_exists($filename)) {
         echo "
-                                            <script>
+         <script>
                                             alert('File already exists');
                                             window.location.href='../html/tables.php';
                                             </script>";
