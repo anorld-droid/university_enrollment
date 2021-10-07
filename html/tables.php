@@ -415,7 +415,7 @@ if (isset($_POST["search_text"])) {
                   // $obtainedData = selectRecords($db);
 
                   foreach ($data as  $val) {
-                    $email = "munenevincent49@gmail.com";
+
                     $complete = $val['completion'];
                     if ($complete < 100) {
                       $ifdisabled = " ";
@@ -425,6 +425,15 @@ if (isset($_POST["search_text"])) {
                       $ifdisabled = "disabled";
                       $background = "bg-success";
                       $status = "complete";
+                    }
+                    if ($complete === "0") {
+                      $proceedStage = 'stageone.php';
+                    } elseif ($complete === "25") {
+                      $proceedStage = 'stagetwo.php';
+                    } elseif ($complete === "50") {
+                      $proceedStage = 'stagethree.php';
+                    } else {
+                      $proceedStage = 'stagefour.php';
                     }
                     echo "<tr>";
                     echo   "<th scope=\"row\">";
@@ -465,15 +474,15 @@ if (isset($_POST["search_text"])) {
                     echo           "<i class=\"fas fa-ellipsis-v\"></i>";
                     echo           "</a>";
                     echo            "<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-arrow\">";
-                    echo                "<form action=\"stageone.php\" method=\"post\">";
+                    echo                "<form action=\"" . $proceedStage . "\" method=\"POST\" class=\"needs-validation\" novalidate>";
                     echo                 "<input type=\"hidden\" name=\"firstName\" value= \"" . $val['fname'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"lastName\" value= \"" . $val['lname'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"profilePhoto\" value= \"" . $val['profile_picture'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"admissionNum\" value= \"" . $val['adm_number'] . "\">";
                     echo                 "<input type=\"hidden\" name=\"userid\" value= \"" . $val['ID'] . "\">";
-                    echo                 "<input type=\"hidden\" name=\"password\" value= \"" . $val['pass'] . "\">";
-                    echo                 "<input type=\"hidden\" name=\"email\" value= \"" . $email . "\">";
-                    echo                "<button  type=\"submit\" class=\"dropdown-item\"" . $ifdisabled . " >Enroll</button>";
+                    echo                  "<input type=\"hidden\" name=\"password\" value= \"" . $val['pass'] . "\">";
+                    echo                  "<input type=\"hidden\" name=\"complete\" value= \"" . $complete . "\">";
+                    echo                  "<button  id=\"enroll\" type=\"submit\" class=\"dropdown-item\"" . $ifdisabled . " >Enroll</button>";
                     echo                 "</form>";
                     // echo                "<a class=\"dropdown-item  " . $ifdisabled . " \" href=\"#enrollStudent" . $val['ID'] . "\" data-toggle=\"modal\">Enroll</a>";
                     echo                "<a class=\"dropdown-item\" href=\"#" . $val['fname'] . $num . "\" data-toggle=\"modal\">Edit</a>";
@@ -647,29 +656,6 @@ if (isset($_POST["search_text"])) {
           </div>
         </footer>
         <script>
-          //Stage one dependant fields
-          var subjectObject = {
-            "HTML": ["Links", "Images", "Tables", "Lists"],
-            "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
-            "JavaScript": ["Variables", "Operators", "Functions", "Conditions"],
-            "PHP": ["Variables", "Strings", "Arrays"],
-            "SQL": ["SELECT", "UPDATE", "DELETE"]
-          };
-
-          function enrollment(id) {
-            var schoolSel = document.getElementById("school" + id);
-            var programmeSel = document.getElementById("programme" + id);
-            for (var x in subjectObject) {
-              schoolSel.options[schoolSel.options.length] = new Option(x, x);
-            }
-            schoolSel.onchange = function() {
-              programmeSel.length = 1;
-              //display correct values
-              for (var y in subjectObject[this.value]) {
-                programmeSel.options[programmeSel.options.length] = new Option(subjectObject[this.value][y], subjectObject[this.value][y]);
-              }
-            }
-          }
           var searchRequest = null;
 
           function searchfunction(value) {
@@ -687,53 +673,77 @@ if (isset($_POST["search_text"])) {
               }
             });
           }
+
           //replacing details form with medical form
-          function replaceStageOne(id) {
-            // alert(id);
-            // $("#stageone").remove();
-            $.ajax({
-              type: "post",
-              url: "../php/stageOneResponse.php",
-              data: {
-                'stage': "1",
-                'uid': id,
-                'complete': "25"
-              },
-              dataType: 'json',
-              success: function(msg) {
-                alert(msg);
-                $("#studentDetailsLabel").replaceWith("Medical Examination")
-                $("#stageone").replaceWith(msg)
-              }
+          function enroll() {
+            alert("jhkhkjlhjka");
+
+
+
+          }
+          //  disabling form submissions if there are invalid fields
+          window.addEventListener('load', function() {
+            $('input[type="file"]').change(function(e) {
+              var fileName = e.target.files[0].name;
+              $('.custom-file-label').html(fileName);
             });
-          }
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                //  else {
+                //   alert("program");
+                //   let profilePhoto = document.getElementById('profilePhoto').value;
+                //   let firstName = document.getElementById('firstName').value;
+                //   let lastName = document.getElementById('lastName').value;
+                //   let admissionNum = document.getElementById('admissionNum').value;
+                //   let password = document.getElementById('password').value;
+                //   let userid = document.getElementById('userid').value;
+                //   var complete = document.getElementById('complete').value;
+                //   // alert(complete + `  ${firstName}    ${userid}`);
 
-          function replaceStageTwo(id) {
-            alert(id);
-          }
+                //   let dataObj = {
+                //     'profilePhoto': profilePhoto,
+                //     'firstName': firstName,
+                //     'lastName': lastName,
+                //     'admissionNum': admissionNum,
+                //     'password': password,
+                //     'userid': userid,
+                //     'enroll': 'Proceed'
+                //   }
 
-          (function() {
-            'use strict';
-            //  disabling form submissions if there are invalid fields
-            window.addEventListener('load', function() {
-              $('input[type="file"]').change(function(e) {
-                var fileName = e.target.files[0].name;
-                $('.custom-file-label').html(fileName);
-              });
-              // Fetch all the forms we want to apply custom Bootstrap validation styles to
-              var forms = document.getElementsByClassName('needs-validation');
-              // Loop over them and prevent submission
-              var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                  if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                  }
-                  form.classList.add('was-validated');
-                }, false);
-              });
-            }, false);
-          })();
+                //   $.ajax({
+                //     type: "post",
+                //     url: "../php/advanceStage.php",
+                //     data: dataObj,
+                //     dataType: 'json',
+                //     success: function(msg) {
+                //       // alert("kuiiuiui")
+                //       if (complete === "0") {
+                //         window.location.href = 'stageone.php';
+                //       } else if (complete === "25") {
+                //         window.location.href = 'stagetwo.php';
+                //       } else if (complete === "50") {
+                //         window.location.href = 'stagethree.php';
+                //       } else {
+                //         window.location.href = 'stagefour.php';
+                //       }
+                //     },
+                //     error: function(err) {
+                //       alert("Error" + err);
+                //     }
+                //   });
+                //   alert("popopopo");
+                // }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
         </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

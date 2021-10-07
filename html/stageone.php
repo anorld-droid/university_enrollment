@@ -18,7 +18,7 @@ if (isset($_POST['userid'])) {
     $admNumber = $_POST['admissionNum'];
     $password = $_POST['password'];
     $id = $_POST['userid'];
-     $email = $_POST['email'];
+    // echo json_encode("Success");
 }
 // if (isset($_SESSION['profilePhoto'])) {
 //     $profilePhoto = $_SESSION["profilePhoto"];
@@ -311,14 +311,13 @@ $completion = 0;
                         </div>
                         <div class="card-body ">
                             <!-- Student details form  -->
-                            <form class="needs-validation" id="stageone" novalidate>
+                            <form class="needs-validation" novalidate>
                                 <input type="hidden" id="firstName" value=<?php echo $firstname ?>>
                                 <input type="hidden" id="lastName" value=<?php echo $lastname ?>>
                                 <input type="hidden" id="profilePhoto" value=<?php echo $profilePhoto ?>>
                                 <input type="hidden" id="admissionNum" value=<?php echo $admNumber ?>>
                                 <input type="hidden" id="userid" value=<?php echo $id ?>>
                                 <input type="hidden" id="password" value=<?php echo $password ?>>
-                                <!-- <input type="hidden" id="email" value=<?php echo $email ?>> -->
                                 <h6 class="heading-small text-muted mb-4">User information</h6>
                                 <div class="pl-lg-4 pl-sm-4 pl-xs-4">
                                     <div class="row">
@@ -336,10 +335,10 @@ $completion = 0;
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-othernames">Email</label>
-                                                <input type="email" id="input-othernames" class="form-control text-dark" placeholder="Email" required>
-                                                <div class="invalid-feedback">
-                                                    Please enter your email
+                                                <label class="form-control-label text-light" for="email">Email</label>
+                                                <input type="email" id="email" class="form-control text-dark" placeholder="Email" required>
+                                                <div class="invalid-feedback" id="email-invalid-feedback">
+                                                    Invalid email
                                                 </div>
                                             </div>
 
@@ -422,11 +421,8 @@ $completion = 0;
             xhr = new XMLHttpRequest();
             // xhr.responseType = 'json';
             xhr.onreadystatechange = function() {
-
                 if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == "200") {
-
                     let response = JSON.parse(xhr.responseText);
-
                     // alert
                     for (let index in response) {
                         for (let school in response[index]) {
@@ -448,8 +444,6 @@ $completion = 0;
             }
             xhr.open("GET", "../php/schools.php", true);
             xhr.send();
-
-
         }
         //  JavaScript for disabling form submissions if there are invalid fields
 
@@ -460,6 +454,7 @@ $completion = 0;
             var validation = Array.prototype.filter.call(forms, function(form) {
                 form.addEventListener('submit', function(event) {
                     if (form.checkValidity() === false) {
+                        // alert('stop son');
                         event.preventDefault();
                         event.stopPropagation();
                     } else {
@@ -469,7 +464,7 @@ $completion = 0;
                         let admissionNum = document.getElementById('admissionNum').value;
                         let password = document.getElementById('password').value;
                         let userid = document.getElementById('userid').value;
-                        let email = document.getElementById('email').value;
+                        let email = document.getElementById("email").value;
                         let program = document.getElementById("programme").value;
                         let stage = 1;
                         let complete = 25;
@@ -480,32 +475,51 @@ $completion = 0;
                             'admissionNum': admissionNum,
                             'password': password,
                             'userid': userid,
-                            'email': email,
                             'program': program,
                             'stage': stage,
-                            'complete': complete
+                            'complete': complete,
+                            'email': email
                         }
+                        // let data = new FormData();
+                        // data.append('profilePhoto', profilePhoto);
+                        // data.append('firstName', firstName);
+                        // data.append('lastName', lastName);
+                        // data.append('admissionNum', admissionNum);
+                        // data.append('password', password);
+                        // data.append('userid', userid);
+                        // data.append('program', program);
+                        // data.append('stage', stage);
+                        // data.append('complete', complete);
+                        // data.append('email', email);
                         $.ajax({
                             type: "post",
                             url: "../php/advanceStage.php",
                             data: dataObj,
                             dataType: 'json',
                             success: function(msg) {
+                                // alert("Success" + msg);
                                 window.location.href = 'stagetwo.php';
+
+                            },
+                            error: function(err) {
+                                alert("Error " + err);
                             }
                         });
-
-
+                        // let xhr = new XMLHttpRequest();
+                        // xhr.onreadystatechange = function() {
+                        //     if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == "200") {
+                        //         alert("popopopoopopopopopopopopopopopopopopopopopopopopopoopopopopopopop")
+                        //         window.location.href = 'stagetwo.php';
+                        //     }
+                        // }
+                        // xhr.open("POST", "../php/advanceStage.php", false);
+                        // xhr.send(data);
+                        alert("Proceed to stage two...");
                     }
                     form.classList.add('was-validated');
                 }, false);
             });
         }, false);
-
-        function validateEmail() {
-            let email = document.getElementById('email').value;
-
-        }
     </script>
 
     <!-- Argon Scripts -->

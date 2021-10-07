@@ -305,10 +305,10 @@ $completion = 50;
                         </div>
                         <div class="card-body ">
                             <!-- Student details form  -->
-                            <form class="needs-validation" action="../php/advanceStage.php" method="POST" novalidate>
-                                <input type="hidden" name="stage" value="3" />
-                                <input type="hidden" name="complete" value="75">
-                                <input type="hidden" name="uid" value=<?php echo $id; ?> />
+                            <form class="needs-validation" novalidate>
+                                <input type="hidden" id="stage" value="3" />
+                                <input type="hidden" id="complete" value="75">
+                                <input type="hidden" id="uid" value=<?php echo $id; ?> />
 
                                 <!-- Fee Payment-->
                                 <hr class="my-3" />
@@ -317,8 +317,8 @@ $completion = 50;
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label class="form-control-label text-light" for="input-school">FEE PAID</label>
-                                                <input type="number" id="input-school" class="form-control text-dark" name="cf_fee" placeholder="Fee in number form" required>
+                                                <label class="form-control-label text-light" for="cf_fee">FEE PAID</label>
+                                                <input type="number" id="cf_fee" class="form-control text-dark" name="cf_fee" placeholder="Fee in number form" required>
                                                 <div class="invalid-feedback">
                                                     Field cannot be empty
                                                 </div>
@@ -335,8 +335,8 @@ $completion = 50;
                                         </div>
                                     </div>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input " id="input_im3" name="residence">
-                                        <label class="custom-control-label text-white " for="input_im3">Non-Resident</label>
+                                        <input type="checkbox" class="custom-control-input " id="residence" name="residence">
+                                        <label class="custom-control-label text-white " for="residence">Non-Resident</label>
                                     </div>
                                 </div>
                                 <br>
@@ -354,7 +354,7 @@ $completion = 50;
                 </div>
             </div>
             <!-- Footer -->
-            <div class="mb-6"></div>
+            <div class="mb-8"></div>
             <footer class="footer pt-0 bg-dark">
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6">
@@ -387,19 +387,48 @@ $completion = 50;
         (function() {
             'use strict';
             window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            } else {
+                                let uid = $('#uid').val();
+                                let complete = $('#complete').val();
+                                let residence = $('#residence').is(":checked");
+                                let cf_fee = $('#cf_fee').val();
+                                $.ajax({
+                                    type: "post",
+                                    url: "../php/advanceStage.php",
+                                    data: {
+                                        'stage': "3",
+                                        'uid': uid,
+                                        'complete': complete,
+                                        'residence': residence,
+                                        'cf_fee': cf_fee
+                                    },
+                                    dataType: 'json',
+                                    success: function(msg) {
+                                        // alert(msg);
+                                        if (msg === "Success") {
+                                            window.location.href = 'stagefour.php';
+                                        } else {
+                                            alert('Fees Must Be Greater than 12000');
+                                        }
+                                    }
+                                });
+                                alert("Proceed to stage four...");
+                                // setTimeout(function() {
+                                // }, 5000)
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                },
+                false);
         })();
     </script>
 
