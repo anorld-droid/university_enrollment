@@ -36,10 +36,6 @@ function sendMail($send_to)
         fclose($handle);
     }
 
-
-
-
-
     $mail = new PHPMailer();
 
     $mail->setFrom('munenevincent49@gmail.com');
@@ -70,13 +66,9 @@ function sendMail($send_to)
     $mail->Port = 587;
     if (!($mail->send())) {
 
-        echo "<script>
-        alert(\"Message could not be sent..\");
-        </script>";
+        // echo json_encode("fail");
     } else {
-        echo "<script>
-        alert(\"Message Sent Successfully\");
-               </script>";
+        // echo json_encode("Success");
 
         updateCompletion($db, $_SESSION['userid'], $_POST['complete']);
     }

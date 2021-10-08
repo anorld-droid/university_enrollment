@@ -430,7 +430,7 @@ $completion = 75;
                                 },
                                 dataType: 'json',
                                 success: function(msg) {
-                                    // alert(msg);
+                                    alert(msg);
                                     if (msg === "Success") {
                                         alert("Message Sent Successfully");
                                         window.location.href = 'tables.php';
@@ -438,9 +438,12 @@ $completion = 75;
                                         alert('Message Could not be sent...');
                                         window.location.href = 'tables.php';
                                     }
+                                },
+                                error : function(err){
+                                        alert(err);
                                 }
                             });
-                            alert("You have completed your registration ):");
+                            alert("Sending email with student details.....");
                         }
                         form.classList.add('was-validated');
                     }, false);

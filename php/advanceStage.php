@@ -55,4 +55,5 @@ if ($_POST['stage'] === "1") {
     }
 } else {
     sendMail($_SESSION["email"]);
+    echo json_encode("Success");
 }

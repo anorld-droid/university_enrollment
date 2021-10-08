@@ -10,7 +10,7 @@ $fileInitialSize  = filesize("StudentData.txt");
 if (isset($_POST['fName'])) {
 
     $target_dir = "../uploads/";
-    $newFileName = $_POST['fname'] . "'s profile picture";
+    $newFileName = $_POST['fName'] . "'s profile picture";
     $target_file = $target_dir . basename($_FILES["profilePhoto"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -27,14 +27,14 @@ if (isset($_POST['fName'])) {
         exit();
     }
 
-    if (file_exists($filename)) {
-        echo "
-                                            <script>
-                                            alert('File already exists');
-                                            window.location.href='../html/SIGNUP.html';
-                                            </script>";
-        exit();
-    }
+    // if (file_exists($filename)) {
+    //     echo "
+    //                                         <script>
+    //                                         alert('File already exists');
+    //                                         window.location.href='../html/SIGNUP.html';
+    //                                         </script>";
+    //     exit();
+    // }
     if ($_FILES["profilePhoto"]["size"] > 500000) {
         echo "
                                             <script>
@@ -106,10 +106,10 @@ if (isset($_POST['fName'])) {
 
     session_start();
 
-    $fName = filter_var($_POST["fName"], FILTER_SANITIZE_STRING);
-    $lName = filter_var($_POST["lName"], FILTER_SANITIZE_STRING);
-    $adm_number = filter_var($_POST["admNumber"], FILTER_SANITIZE_STRING);
-    $pass = filter_var($_POST["pass"], FILTER_SANITIZE_STRING);
+    $fName = $_POST["fName"];
+    $lName = $_POST["lName"];
+    $adm_number = $_POST["admNumber"];
+    $pass = $_POST["pass"];
     $profile_pic = $target_file;
     $status = "pending";
     $completion = 0;

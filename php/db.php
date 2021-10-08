@@ -125,9 +125,10 @@ function insertRecords(mysqli $db, array $record)
 
 
     if ($db->query($sql)) {
-        // echo "records inserted succefully";
+        echo "records inserted succefully";
     } else {
         echo "failed";
+        echo $db->error;
     }
 }
 
@@ -152,7 +153,7 @@ function updateCompletion(mysqli $db, $id, $completion)
     // }
     $sql = "UPDATE student_data SET `completion` = '$completionLevel' WHERE `ID`='$id';";
     if ($db->query($sql)) {
-        // echo "records inserted succefully";
+      //  echo "records inserted succefully";
     } else {
         echo "failed";
     }
