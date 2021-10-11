@@ -3,8 +3,8 @@ require_once 'config.php';
 require_once 'db.php';
 $db = connect(DB_SERVER, USER, PASSWORD, DB_NAME);
 
-$admNumber = $_POST["adm_number"];
-$password = $_POST["password"];
+$admNumber = filter_var($_POST["adm_number"], FILTER_SANITIZE_STRING);
+$password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
 
 ob_start();
 session_start();

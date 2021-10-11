@@ -25,7 +25,7 @@ if ($_POST['stage'] === "1") {
     $_SESSION["admissionNum"] = $_POST['admissionNum'];
     $_SESSION["password"] = $_POST['password'];
     $_SESSION["userid"] = $_POST['userid'];
-    $_SESSION["email"] = $_POST['email'];
+    $_SESSION["email"] = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
     $_SESSION['course'] = $_POST['program'];
     updateCompletion($db, $_POST['userid'], $_POST['complete']);
     $courseid = selectFromCourses($db, $_POST['program']);
