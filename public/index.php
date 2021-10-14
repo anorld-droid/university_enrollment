@@ -3,9 +3,9 @@
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
 $routes = array(
-    "/" => "/html/index.html",
-    "../app/css/style.css" => "/css/style.css",
-    "/crew-search" => "crew-search",
+    "/" => "../app/html/index.html",
+    "../app/css/style.css" => "../app/css/style.css",
+    "../app/php/registration.php" => "../app/php/registration.php",
     "/dashboard" => "dashboard",
     "/documentation" => "documentation",
     "/entry-list" => "entry-list",
@@ -19,7 +19,7 @@ $routes = array(
 );
 
 if (isset($routes[$request_uri[0]])) {
-    require '../app' . $routes[$request_uri[0]];
+    require  $routes[$request_uri[0]];
 } else {
     //   header('HTTP/1.0 404 Not Found');
     //   require '../app/view/404.php';
