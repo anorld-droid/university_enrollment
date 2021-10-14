@@ -133,7 +133,7 @@ if (isset($_POST["search_text"])) {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../html/SIGNUP.html">
+              <a class="nav-link" href="../../public/index.html">
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text  text-light">Register</span>
               </a>
