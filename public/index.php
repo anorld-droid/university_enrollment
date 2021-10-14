@@ -4,7 +4,7 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
 $routes = array(
     "/" => "/html/index.html",
-    "/contact" => "contact",
+    "../app/css/style.css" => "/css/style.css",
     "/crew-search" => "crew-search",
     "/dashboard" => "dashboard",
     "/documentation" => "documentation",
