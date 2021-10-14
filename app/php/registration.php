@@ -119,13 +119,17 @@ if (isset($_POST['fName'])) {
 
     $adminName = strtolower($adm_number);
     if ($adminName === "admin") {
-
         $adminValues =
             array($fName, $lName, $profile_pic, $adm_number, $pass);
-
         insertToAdmin($db, $adminValues);
+        echo " <script>
+        window.location.href='../html/SIGNIN.html';
+        </script>";
     } else {
         $values = array($fName, $lName, $profile_pic, $adm_number, $pass, $status, $completion);
         insertRecords($db, $values);
+        echo " <script>
+        window.location.href='../html/SIGNIN.html';
+        </script>";
     }
 }

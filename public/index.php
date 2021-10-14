@@ -4,9 +4,9 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
 $routes = array(
     "/" => "../app/html/index.html",
-    "../app/css/style.css" => "../app/css/style.css",
-    "../app/php/registration.php" => "../app/php/registration.php",
-    "/dashboard" => "dashboard",
+    "/app/css/style.css" => "../app/css/style.css",
+    "/app/php/registration.php" => "../app/php/registration.php",
+    "../html/SIGNIN.html" => "../app/html/SIGNIN.html",
     "/documentation" => "documentation",
     "/entry-list" => "entry-list",
     "/gallery" => "gallery",
