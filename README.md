@@ -9,17 +9,17 @@ of the students who are at any stage of the enrollment.
 
 ## Student Portal
 
-<img src="Student.PNG"  />
+<img src="https://raw.githubusercontent.com/vincentmunene49/university_enrollment/master/Student.PNG"  />
 
 ## Admin Portal
 
-<img src="Admin.PNG" />
+<img src="https://raw.githubusercontent.com/vincentmunene49/university_enrollment/master/Admin.PNG" />
 
 ## Profile Page
 
 - Where one can edit his/her profile
 
-<img src="Profile.PNG" />
+<img src="https://github.com/vincentmunene49/university_enrollment/blob/master/Profile.PNG" />
 
 ## How To contribute
 
